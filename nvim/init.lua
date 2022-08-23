@@ -1,3 +1,5 @@
+require'plugins'
+
 local opt = vim.opt
 
 opt.mouse = 'a' 
@@ -6,9 +8,12 @@ opt.number = true
 opt.clipboard = "unnamedplus" 
 opt.smartindent = true
 opt.shiftwidth = 4
+
+vim.cmd[[colorscheme desert]]
 --opt.syntax = true
 
 --- for key map
+
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
   if opts then
