@@ -2,6 +2,9 @@
 
 neovim での設定ファイルとその備忘録を書いておく。
 
+
+Luaについては[ここ](https://github.com/aki-ph-chem/Learn-Lua)
+
 # neovimのプラグインマネージャはどうするのか? 
 
 packer.nvim[ここ](https://github.com/wbthomason/packer.nvim)を使う
@@ -24,3 +27,15 @@ neovimの設定ファイルが置かれている。
 
 - plugins/packer_compiled.lua
     - 今の所よくわからない 
+
+## now(2023 01.26)
+
+- LSPの導入がうまくいかない.....
+
+- install & settings
+    - mason.nvim 
+    - mason-lspconfig.nvim 
+    - nvim-lspconfig
+
+masonでとりあえずpythonのlspを入れてみたが得になにかが変わった感じではないのだが?
+
