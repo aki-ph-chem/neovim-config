@@ -28,7 +28,7 @@ neovimの設定ファイルが置かれている。
 	- pluginマネージャの設定ファイル
 
 - plugins/packer_compiled.lua
-    - 今の所よくわからない 
+    - Packerによってコンパイルされた中間コード 
 
 ## now(2023 01.26)
 
