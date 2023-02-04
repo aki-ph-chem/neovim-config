@@ -2,15 +2,17 @@
 
 neovim での設定ファイルとその備忘録を書いておく。
 
+neovimの設定はvimscriptとLuaの両方で書くことが可能であるが、私はLuaで設定ファイルを書く。
 
-Luaについては[ここ](https://github.com/aki-ph-chem/Learn-Lua)
+[Luaのメモ](https://github.com/aki-ph-chem/Learn-Lua)
 
-# neovimのプラグインマネージャはどうするのか? 
+# プラグインマネージャ 
 
-packer.nvim[ここ](https://github.com/wbthomason/packer.nvim)を使う
+プラグインマネージャとしては
+[packer.nvim](https://github.com/wbthomason/packer.nvim)を使う
 
 
-自分はArch Linux環境なので、aurからnvim-packer-gitとしてインストールする
+私の環境はArch Linuxであるので、AURからnvim-packer-gitとしてインストールする
 
 ## nvim
 
