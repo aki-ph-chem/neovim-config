@@ -1,7 +1,23 @@
-require'plugins'
 
+-- install(bootstrap) lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- for plugins
+require("lazy").setup("plugins")
+
+-- basic config
 local opt = vim.opt
-
 opt.mouse = 'a' 
 opt.title = true
 opt.number = true
@@ -10,11 +26,12 @@ opt.smartindent = true
 opt.shiftwidth = 4
 opt.expandtab = true
 
-
+-- theme
 -- vim.cmd[[colorscheme desert]]
 -- vim.cmd[[colorscheme default]]
- vim.cmd[[colorscheme codedark]]
+vim.cmd[[colorscheme codedark]]
 
+-- hightlight
 vim.cmd[[highlight Normal ctermbg=none]] 
 vim.cmd[[highlight NonText ctermbg=none]]   
 vim.cmd[[highlight LineNr ctermbg=none]]
@@ -23,13 +40,10 @@ vim.cmd[[highlight EndOfBuffer ctermbg=none]]
 
 
 -- latex syntax
-
 vim.cmd[[let g:tex_conceal = '']]
-
 --opt.syntax = true
 
 --- for key map
-
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
   if opts then
@@ -41,18 +55,18 @@ end
 map('i','jj','<Esc>')
 --map('v','vv','<C-v>')
 
-
 vim.cmd[[let $BASH_ENV = "~/.bash_aliases"]]
-
-
 -- cargo run
 vim.cmd[[command Car !cargo run]]
 
 
--- mason: LSPマネージャー
+-- LSP config
+
+-- mason: LSP manager
 require("mason").setup()
 require("mason-lspconfig").setup()
 
+-- LSP for each programing language
 -- python
 require("lspconfig").pyright.setup {}
 -- cpp
@@ -60,11 +74,10 @@ require("lspconfig").clangd.setup {}
 -- Rust
 require("lspconfig").rust_analyzer.setup {}
 -- Lua
-require("lspconfig").sumneko_lua.setup {}
+require("lspconfig").lua_ls.setup {}
 
-
--- 補完:nvim-cmpのgithubのコピペ
-  local cmp = require'cmp'
+-- cmp config
+local cmp = require'cmp'
 
   cmp.setup({
     snippet = {
