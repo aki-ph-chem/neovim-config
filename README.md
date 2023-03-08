@@ -70,3 +70,51 @@ require("lspconfig").rust_analyzer.setup {}
 -- Lua
 require("lspconfig").sumneko_lua.setup {}
 ```
+
+## lazy.nvimに移行する
+
+### 作業flow
+
+1. まずMasonで管理しているLSPを削除する
+2. packer.nvimで管理しているプラグインに依存するコードをinit.luaから削除する
+3. packer.nvimで管理しているプラグインを削除する
+4. packer.nvimを削除する
+5. lazy.nvimをインストールする
+6. lazy.nvim用に`init.lua`, `lua/plugins.lua`を書き換える
+
+### Lazyを導入する 
+
+[公式](https://github.com/folke/lazy.nvim)のやり方に習ってインストールする。
+
+`init.lua`に以下を書き込む
+
+```Lua
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+```
+
+プラグインは`lua/plugins.lua`に以下のように書き込む
+
+```Lua
+return {
+    "<plugin_name>"
+}
+```
+
+これを読み込むために`init.lua`側に
+
+```Lua
+require("lazy").setup("plugins")
+```
+
+と書き込む。
