@@ -30,6 +30,8 @@ opt.expandtab = true
 -- vim.cmd[[colorscheme desert]]
 -- vim.cmd[[colorscheme default]]
 vim.cmd[[colorscheme codedark]]
+-- 行番号の色を設定
+vim.cmd[[highlight LineNr ctermbg=NONE ctermfg=magenta guibg=NONE guifg=magenta]]
 
 -- hightlight
 vim.cmd[[highlight Normal ctermbg=none]] 
@@ -41,6 +43,7 @@ vim.cmd[[highlight EndOfBuffer ctermbg=none]]
 
 -- latex syntax
 vim.cmd[[let g:tex_conceal = '']]
+vim.cmd[[syntax enable]]
 --opt.syntax = true
 
 --- for key map
@@ -75,6 +78,8 @@ require("lspconfig").clangd.setup {}
 require("lspconfig").rust_analyzer.setup {}
 -- Lua
 require("lspconfig").lua_ls.setup {}
+-- latex
+require("lspconfig").texlab.setup {}
 
 -- cmp config
 local cmp = require'cmp'
