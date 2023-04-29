@@ -14,11 +14,17 @@ cmp_plugins = {
     "hrsh7th/vim-vsnip"
 } 
 
+-- for git
+git_plugins = {
+    "TimUntersberger/neogit",
+}
+
 
 return {
     "cohama/lexima.vim",
     "lervag/vimtex",
     'tomasiser/vim-code-dark',
     lsp_plugins,
-    cmp_plugins
+    cmp_plugins,
+    git_plugins,
 }
