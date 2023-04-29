@@ -1,4 +1,3 @@
-
 -- install(bootstrap) lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -40,7 +39,6 @@ vim.cmd[[highlight LineNr ctermbg=none]]
 vim.cmd[[highlight Folded ctermbg=none]]
 vim.cmd[[highlight EndOfBuffer ctermbg=none]]
 
-
 -- latex syntax
 vim.cmd[[let g:tex_conceal = '']]
 vim.cmd[[syntax enable]]
@@ -59,12 +57,42 @@ map('i','jj','<Esc>')
 --map('v','vv','<C-v>')
 
 vim.cmd[[let $BASH_ENV = "~/.bash_aliases"]]
--- cargo run
-vim.cmd[[command Car !cargo run]]
 
+-- for cargo
+vim.cmd[[command Car !cargo run]]
+vim.cmd[[command Cab !cargo build]]
+vim.cmd[[command Cat !cargo test]]
+
+----- for `cargo run --bin ` ------ 
+vim.api.nvim_create_user_command(
+'Carbin',
+function (opts)
+    local args = opts.args
+    local cmd = "cargo run --bin " .. args
+    local res_of_cmd = vim.fn.system(cmd)
+    print(res_of_cmd)
+end,
+{nargs = 1}
+)
+
+----- for `cargo build --bin` -----
+vim.api.nvim_create_user_command(
+'Cabbin',
+function (opts)
+    local args = opts.args
+    local cmd = "cargo build --bin " .. args
+    local res_of_cmd = vim.fn.system(cmd)
+    print(res_of_cmd)
+end,
+{nargs = 1}
+)
+----- say hello: example ------
+say_hello = function ()
+    print("Hello!")
+end
+vim.api.nvim_command("command! Hi lua say_hello()")
 
 -- LSP config
-
 -- mason: LSP manager
 require("mason").setup()
 require("mason-lspconfig").setup()
@@ -73,11 +101,34 @@ require("mason-lspconfig").setup()
 -- python
 require("lspconfig").pyright.setup {}
 -- cpp
-require("lspconfig").clangd.setup {}
+require("lspconfig").clangd.setup {
+    cmd = {"clangd", "--background-index", "--clang-tidy", 
+    "--completion-style=detailed", "--header-insertion=iwyu", 
+    "--suggest-missing-includes", "--cross-file-rename"},
+    filetypes = {"c", "cpp"},
+    --on_attach = require'lsp'.on_attach,
+    --on_attach = require('lsp').on_attach {},
+    --[[
+    settings = {
+        clangd = {
+            extraArgs = {
+                "-I/path/to/include/directory"
+            }
+        }
+    }
+    --]]
+}
+
 -- Rust
 require("lspconfig").rust_analyzer.setup {}
 -- Lua
-require("lspconfig").lua_ls.setup {}
+require("lspconfig").lua_ls.setup({
+    settings = {
+        Lua = {
+            globals = {'vim'}
+        }
+    }
+})
 -- latex
 require("lspconfig").texlab.setup {}
 
