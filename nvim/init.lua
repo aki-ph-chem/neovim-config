@@ -86,6 +86,24 @@ function (opts)
 end,
 {nargs = 1}
 )
+
+vim.api.nvim_create_user_command(
+'Carbinl',
+function (opts)
+    local args = opts.args
+    local cmd = "cargo run --bin " .. args
+    local res_of_cmd = vim.fn.systemlist(cmd)
+
+    -- open new window & print result
+    vim.cmd("vnew")
+    for index,line in ipairs(res_of_cmd) do
+        vim.fn.append(index, line)
+    end
+    vim.cmd('setlocal readonly') 
+end,
+{nargs = 1}
+)
+
 ----- say hello: example ------
 say_hello = function ()
     print("Hello!")
