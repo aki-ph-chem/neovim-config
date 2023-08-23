@@ -75,6 +75,36 @@ end,
 {nargs = 1}
 )
 
+vim.api.nvim_create_user_command(
+'Carbin2',
+function (opts)
+    local args = opts.args
+    local cmd = "cargo run --bin " .. args
+    local res_of_cmd = vim.fn.system(cmd)
+
+    -- open new window & print result
+    vim.cmd("vnew")
+    vim.fn.append(0, res_of_cmd)
+    vim.cmd('normal! gg')
+end,
+{nargs = 1}
+)
+
+vim.api.nvim_create_user_command(
+'Hoge',
+function (opts)
+    local args = opts.args
+    local res_str = "args: " .. args
+
+    -- open new window & print result
+    vim.cmd("vnew")
+    vim.fn.append(0, res_str)
+    vim.cmd('normal! gg')
+end,
+{nargs = 1}
+)
+
+
 ----- for `cargo build --bin` -----
 vim.api.nvim_create_user_command(
 'Cabbin',
