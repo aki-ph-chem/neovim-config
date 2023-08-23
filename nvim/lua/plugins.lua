@@ -19,12 +19,19 @@ git_plugins = {
     "TimUntersberger/neogit",
 }
 
+-- fzf
+fuzzy = {
+    "junegunn/fzf.vim",
+}
+
 
 return {
     "cohama/lexima.vim",
     "lervag/vimtex",
     'tomasiser/vim-code-dark',
+    "rust-lang/rust.vim",
     lsp_plugins,
     cmp_plugins,
     git_plugins,
+    fuzzy,
 }
