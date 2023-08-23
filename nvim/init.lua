@@ -121,6 +121,8 @@ require("lspconfig").clangd.setup {
 
 -- Rust
 require("lspconfig").rust_analyzer.setup {}
+-- go lang
+require("lspconfig").gopls.setup {}
 -- Lua
 require("lspconfig").lua_ls.setup({
     settings = {
