@@ -1,4 +1,5 @@
 # About this repository
+[english](./README_EN.md)
 
 neovim での設定ファイルとその備忘録を書いておく。
 
