@@ -30,6 +30,7 @@ return {
     "lervag/vimtex",
     'tomasiser/vim-code-dark',
     'rust-lang/rust.vim',
+    'cespare/vim-toml',
     lsp_plugins,
     cmp_plugins,
     git_plugins,
