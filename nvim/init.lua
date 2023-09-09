@@ -155,6 +155,8 @@ require("lspconfig").clangd.setup {
     --]]
 }
 
+-- CMake
+require("lspconfig").cmake.setup {}
 -- Rust
 require("lspconfig").rust_analyzer.setup {}
 -- go lang
