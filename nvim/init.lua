@@ -169,6 +169,10 @@ require("lspconfig").lua_ls.setup({
         }
     }
 })
+-- JavaScript
+require("lspconfig").tsserver.setup {}
+--  HTML
+--require('html').html.setup {}
 -- latex
 require("lspconfig").texlab.setup {}
 
