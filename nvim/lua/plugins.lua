@@ -14,6 +14,11 @@ cmp_plugins = {
     "hrsh7th/vim-vsnip"
 } 
 
+-- formatter
+fmt_plugins = {
+    "mhartington/formatter.nvim"
+}
+
 -- for git
 git_plugins = {
     "TimUntersberger/neogit",
@@ -35,4 +40,5 @@ return {
     cmp_plugins,
     git_plugins,
     fuzzy,
+    fmt_plugins,
 }
