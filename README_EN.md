@@ -6,6 +6,39 @@ While neovim allows configuration files to be written in both Vimscript and Lua,
 
 [Learn Lua](https://github.com/aki-ph-chem/Learn-Lua) contains my notes on Lua.
 
+<!-- drft -->
+## In present
+
+I migrate from packer.nvim to lazzy.nvim
+
+- plugin manager
+    - [lazy.nvim](https://github.com/folke/lazy.nvim)
+- plugins for LSP
+    - [mason.nvim](https://github.com/williamboman/mason.nvim]) 
+    - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) 
+    - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+- plugins for cmp 
+    - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+    - [nvim-cmp-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
+    - [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)
+
+- theme 
+    - [vim-code-dark](https://github.com/tomasiser/vim-code-dark):Visual Studio Code like theme
+- others 
+    - [lexima.vim](https://github.com/cohama/lexima.vim)
+    - [vimtex](https://github.com/lervag/vimtex)
+    - [rust.vim](https://github.com/rust-lang/rust.vim)
+
+### present directory structure 
+
+I have a configuration file in `neovim-config/nvim` and a symbolic link to `nvim` in ~/.config
+
+- init.lua
+	- config file of neovim
+- lua/plugins.lua
+	- config file of plugin 
+
+
 ## Plugin Manager
 
 I use [packer.nvim](https://github.com/wbthomason/packer.nvim) as the plugin manager.
