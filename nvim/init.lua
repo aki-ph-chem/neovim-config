@@ -56,6 +56,12 @@ end
 map('i','jj','<Esc>')
 --map('v','vv','<C-v>')
 
+-- file manager nerdtree
+-- auto start 
+vim.cmd[[autocmd VimEnter * NERDTree]]
+-- toggle nerdtree
+vim.cmd[[command Nt NERDTreeToggle]]
+
 vim.cmd[[let $BASH_ENV = "~/.bash_aliases"]]
 
 -- for cargo

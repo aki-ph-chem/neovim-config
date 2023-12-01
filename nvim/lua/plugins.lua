@@ -36,6 +36,7 @@ return {
     'tomasiser/vim-code-dark',
     'rust-lang/rust.vim',
     'cespare/vim-toml',
+    'preservim/nerdtree',
     lsp_plugins,
     cmp_plugins,
     git_plugins,
