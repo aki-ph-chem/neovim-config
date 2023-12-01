@@ -25,6 +25,16 @@ opt.smartindent = true
 opt.shiftwidth = 4
 opt.expandtab = true
 
+-- resize window
+-- +10 horizontal
+vim.cmd[[command Ri resize +10]]
+-- -10 horizontal
+vim.cmd[[command Rd resize -10]]
+-- +10 vertical 
+vim.cmd[[command Vi vertical resize +10]]
+-- -10 vertical 
+vim.cmd[[command Vd vertical resize -10]]
+
 -- theme
 -- vim.cmd[[colorscheme desert]]
 -- vim.cmd[[colorscheme default]]
@@ -61,6 +71,8 @@ map('i','jj','<Esc>')
 vim.cmd[[autocmd VimEnter * NERDTree]]
 -- toggle nerdtree
 vim.cmd[[command Nt NERDTreeToggle]]
+-- show hidden file
+vim.g.NERDTreeShowHidden=1
 
 vim.cmd[[let $BASH_ENV = "~/.bash_aliases"]]
 
