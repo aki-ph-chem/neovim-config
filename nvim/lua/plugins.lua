@@ -14,6 +14,11 @@ cmp_plugins = {
     "hrsh7th/vim-vsnip"
 } 
 
+-- formatter
+fmt_plugins = {
+    "mhartington/formatter.nvim"
+}
+
 -- for git
 git_plugins = {
     "TimUntersberger/neogit",
@@ -31,8 +36,10 @@ return {
     'tomasiser/vim-code-dark',
     'rust-lang/rust.vim',
     'cespare/vim-toml',
+    'preservim/nerdtree',
     lsp_plugins,
     cmp_plugins,
     git_plugins,
     fuzzy,
+    fmt_plugins,
 }

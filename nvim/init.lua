@@ -25,6 +25,16 @@ opt.smartindent = true
 opt.shiftwidth = 4
 opt.expandtab = true
 
+-- resize window
+-- +10 horizontal
+vim.cmd[[command Ri resize +10]]
+-- -10 horizontal
+vim.cmd[[command Rd resize -10]]
+-- +10 vertical 
+vim.cmd[[command Vi vertical resize +10]]
+-- -10 vertical 
+vim.cmd[[command Vd vertical resize -10]]
+
 -- theme
 -- vim.cmd[[colorscheme desert]]
 -- vim.cmd[[colorscheme default]]
@@ -55,6 +65,14 @@ end
 
 map('i','jj','<Esc>')
 --map('v','vv','<C-v>')
+
+-- file manager nerdtree
+-- auto start 
+vim.cmd[[autocmd VimEnter * NERDTree]]
+-- toggle nerdtree
+vim.cmd[[command Nt NERDTreeToggle]]
+-- show hidden file
+vim.g.NERDTreeShowHidden=1
 
 vim.cmd[[let $BASH_ENV = "~/.bash_aliases"]]
 
@@ -154,6 +172,9 @@ require("lspconfig").clangd.setup {
     }
     --]]
 }
+
+-- C++ formatter
+--require("clang_format").setup{}
 
 -- CMake
 require("lspconfig").cmake.setup {}
@@ -295,3 +316,53 @@ local cmp = require'cmp'
       { name = 'cmdline' }
     })
   })
+
+-- Utilities for creating configurations
+local util = require "formatter.util"
+-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+require("formatter").setup {
+  -- Enable or disable logging
+  logging = true,
+  -- Set the log level
+  log_level = vim.log.levels.WARN,
+  -- All formatter configurations are opt-in
+  filetype = {
+    -- Formatter configurations for filetype "lua" go here
+    -- and will be executed in order
+    lua = {
+      -- "formatter.filetypes.lua" defines default configurations for the
+      -- "lua" filetype
+      require("formatter.filetypes.lua").stylua,
+
+      -- You can also define your own configuration
+      function()
+        -- Supports conditional formatting
+        if util.get_current_buffer_file_name() == "special.lua" then
+          return nil
+        end
+
+        -- Full specification of configurations is down below and in Vim help
+        -- files
+        return {
+          exe = "stylua",
+          args = {
+            "--search-parent-directories",
+            "--stdin-filepath",
+            util.escape_path(util.get_current_buffer_file_path()),
+            "--",
+            "-",
+          },
+          stdin = true,
+        }
+      end
+    },
+
+    -- Use the special "*" filetype for defining formatter configurations on
+    -- any filetype
+    ["*"] = {
+      -- "formatter.filetypes.any" defines default configurations for any
+      -- filetype
+      require("formatter.filetypes.any").remove_trailing_whitespace
+    }
+  }
+}
