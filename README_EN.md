@@ -30,6 +30,7 @@ I migrate from packer.nvim to lazzy.nvim
     - [rust.vim](https://github.com/rust-lang/rust.vim)
     - [nerdtree](https://github.com/preservim/nerdtree)
     - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
+    - [vim-fugitive](https://github.com/tpope/vim-fugitive)
 
 ### present directory structure 
 
