@@ -28,6 +28,8 @@ I migrate from packer.nvim to lazzy.nvim
     - [lexima.vim](https://github.com/cohama/lexima.vim)
     - [vimtex](https://github.com/lervag/vimtex)
     - [rust.vim](https://github.com/rust-lang/rust.vim)
+    - [nerdtree](https://github.com/preservim/nerdtree)
+    - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
 
 ### present directory structure 
 
@@ -38,14 +40,13 @@ I have a configuration file in `neovim-config/nvim` and a symbolic link to `nvim
 - lua/plugins.lua
 	- config file of plugin 
 
+## configuration in previous 
 
-## Plugin Manager
-
-I use [packer.nvim](https://github.com/wbthomason/packer.nvim) as the plugin manager.
+As a plugin manager, I use [packer.nvim](https://github.com/wbthomason/packer.nvim) as the plugin manager.
 
 Since I use Arch Linux, I install it as `nvim-packer-git` from AUR.
 
-## nvim
+### directory structure 
 
 This directory contains the neovim configuration files.
 
@@ -60,7 +61,7 @@ A symbolic link is created in `~/.config` to point to this directory.
 - plugins/packer_compiled.lua
   - Intermediate code compiled by Packer.
 
-## now (2023 01.26)
+### now (2023 01.26)
 
 - Having trouble setting up LSP...
 
@@ -71,7 +72,7 @@ A symbolic link is created in `~/.config` to point to this directory.
 
 I tried installing the Python LSP using Mason, but I don't see any noticeable changes.
 
-## now (2023 02.4)
+### now (2023 02.4)
 
 For now, things are looking like this. I might consider splitting the files if I feel like it.
 
@@ -126,3 +127,22 @@ if not vim.loop.fs_stat(lazypath) then
     "git",
     "clone",
     "--filter=blob
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+```
+
+For plugins, write setting in `lua/plugins.lua` as follows 
+
+```Lua
+return {
+    "<plugin_name>"
+}
+```
+
+to read this configuration wirte in `init.lua` as follows
+
+```Lua
+require("lazy").setup("plugins")
+```
