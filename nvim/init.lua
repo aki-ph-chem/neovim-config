@@ -35,6 +35,10 @@ vim.cmd[[command Vi vertical resize +10]]
 -- -10 vertical 
 vim.cmd[[command Vd vertical resize -10]]
 
+-- config of toggleterm
+require('toggleterm').setup{}
+vim.cmd[[command Tt ToggleTerm]]
+
 -- theme
 -- vim.cmd[[colorscheme desert]]
 -- vim.cmd[[colorscheme default]]
@@ -68,7 +72,7 @@ map('i','jj','<Esc>')
 
 -- file manager nerdtree
 -- auto start 
-vim.cmd[[autocmd VimEnter * NERDTree]]
+--vim.cmd[[autocmd VimEnter * NERDTree]]
 -- toggle nerdtree
 vim.cmd[[command Nt NERDTreeToggle]]
 -- show hidden file

@@ -21,7 +21,7 @@ fmt_plugins = {
 
 -- for git
 git_plugins = {
-    "TimUntersberger/neogit",
+    "tpope/vim-fugitive"
 }
 
 -- fzf
@@ -37,6 +37,7 @@ return {
     'rust-lang/rust.vim',
     'cespare/vim-toml',
     'preservim/nerdtree',
+    'akinsho/toggleterm.nvim',
     lsp_plugins,
     cmp_plugins,
     git_plugins,
