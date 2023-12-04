@@ -21,7 +21,7 @@ fmt_plugins = {
 
 -- for git
 git_plugins = {
-    "TimUntersberger/neogit",
+    "tpope/vim-fugitive"
 }
 
 -- fzf
