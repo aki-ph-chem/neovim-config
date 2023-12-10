@@ -31,6 +31,7 @@ I migrate from packer.nvim to lazzy.nvim
     - [nerdtree](https://github.com/preservim/nerdtree)
     - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
     - [vim-fugitive](https://github.com/tpope/vim-fugitive)
+    - [vim-airline](https://github.com/vim-airline/vim-airline)
 
 ### present directory structure 
 

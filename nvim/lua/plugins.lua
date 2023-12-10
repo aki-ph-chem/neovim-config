@@ -38,6 +38,7 @@ return {
     'cespare/vim-toml',
     'preservim/nerdtree',
     'akinsho/toggleterm.nvim',
+    'vim-airline/vim-airline',
     lsp_plugins,
     cmp_plugins,
     git_plugins,

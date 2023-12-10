@@ -32,6 +32,7 @@ packer.nvimは開発をストップするとのことなので、lazzy.nvimに�
     - [nerdtree](https://github.com/preservim/nerdtree)
     - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
     - [vim-fugitive](https://github.com/tpope/vim-fugitive)
+    - [vim-airline](https://github.com/vim-airline/vim-airline)
 
 ### 現在のディレクトリ構成
 
