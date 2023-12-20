@@ -25,6 +25,16 @@ packer.nvimは開発をストップするとのことなので、lazzy.nvimに�
 
 - テーマ
     - [vim-code-dark](https://github.com/tomasiser/vim-code-dark):Visual Studio Code風のテーマ
+
+- バッファ管理
+    - [barbar.nvim](https://github.com/romgrk/barbar.nvim): vs-codeのタブのようにバッファを管理できる(要 nerd-fonts)
+
+nerd-fontsはパッケージマネージャより導入した
+
+```bash
+$ sudo pacman -S nerd-fonts
+```
+
 - その他
     - [lexima.vim](https://github.com/cohama/lexima.vim)
     - [vimtex](https://github.com/lervag/vimtex)

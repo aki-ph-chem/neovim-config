@@ -24,6 +24,16 @@ I migrate from packer.nvim to lazzy.nvim
 
 - theme 
     - [vim-code-dark](https://github.com/tomasiser/vim-code-dark):Visual Studio Code like theme
+
+- buffer manager
+    - [barbar.nvim](https://github.com/romgrk/barbar.nvim): It manage buffers as a vs-code like tabs (need nerd-fonts)
+
+I install `nerd-fonts` by pacman
+
+```bash
+$ sudo pacman -S nerd-fonts
+```
+
 - others 
     - [lexima.vim](https://github.com/cohama/lexima.vim)
     - [vimtex](https://github.com/lervag/vimtex)

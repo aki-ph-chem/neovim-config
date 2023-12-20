@@ -12,9 +12,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- for plugins
-require("lazy").setup("plugins")
-
 -- basic config
 local opt = vim.opt
 opt.mouse = 'a' 
@@ -24,6 +21,10 @@ opt.clipboard = "unnamedplus"
 opt.smartindent = true
 opt.shiftwidth = 4
 opt.expandtab = true
+vim.g.mapleader = ','
+
+-- load lazy for plugins
+require("lazy").setup("plugins")
 
 -- resize window
 -- +10 horizontal
@@ -77,6 +78,13 @@ map('i','jj','<Esc>')
 vim.cmd[[command Nt NERDTreeToggle]]
 -- show hidden file
 vim.g.NERDTreeShowHidden=1
+
+-- config for barbar
+-- Move to previous/next
+map('n', '<C-p>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<C-n>', '<Cmd>BufferNext<CR>', opts)
+-- Close buffer
+map('n', '<leader>e', '<Cmd>BufferClose<CR>', opts)
 
 vim.cmd[[let $BASH_ENV = "~/.bash_aliases"]]
 

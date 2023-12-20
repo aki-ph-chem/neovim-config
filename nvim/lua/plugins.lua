@@ -29,6 +29,14 @@ fuzzy = {
     "junegunn/fzf.vim",
 }
 
+-- barbar.nvim
+barbar = {
+    "romgrk/barbar.nvim",
+    dependencies = {
+        'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+        'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    }
+}
 
 return {
     "cohama/lexima.vim",
@@ -39,6 +47,7 @@ return {
     'preservim/nerdtree',
     'akinsho/toggleterm.nvim',
     'vim-airline/vim-airline',
+    barbar,
     lsp_plugins,
     cmp_plugins,
     git_plugins,
