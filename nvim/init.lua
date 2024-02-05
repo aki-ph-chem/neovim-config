@@ -192,6 +192,8 @@ require("lspconfig").clangd.setup {
 require("lspconfig").cmake.setup {}
 
 -- Rust
+-- for rustfmt 
+vim.g.rustfmt_autosave = 1
 require("lspconfig").rust_analyzer.setup({
     on_attach=on_attach,
     settings = {
