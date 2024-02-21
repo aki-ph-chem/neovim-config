@@ -165,7 +165,14 @@ require("mason-lspconfig").setup()
 
 -- LSP for each programing language
 -- python
-require("lspconfig").pyright.setup {}
+require("lspconfig").pyright.setup {
+    settings = {
+        python = {
+            pythonPath = "./.venv/bin/python"
+        }
+    }
+}
+
 -- cpp
 require("lspconfig").clangd.setup {
     cmd = {"clangd", "--background-index", "--clang-tidy", 
