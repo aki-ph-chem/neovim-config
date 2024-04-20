@@ -71,13 +71,21 @@ end
 map('i','jj','<Esc>')
 --map('v','vv','<C-v>')
 
--- file manager nerdtree
--- auto start 
---vim.cmd[[autocmd VimEnter * NERDTree]]
--- toggle nerdtree
-vim.cmd[[command Nt NERDTreeToggle]]
+-- About Fern
+-- j,k : cursor Up/Down 
+-- l/h: open directory/ clse directory
+-- Ctrl + m: open file
+-- Ctrl + h: move to parent direcotry
+-- Enter or e: open file
+-- E: open file by split verticaly
+
+-- Fern config
+-- toggle Fern by :Nt 
+vim.cmd[[command Nt :Fern . -reveal=% -drawer -toggle -width=25<CR>]]
+-- set font as nerdfont
+-- vim.cmd[[let g:fern#renderer = 'nerdfont']]
 -- show hidden file
-vim.g.NERDTreeShowHidden=1
+vim.cmd[[let g:fern#default_hidden=1]]
 
 -- config for barbar
 -- Move to previous/next

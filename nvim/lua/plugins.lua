@@ -38,15 +38,21 @@ barbar = {
     }
 }
 
+-- filer
+filer = {
+    "lambdalisue/nerdfont.vim",
+    "lambdalisue/fern.vim",
+}
+
 return {
     "cohama/lexima.vim",
     "lervag/vimtex",
     'tomasiser/vim-code-dark',
     'rust-lang/rust.vim',
     'cespare/vim-toml',
-    'preservim/nerdtree',
     'akinsho/toggleterm.nvim',
     'vim-airline/vim-airline',
+    filer,
     barbar,
     lsp_plugins,
     cmp_plugins,
