@@ -28,17 +28,65 @@ require("lazy").setup("plugins")
 
 -- resize window
 -- +10 horizontal
-vim.cmd[[command Ri resize +10]]
+vim.api.nvim_create_user_command(
+'Ri',
+function ()
+    vim.cmd("resize +10")
+end,
+{nargs = 0}
+)
 -- -10 horizontal
-vim.cmd[[command Rd resize -10]]
+vim.api.nvim_create_user_command(
+'Rd',
+function ()
+    vim.cmd("resize -10")
+end,
+{nargs = 0}
+)
+
 -- +10 vertical 
-vim.cmd[[command Vi vertical resize +10]]
+vim.api.nvim_create_user_command(
+'Vi',
+function ()
+    vim.cmd("vertical resize +10")
+end,
+{nargs = 0}
+)
 -- -10 vertical 
-vim.cmd[[command Vd vertical resize -10]]
+vim.api.nvim_create_user_command(
+'Vd',
+function ()
+    vim.cmd("vertical resize -10")
+end,
+{nargs = 0}
+)
+
+-- +x vertical
+vim.api.nvim_create_user_command(
+'Vii',
+function (ops)
+    vim.cmd("vertical resize +"..ops.args)
+end,
+{nargs = 1}
+)
+-- +x vertical
+vim.api.nvim_create_user_command(
+'Vdd',
+function (ops)
+    vim.cmd("vertical resize -"..ops.args)
+end,
+{nargs = 1}
+)
 
 -- config of toggleterm
 require('toggleterm').setup{}
-vim.cmd[[command Tt ToggleTerm]]
+vim.api.nvim_create_user_command(
+'Tt',
+function ()
+    vim.cmd("ToggleTerm")
+end,
+{nargs = 0}
+)
 
 -- theme
 -- vim.cmd[[colorscheme desert]]
@@ -48,8 +96,8 @@ vim.cmd[[colorscheme codedark]]
 vim.cmd[[highlight LineNr ctermbg=NONE ctermfg=magenta guibg=NONE guifg=magenta]]
 
 -- hightlight
-vim.cmd[[highlight Normal ctermbg=none]] 
-vim.cmd[[highlight NonText ctermbg=none]]   
+vim.cmd[[highlight Normal ctermbg=none]]
+vim.cmd[[highlight NonText ctermbg=none]]
 vim.cmd[[highlight LineNr ctermbg=none]]
 vim.cmd[[highlight Folded ctermbg=none]]
 vim.cmd[[highlight EndOfBuffer ctermbg=none]]
@@ -78,14 +126,31 @@ map('i','jj','<Esc>')
 -- Ctrl + h: move to parent direcotry
 -- Enter or e: open file
 -- E: open file by split verticaly
+-- toggle Fern by :Nt 
+vim.api.nvim_create_user_command(
+'Nt',
+function ()
+    vim.cmd(":Fern . -reveal=% -drawer -toggle -width=25<CR>")
+end,
+{nargs = 0}
+)
+
+-- open directory <dir> by :Ntt <dir> 
+vim.api.nvim_create_user_command(
+'Ntt',
+function (opts)
+    local  dir = opts.args
+    vim.cmd(":Fern " .. dir .. " -reveal=% -drawer -toggle -width=25<CR>")
+end,
+{nargs = 1}
+)
 
 -- Fern config
--- toggle Fern by :Nt 
-vim.cmd[[command Nt :Fern . -reveal=% -drawer -toggle -width=25<CR>]]
 -- set font as nerdfont
 -- vim.cmd[[let g:fern#renderer = 'nerdfont']]
 -- show hidden file
 vim.cmd[[let g:fern#default_hidden=1]]
+
 
 -- config for barbar
 -- Move to previous/next
@@ -137,9 +202,20 @@ function (opts)
     for index,line in ipairs(res_of_cmd) do
         vim.fn.append(index, line)
     end
-    vim.cmd('setlocal readonly') 
+    vim.cmd('setlocal buftype=nofile')
 end,
 {nargs = 1}
+)
+
+vim.api.nvim_create_user_command(
+'Hg',
+function ()
+    vim.cmd("vnew")
+    vim.fn.append(0, "foo")
+    vim.fn.append(1, "bar")
+    vim.cmd('setlocal buftype=nofile')
+end,
+{nargs = 0}
 )
 
 --- for make -- 
@@ -155,7 +231,25 @@ function (opts)
     for index,line in ipairs(res_of_cmd) do
         vim.fn.append(index, line)
     end
-    vim.cmd('setlocal readonly') 
+    vim.cmd('setlocal buftype=nofile')
+end,
+{nargs = 1}
+)
+
+--- for make run file=<file name> -- 
+vim.api.nvim_create_user_command(
+'Mkr',
+function (opts)
+    local args = opts.args
+    local cmd = "make run file=" .. args
+    local res_of_cmd = vim.fn.systemlist(cmd)
+
+    -- open new window & print result
+    vim.cmd("vnew")
+    for index,line in ipairs(res_of_cmd) do
+        vim.fn.append(index, line)
+    end
+    vim.cmd('setlocal buftype=nofile')
 end,
 {nargs = 1}
 )
@@ -231,8 +325,6 @@ require("lspconfig").rust_analyzer.setup({
     }
 })
 
--- go lang
-require("lspconfig").gopls.setup {}
 -- Lua
 require("lspconfig").lua_ls.setup({
     settings = {
@@ -241,6 +333,9 @@ require("lspconfig").lua_ls.setup({
         }
     }
 })
+
+-- go lang
+require("lspconfig").gopls.setup {}
 -- JavaScript
 require("lspconfig").tsserver.setup {}
 --  HTML
