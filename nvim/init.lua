@@ -254,6 +254,24 @@ end,
 {nargs = 1}
 )
 
+-- config diffview.nvim
+-- require("diffview.actions").setup({})
+vim.api.nvim_create_user_command(
+'Dfo',
+function ()
+    vim.cmd(': DiffviewOpen')
+end,
+{nargs = 0}
+)
+
+vim.api.nvim_create_user_command(
+'Dfc',
+function ()
+    vim.cmd(': DiffviewClose')
+end,
+{nargs = 0}
+)
+
 ----- say hello: example ------
 say_hello = function ()
     print("Hello!")
@@ -264,6 +282,8 @@ vim.api.nvim_command("command! Hi lua say_hello()")
 -- mason: LSP manager
 require("mason").setup()
 require("mason-lspconfig").setup()
+
+require("lspconfig").grammarly.setup{}
 
 -- LSP for each programing language
 -- python
