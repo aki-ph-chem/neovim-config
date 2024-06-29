@@ -217,10 +217,30 @@ vim.api.nvim_create_user_command("Gr", function(opts)
     vim.cmd("setlocal buftype=nofile")
 end, { nargs = 1 })
 
+-- config diffview.nvim
+-- require("diffview.actions").setup({})
+vim.api.nvim_create_user_command(
+'Dfo',
+function ()
+    vim.cmd(': DiffviewOpen')
+end,
+{nargs = 0}
+)
+
+vim.api.nvim_create_user_command(
+'Dfc',
+function ()
+    vim.cmd(': DiffviewClose')
+end,
+{nargs = 0}
+)
+
 -- LSP config
 -- mason: LSP manager
 require("mason").setup()
 require("mason-lspconfig").setup()
+
+require("lspconfig").grammarly.setup{}
 
 -- LSP for each programing language
 -- python

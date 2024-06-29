@@ -40,7 +40,6 @@ barbar = {
 
 -- filer
 filer = {
-    "lambdalisue/nerdfont.vim",
     "lambdalisue/fern.vim",
 }
 
@@ -52,6 +51,7 @@ return {
     'cespare/vim-toml',
     'akinsho/toggleterm.nvim',
     'vim-airline/vim-airline',
+    'sindrets/diffview.nvim',
     filer,
     barbar,
     lsp_plugins,
