@@ -12,7 +12,7 @@ cmp_plugins = {
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/vim-vsnip"
-} 
+}
 
 -- formatter
 fmt_plugins = {
