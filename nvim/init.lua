@@ -1,264 +1,221 @@
 -- install(bootstrap) lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- stylua: ignore
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- basic config
 local opt = vim.opt
-opt.mouse = 'a' 
+opt.mouse = "a"
 opt.title = true
 opt.number = true
-opt.clipboard = "unnamedplus" 
+opt.clipboard = "unnamedplus"
 opt.smartindent = true
 opt.shiftwidth = 4
 opt.expandtab = true
-vim.g.mapleader = ','
+vim.g.mapleader = ","
 
 -- load lazy for plugins
 require("lazy").setup("plugins")
 
 -- resize window
 -- +10 horizontal
-vim.api.nvim_create_user_command(
-'Ri',
-function ()
+-- stylua: ignore
+vim.api.nvim_create_user_command("Ri", function()
     vim.cmd("resize +10")
-end,
-{nargs = 0}
-)
+end, { nargs = 0 })
 -- -10 horizontal
-vim.api.nvim_create_user_command(
-'Rd',
-function ()
+-- stylua: ignore
+vim.api.nvim_create_user_command("Rd", function()
     vim.cmd("resize -10")
-end,
-{nargs = 0}
-)
+end, { nargs = 0 })
 
--- +10 vertical 
-vim.api.nvim_create_user_command(
-'Vi',
-function ()
+-- +10 vertical
+-- stylua: ignore
+vim.api.nvim_create_user_command("Vi", function()
     vim.cmd("vertical resize +10")
-end,
-{nargs = 0}
-)
--- -10 vertical 
-vim.api.nvim_create_user_command(
-'Vd',
-function ()
+end, { nargs = 0 })
+-- -10 vertical
+-- stylua: ignore
+vim.api.nvim_create_user_command("Vd", function()
     vim.cmd("vertical resize -10")
-end,
-{nargs = 0}
-)
+end, { nargs = 0 })
 
 -- +x vertical
-vim.api.nvim_create_user_command(
-'Vii',
-function (ops)
-    vim.cmd("vertical resize +"..ops.args)
-end,
-{nargs = 1}
-)
+-- stylua: ignore
+vim.api.nvim_create_user_command("Vii", function(ops)
+    vim.cmd("vertical resize +" .. ops.args)
+end, { nargs = 1 })
 -- +x vertical
-vim.api.nvim_create_user_command(
-'Vdd',
-function (ops)
-    vim.cmd("vertical resize -"..ops.args)
-end,
-{nargs = 1}
-)
+
+-- stylua: ignore
+vim.api.nvim_create_user_command("Vdd", function(ops)
+    vim.cmd("vertical resize -" .. ops.args)
+end, { nargs = 1 })
 
 -- config of toggleterm
-require('toggleterm').setup{}
-vim.api.nvim_create_user_command(
-'Tt',
-function ()
+require("toggleterm").setup({})
+-- stylua: ignore
+vim.api.nvim_create_user_command("Tt", function()
     vim.cmd("ToggleTerm")
-end,
-{nargs = 0}
-)
+end, { nargs = 0 })
 
 -- theme
 -- vim.cmd[[colorscheme desert]]
 -- vim.cmd[[colorscheme default]]
-vim.cmd[[colorscheme codedark]]
+vim.cmd([[colorscheme codedark]])
 -- 行番号の色を設定
-vim.cmd[[highlight LineNr ctermbg=NONE ctermfg=magenta guibg=NONE guifg=magenta]]
+vim.cmd([[highlight LineNr ctermbg=NONE ctermfg=magenta guibg=NONE guifg=magenta]])
 
 -- hightlight
-vim.cmd[[highlight Normal ctermbg=none]]
-vim.cmd[[highlight NonText ctermbg=none]]
-vim.cmd[[highlight LineNr ctermbg=none]]
-vim.cmd[[highlight Folded ctermbg=none]]
-vim.cmd[[highlight EndOfBuffer ctermbg=none]]
+vim.cmd([[highlight Normal ctermbg=none]])
+vim.cmd([[highlight NonText ctermbg=none]])
+vim.cmd([[highlight LineNr ctermbg=none]])
+vim.cmd([[highlight Folded ctermbg=none]])
+vim.cmd([[highlight EndOfBuffer ctermbg=none]])
 
 -- latex syntax
-vim.cmd[[let g:tex_conceal = '']]
-vim.cmd[[syntax enable]]
+vim.cmd([[let g:tex_conceal = '']])
+vim.cmd([[syntax enable]])
 --opt.syntax = true
 
 --- for key map
+-- stylua: ignore
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map('i','jj','<Esc>')
+map("i", "jj", "<Esc>")
 --map('v','vv','<C-v>')
 
 -- About Fern
--- j,k : cursor Up/Down 
+-- j,k : cursor Up/Down
 -- l/h: open directory/ clse directory
 -- Ctrl + m: open file
 -- Ctrl + h: move to parent direcotry
 -- Enter or e: open file
 -- E: open file by split verticaly
--- toggle Fern by :Nt 
-vim.api.nvim_create_user_command(
-'Nt',
-function ()
+-- toggle Fern by :Nt
+-- stylua: ignore
+vim.api.nvim_create_user_command("Nt", function()
     vim.cmd(":Fern . -reveal=% -drawer -toggle -width=25<CR>")
-end,
-{nargs = 0}
-)
+end, { nargs = 0 })
 
--- open directory <dir> by :Ntt <dir> 
-vim.api.nvim_create_user_command(
-'Ntt',
-function (opts)
-    local  dir = opts.args
+-- open directory <dir> by :Ntt <dir>
+-- stylua: ignore
+vim.api.nvim_create_user_command("Ntt", function(opts)
+    local dir = opts.args
     vim.cmd(":Fern " .. dir .. " -reveal=% -drawer -toggle -width=25<CR>")
-end,
-{nargs = 1}
-)
+end, { nargs = 1 })
 
 -- Fern config
 -- set font as nerdfont
 -- vim.cmd[[let g:fern#renderer = 'nerdfont']]
 -- show hidden file
-vim.cmd[[let g:fern#default_hidden=1]]
-
+vim.cmd([[let g:fern#default_hidden=1]])
 
 -- config for barbar
 -- Move to previous/next
-map('n', '<C-p>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<C-n>', '<Cmd>BufferNext<CR>', opts)
+map("n", "<C-p>", "<Cmd>BufferPrevious<CR>", opts)
+map("n", "<C-n>", "<Cmd>BufferNext<CR>", opts)
 -- Close buffer
-map('n', '<leader>e', '<Cmd>BufferClose<CR>', opts)
+map("n", "<leader>e", "<Cmd>BufferClose<CR>", opts)
 
-vim.cmd[[let $BASH_ENV = "~/.bash_aliases"]]
+vim.cmd([[let $BASH_ENV = "~/.bash_aliases"]])
 
 -- for cargo
-vim.cmd[[command Car !cargo run]]
-vim.cmd[[command Cab !cargo build]]
-vim.cmd[[command Cat !cargo test]]
+vim.cmd([[command Car !cargo run]])
+vim.cmd([[command Cab !cargo build]])
+vim.cmd([[command Cat !cargo test]])
 
------ for `cargo run --bin ` ------ 
-vim.api.nvim_create_user_command(
-'Carbin',
-function (opts)
+----- for `cargo run --bin ` ------
+-- stylua: ignore
+vim.api.nvim_create_user_command("Carbin", function(opts)
     local args = opts.args
     local cmd = "cargo run --bin " .. args
     local res_of_cmd = vim.fn.system(cmd)
     print(res_of_cmd)
-end,
-{nargs = 1}
-)
+end, { nargs = 1 })
 
 ----- for `cargo build --bin` -----
-vim.api.nvim_create_user_command(
-'Cabbin',
-function (opts)
+-- stylua: ignore
+vim.api.nvim_create_user_command("Cabbin", function(opts)
     local args = opts.args
     local cmd = "cargo build --bin " .. args
     local res_of_cmd = vim.fn.system(cmd)
     print(res_of_cmd)
-end,
-{nargs = 1}
-)
+end, { nargs = 1 })
 
-vim.api.nvim_create_user_command(
-'Carbinl',
-function (opts)
+-- stylua: ignore
+vim.api.nvim_create_user_command("Carbinl", function(opts)
     local args = opts.args
     local cmd = "cargo run --bin " .. args
     local res_of_cmd = vim.fn.systemlist(cmd)
 
     -- open new window & print result
     vim.cmd("vnew")
-    for index,line in ipairs(res_of_cmd) do
+    for index, line in ipairs(res_of_cmd) do
         vim.fn.append(index, line)
     end
-    vim.cmd('setlocal buftype=nofile')
-end,
-{nargs = 1}
-)
+    vim.cmd("setlocal buftype=nofile")
+end, { nargs = 1 })
 
-vim.api.nvim_create_user_command(
-'Hg',
-function ()
-    vim.cmd("vnew")
-    vim.fn.append(0, "foo")
-    vim.fn.append(1, "bar")
-    vim.cmd('setlocal buftype=nofile')
-end,
-{nargs = 0}
-)
-
---- for make -- 
-vim.api.nvim_create_user_command(
-'Makel',
-function (opts)
+--- for make --
+-- stylua: ignore
+vim.api.nvim_create_user_command("Makel", function(opts)
     local args = opts.args
     local cmd = "make " .. args
     local res_of_cmd = vim.fn.systemlist(cmd)
 
     -- open new window & print result
     vim.cmd("vnew")
-    for index,line in ipairs(res_of_cmd) do
+    for index, line in ipairs(res_of_cmd) do
         vim.fn.append(index, line)
     end
-    vim.cmd('setlocal buftype=nofile')
-end,
-{nargs = 1}
-)
+    vim.cmd("setlocal buftype=nofile")
+end, { nargs = 1 })
 
---- for make run file=<file name> -- 
-vim.api.nvim_create_user_command(
-'Mkr',
-function (opts)
+--- for make run file=<file name> --
+-- stylua: ignore
+vim.api.nvim_create_user_command("Mkr", function(opts)
     local args = opts.args
     local cmd = "make run file=" .. args
     local res_of_cmd = vim.fn.systemlist(cmd)
 
     -- open new window & print result
     vim.cmd("vnew")
-    for index,line in ipairs(res_of_cmd) do
+    for index, line in ipairs(res_of_cmd) do
         vim.fn.append(index, line)
     end
-    vim.cmd('setlocal buftype=nofile')
-end,
-{nargs = 1}
-)
+    vim.cmd("setlocal buftype=nofile")
+end, { nargs = 1 })
 
------ say hello: example ------
-say_hello = function ()
-    print("Hello!")
-end
-vim.api.nvim_command("command! Hi lua say_hello()")
+-- for go run <file name>
+-- stylua: ignore
+vim.api.nvim_create_user_command("Gr", function(opts)
+    local cmd = "go run " .. opts.args .. ".go"
+    local res_of_cmd = vim.fn.systemlist(cmd)
+
+    -- open new window(buffer) & print result
+    vim.cmd("vnew")
+    for idx, line in ipairs(res_of_cmd) do
+        vim.fn.append(idx, line)
+    end
+    vim.cmd("setlocal buftype=nofile")
+end, { nargs = 1 })
 
 -- LSP config
 -- mason: LSP manager
@@ -267,6 +224,7 @@ require("mason-lspconfig").setup()
 
 -- LSP for each programing language
 -- python
+-- stylua: ignore
 require("lspconfig").pyright.setup {
     settings = {
         python = {
@@ -276,9 +234,10 @@ require("lspconfig").pyright.setup {
 }
 
 -- cpp
+-- stylua: ignore
 require("lspconfig").clangd.setup {
-    cmd = {"clangd", "--background-index", "--clang-tidy", 
-    "--completion-style=detailed", "--header-insertion=iwyu", 
+    cmd = {"clangd", "--background-index", "--clang-tidy",
+    "--completion-style=detailed", "--header-insertion=iwyu",
     "--suggest-missing-includes", "--cross-file-rename"},
     filetypes = {"c", "cpp"},
     --on_attach = require'lsp'.on_attach,
@@ -294,15 +253,11 @@ require("lspconfig").clangd.setup {
     --]]
 }
 
--- C++ formatter
---require("clang_format").setup{}
-
 -- CMake
-require("lspconfig").cmake.setup {}
-
--- Rust
--- for rustfmt 
+require("lspconfig").cmake.setup({})
+-- for rustfmt
 vim.g.rustfmt_autosave = 1
+-- stylua: ignore
 require("lspconfig").rust_analyzer.setup({
     on_attach=on_attach,
     settings = {
@@ -326,6 +281,7 @@ require("lspconfig").rust_analyzer.setup({
 })
 
 -- Lua
+-- stylua: ignore
 require("lspconfig").lua_ls.setup({
     settings = {
         Lua = {
@@ -335,44 +291,55 @@ require("lspconfig").lua_ls.setup({
 })
 
 -- go lang
-require("lspconfig").gopls.setup {}
+-- stylua: ignore
+require("lspconfig").gopls.setup {
+ settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+}
 -- JavaScript
-require("lspconfig").tsserver.setup {}
+require("lspconfig").tsserver.setup({})
 --  HTML
 --require('html').html.setup {}
 -- latex
-require("lspconfig").texlab.setup {}
+require("lspconfig").texlab.setup({})
 
 -- cmp config
-local cmp = require'cmp'
-
-  cmp.setup({
+local cmp = require("cmp")
+-- stylua: ignore
+cmp.setup({
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end,
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        end,
     },
     window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+        -- completion = cmp.config.window.bordered(),
+        -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        -- move to next candicate by Ctrl + n 
-        ['<C-n>'] = cmp.mapping({
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        -- move to next candicate by Ctrl + n
+        ["<C-n>"] = cmp.mapping({
             c = function()
                 if cmp.visible() then
                     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                 else
-                    vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+                    vim.api.nvim_feedkeys(t("<Down>"), "n", true)
                 end
             end,
             i = function(fallback)
@@ -381,15 +348,15 @@ local cmp = require'cmp'
                 else
                     fallback()
                 end
-            end
+            end,
         }),
-        -- move to previous candicate by Ctrl + p 
-        ['<C-p>'] = cmp.mapping({
+        -- move to previous candicate by Ctrl + p
+        ["<C-p>"] = cmp.mapping({
             c = function()
                 if cmp.visible() then
                     cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
                 else
-                    vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
+                    vim.api.nvim_feedkeys(t("<Up>"), "n", true)
                 end
             end,
             i = function(fallback)
@@ -398,22 +365,22 @@ local cmp = require'cmp'
                 else
                     fallback()
                 end
-            end
+            end,
         }),
-
     }),
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
+        { name = "nvim_lsp" },
+        { name = "vsnip" }, -- For vsnip users.
+        -- { name = 'luasnip' }, -- For luasnip users.
+        -- { name = 'ultisnips' }, -- For ultisnips users.
+        -- { name = 'snippy' }, -- For snippy users.
     }, {
-      { name = 'buffer' },
-    })
-  })
+        { name = "buffer" },
+    }),
+})
 
   -- Set configuration for specific filetype.
+  -- stylua: ignore
   cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
       { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
@@ -423,6 +390,7 @@ local cmp = require'cmp'
   })
 
   -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  -- stylua: ignore
   cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
@@ -431,6 +399,7 @@ local cmp = require'cmp'
   })
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  -- stylua: ignore
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
@@ -439,6 +408,7 @@ local cmp = require'cmp'
       { name = 'cmdline' }
     })
   })
+  -- stylua: ignore
   cmp.setup({
     snippet = {
       -- REQUIRED - you must specify a snippet engine
@@ -472,6 +442,7 @@ local cmp = require'cmp'
   })
 
   -- Set configuration for specific filetype.
+  -- stylua: ignore
   cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
       { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
@@ -481,6 +452,7 @@ local cmp = require'cmp'
   })
 
   -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  -- stylua: ignore
   cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
@@ -489,6 +461,7 @@ local cmp = require'cmp'
   })
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  -- stylua: ignore
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
@@ -499,8 +472,9 @@ local cmp = require'cmp'
   })
 
 -- Utilities for creating configurations
-local util = require "formatter.util"
+local util = require("formatter.util")
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+-- stylua: ignore
 require("formatter").setup {
   -- Enable or disable logging
   logging = true,
@@ -538,6 +512,29 @@ require("formatter").setup {
       end
     },
 
+    go = {
+      -- Go filetype
+      require("formatter.filetypes.go").goimports,
+
+      function()
+        -- Supports conditional formatting
+        if util.get_current_buffer_file_name() == "special.lua" then
+          return nil
+        end
+
+        -- Full specification of configurations is down below and in Vim help
+        -- files
+        return {
+          exe = "goimports",
+          args = {
+            "-w",
+            util.escape_path(util.get_current_buffer_file_path()),
+          },
+          stdin = true,
+        }
+      end
+    },
+
     -- Use the special "*" filetype for defining formatter configurations on
     -- any filetype
     ["*"] = {
@@ -547,3 +544,39 @@ require("formatter").setup {
     }
   }
 }
+
+-- format by save file
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+-- format by save *.go file
+-- stylua: ignore
+autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+    local params = vim.lsp.util.make_range_params()
+    params.context = {only = {"source.organizeImports"}}
+    -- buf_request_sync defaults to a 1000ms timeout. Depending on your
+    -- machine and codebase, you may want longer. Add an additional
+    -- argument after params if you find that you have to write the file
+    -- twice for changes to be saved.
+    -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+    for cid, res in pairs(result or {}) do
+      for _, r in pairs(res.result or {}) do
+        if r.edit then
+          local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+          vim.lsp.util.apply_workspace_edit(r.edit, enc)
+        end
+      end
+    end
+    vim.lsp.buf.format({async = false})
+  end
+})
+
+-- format by save other file
+augroup("__formatter__", { clear = true })
+autocmd("BufWritePost", {
+	group = "__formatter__",
+	command = ":FormatWrite",
+})
