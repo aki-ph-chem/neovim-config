@@ -24,50 +24,23 @@ opt.shiftwidth = 4
 opt.expandtab = true
 vim.g.mapleader = ","
 
+--- for key map
+-- stylua: ignore
+local function map(mode, lhs, rhs, opts)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+map("i", "jj", "<Esc>")
+--map('v','vv','<C-v>')
+
 -- load lazy for plugins
 require("lazy").setup("plugins")
-
--- resize window
--- +10 horizontal
--- stylua: ignore
-vim.api.nvim_create_user_command("Ri", function()
-    vim.cmd("resize +10")
-end, { nargs = 0 })
--- -10 horizontal
--- stylua: ignore
-vim.api.nvim_create_user_command("Rd", function()
-    vim.cmd("resize -10")
-end, { nargs = 0 })
-
--- +10 vertical
--- stylua: ignore
-vim.api.nvim_create_user_command("Vi", function()
-    vim.cmd("vertical resize +10")
-end, { nargs = 0 })
--- -10 vertical
--- stylua: ignore
-vim.api.nvim_create_user_command("Vd", function()
-    vim.cmd("vertical resize -10")
-end, { nargs = 0 })
-
--- +x vertical
--- stylua: ignore
-vim.api.nvim_create_user_command("Vii", function(ops)
-    vim.cmd("vertical resize +" .. ops.args)
-end, { nargs = 1 })
--- +x vertical
-
--- stylua: ignore
-vim.api.nvim_create_user_command("Vdd", function(ops)
-    vim.cmd("vertical resize -" .. ops.args)
-end, { nargs = 1 })
-
--- config of toggleterm
-require("toggleterm").setup({})
--- stylua: ignore
-vim.api.nvim_create_user_command("Tt", function()
-    vim.cmd("ToggleTerm")
-end, { nargs = 0 })
+-- my cmd for window size
+require("my_cmd")
 
 -- theme
 -- vim.cmd[[colorscheme desert]]
@@ -88,18 +61,12 @@ vim.cmd([[let g:tex_conceal = '']])
 vim.cmd([[syntax enable]])
 --opt.syntax = true
 
---- for key map
+-- config of toggleterm
+require("toggleterm").setup({})
 -- stylua: ignore
-local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-map("i", "jj", "<Esc>")
---map('v','vv','<C-v>')
+vim.api.nvim_create_user_command("Tt", function()
+    vim.cmd("ToggleTerm")
+end, { nargs = 0 })
 
 -- About Fern
 -- j,k : cursor Up/Down
@@ -136,111 +103,20 @@ map("n", "<leader>e", "<Cmd>BufferClose<CR>", opts)
 
 vim.cmd([[let $BASH_ENV = "~/.bash_aliases"]])
 
--- for cargo
-vim.cmd([[command Car !cargo run]])
-vim.cmd([[command Cab !cargo build]])
-vim.cmd([[command Cat !cargo test]])
-
------ for `cargo run --bin ` ------
--- stylua: ignore
-vim.api.nvim_create_user_command("Carbin", function(opts)
-    local args = opts.args
-    local cmd = "cargo run --bin " .. args
-    local res_of_cmd = vim.fn.system(cmd)
-    print(res_of_cmd)
-end, { nargs = 1 })
-
------ for `cargo build --bin` -----
--- stylua: ignore
-vim.api.nvim_create_user_command("Cabbin", function(opts)
-    local args = opts.args
-    local cmd = "cargo build --bin " .. args
-    local res_of_cmd = vim.fn.system(cmd)
-    print(res_of_cmd)
-end, { nargs = 1 })
-
--- stylua: ignore
-vim.api.nvim_create_user_command("Carbinl", function(opts)
-    local args = opts.args
-    local cmd = "cargo run --bin " .. args
-    local res_of_cmd = vim.fn.systemlist(cmd)
-
-    -- open new window & print result
-    vim.cmd("vnew")
-    for index, line in ipairs(res_of_cmd) do
-        vim.fn.append(index, line)
-    end
-    vim.cmd("setlocal buftype=nofile")
-end, { nargs = 1 })
-
---- for make --
--- stylua: ignore
-vim.api.nvim_create_user_command("Makel", function(opts)
-    local args = opts.args
-    local cmd = "make " .. args
-    local res_of_cmd = vim.fn.systemlist(cmd)
-
-    -- open new window & print result
-    vim.cmd("vnew")
-    for index, line in ipairs(res_of_cmd) do
-        vim.fn.append(index, line)
-    end
-    vim.cmd("setlocal buftype=nofile")
-end, { nargs = 1 })
-
---- for make run file=<file name> --
--- stylua: ignore
-vim.api.nvim_create_user_command("Mkr", function(opts)
-    local args = opts.args
-    local cmd = "make run file=" .. args
-    local res_of_cmd = vim.fn.systemlist(cmd)
-
-    -- open new window & print result
-    vim.cmd("vnew")
-    for index, line in ipairs(res_of_cmd) do
-        vim.fn.append(index, line)
-    end
-    vim.cmd("setlocal buftype=nofile")
-end, { nargs = 1 })
-
--- for go run <file name>
--- stylua: ignore
-vim.api.nvim_create_user_command("Gr", function(opts)
-    local cmd = "go run " .. opts.args .. ".go"
-    local res_of_cmd = vim.fn.systemlist(cmd)
-
-    -- open new window(buffer) & print result
-    vim.cmd("vnew")
-    for idx, line in ipairs(res_of_cmd) do
-        vim.fn.append(idx, line)
-    end
-    vim.cmd("setlocal buftype=nofile")
-end, { nargs = 1 })
-
 -- config diffview.nvim
 -- require("diffview.actions").setup({})
-vim.api.nvim_create_user_command(
-'Dfo',
-function ()
-    vim.cmd(': DiffviewOpen')
-end,
-{nargs = 0}
-)
+vim.api.nvim_create_user_command("Dfo", function()
+	vim.cmd(": DiffviewOpen")
+end, { nargs = 0 })
 
-vim.api.nvim_create_user_command(
-'Dfc',
-function ()
-    vim.cmd(': DiffviewClose')
-end,
-{nargs = 0}
-)
+vim.api.nvim_create_user_command("Dfc", function()
+	vim.cmd(": DiffviewClose")
+end, { nargs = 0 })
 
 -- LSP config
 -- mason: LSP manager
 require("mason").setup()
 require("mason-lspconfig").setup()
-
-require("lspconfig").grammarly.setup{}
 
 -- LSP for each programing language
 -- python
