@@ -46,6 +46,7 @@ require("my_cmd")
 -- vim.cmd[[colorscheme desert]]
 -- vim.cmd[[colorscheme default]]
 vim.cmd([[colorscheme codedark]])
+vim.cmd([[set notermguicolors]])
 -- 行番号の色を設定
 vim.cmd([[highlight LineNr ctermbg=NONE ctermfg=magenta guibg=NONE guifg=magenta]])
 
