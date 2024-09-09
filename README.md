@@ -15,8 +15,8 @@ packer.nvimは開発をストップするとのことなので、lazzy.nvimに�
 - プラグインマネージャー
     - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - LSP関連のプラグイン
-    - [mason.nvim](https://github.com/williamboman/mason.nvim]) 
-    - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) 
+    - [mason.nvim](https://github.com/williamboman/mason.nvim])
+    - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
     - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - 補完関連のプラグイン
     - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
@@ -44,6 +44,15 @@ $ sudo pacman -S nerd-fonts
     - [vim-fugitive](https://github.com/tpope/vim-fugitive)
     - [vim-airline](https://github.com/vim-airline/vim-airline)
 
+### now(2024 0909)
+
+日本語入力にskk(vim-skk/eskk.vim)の導入を検討中
+
+- 必要なこと:
+    1. プラグインのインストール
+    2. 辞書のダウンロード(sudo pacman -S skk-jisyo)
+    3. 辞書のpathを登録
+
 ### 現在のディレクトリ構成
 
 `neovim-config/nvim`に設定ファイルを置いていて、`nvim`を~/.configにシンボリックリンクを貼っている
@@ -61,7 +70,7 @@ $ sudo pacman -S nerd-fonts
 
 筆者の環境はArch Linuxであるので、AURからnvim-packer-gitとしてインストールする
 
-### ディレクトリの構成 
+### ディレクトリの構成
 
 neovimの設定ファイルが置かれている。
 
@@ -74,15 +83,15 @@ neovimの設定ファイルが置かれている。
 	- pluginマネージャの設定ファイル
 
 - plugins/packer_compiled.lua
-    - Packerによってコンパイルされた中間コード 
+    - Packerによってコンパイルされた中間コード
 
 #### now(2023 01.26)
 
 - LSPの導入がうまくいかない.....
 
 - LSP関連のプラグイン
-    - [mason.nvim](https://github.com/williamboman/mason.nvim]) 
-    - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) 
+    - [mason.nvim](https://github.com/williamboman/mason.nvim])
+    - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
     - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 
 masonでとりあえずpythonのlspを入れてみたが得になにかが変わった感じではないのだが?
@@ -91,7 +100,7 @@ masonでとりあえずpythonのlspを入れてみたが得になにかが変わ
 
 とりあえず、現在は以下のような感じ。気が向いたらファイルの分割化をするかも。
 - LSP、コード補完の設定までok
-    - 以下のようにinit.luaに追加したらLSPが動いた    
+    - 以下のようにinit.luaに追加したらLSPが動いた
 
 ```Lua
 -- mason: LSPマネージャー
@@ -99,8 +108,8 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 ```
 - コード補完
-    - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp),[cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp),[vim-vsnip](https://github.com/hrsh7th/vim-vsnip)を使っている  
-   - 設定: nvim-cmpのGitHubにあった設定を利用。   
+    - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp),[cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp),[vim-vsnip](https://github.com/hrsh7th/vim-vsnip)を使っている
+   - 設定: nvim-cmpのGitHubにあった設定を利用。
 
 - 言語ごとのLSPの導入
     - Masonを用いて欲しいサーバーをインストールした後で以下のように設定をinit.luaに書き込む(以下ではPython,C++,Rust,Lua)
@@ -129,7 +138,7 @@ packer.nvimは開発をストップするとのことなので、lazzy.nimに移
 5. lazy.nvimをインストールする
 6. lazy.nvim用に`init.lua`, `lua/plugins.lua`を書き換える
 
-### Lazyを導入する 
+### Lazyを導入する
 
 [公式](https://github.com/folke/lazy.nvim)のやり方に習ってインストールする。
 
