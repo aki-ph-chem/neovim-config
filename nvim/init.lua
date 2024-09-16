@@ -207,7 +207,7 @@ require("lspconfig").gopls.setup {
   },
 }
 -- JavaScript
-require("lspconfig").tsserver.setup({})
+require("lspconfig").ts_ls.setup({})
 --  HTML
 --require('html').html.setup {}
 -- latex
