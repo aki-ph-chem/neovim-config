@@ -123,7 +123,6 @@ vim.cmd([[let g:eskk#enable_completion = 1]])
 -- LSP config
 -- mason: LSP manager
 require("mason").setup()
-require("mason-lspconfig").setup()
 
 -- LSP for each programing language
 -- python

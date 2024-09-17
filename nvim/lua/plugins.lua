@@ -3,7 +3,6 @@
 -- for LSP
 lsp_plugins = {
 	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig",
 }
 
