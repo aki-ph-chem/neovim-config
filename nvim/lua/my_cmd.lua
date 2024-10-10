@@ -11,6 +11,18 @@ vim.api.nvim_create_user_command("Rd", function()
     vim.cmd("resize -10")
 end, { nargs = 0 })
 
+-- +x horizontal
+-- stylua: ignore
+vim.api.nvim_create_user_command("Rii", function(ops)
+    vim.cmd("resize +" .. ops.args)
+end, { nargs = 1 })
+
+-- -x horizontal
+-- stylua: ignore
+vim.api.nvim_create_user_command("Rdd", function(ops)
+    vim.cmd("resize -" .. ops.args)
+end, { nargs = 1 })
+
 -- +10 vertical
 -- stylua: ignore
 vim.api.nvim_create_user_command("Vi", function()
@@ -29,7 +41,7 @@ vim.api.nvim_create_user_command("Vii", function(ops)
     vim.cmd("vertical resize +" .. ops.args)
 end, { nargs = 1 })
 
--- +x vertical
+-- -x vertical
 -- stylua: ignore
 vim.api.nvim_create_user_command("Vdd", function(ops)
     vim.cmd("vertical resize -" .. ops.args)
@@ -115,3 +127,62 @@ vim.api.nvim_create_user_command("Gr", function(opts)
     end
     vim.cmd("setlocal buftype=nofile")
 end, { nargs = 1 })
+
+local get_current_file_path = function()
+	local current_file = vim.api.nvim_buf_get_name(0)
+	if current_file == "" then
+		return nil
+	end
+
+	return current_file
+end
+
+--- for Google-Chrome ---
+local open_file_by_chrome = function(path)
+	local cmd = { "google-chrome-stable", path }
+	vim.fn.jobstart(cmd, {
+		on_stderr = function(_, data, _)
+			print("Error:", data)
+		end,
+		on_exit = function(_, exit_code)
+			if exit_code == 0 then
+				print("Chrome opened succesfully")
+			else
+				print("Failed to open Chrome")
+			end
+		end,
+	})
+end
+
+vim.api.nvim_create_user_command("Mkd", function()
+	local path_to_mardown = get_current_file_path()
+
+	if path_to_mardown then
+		open_file_by_chrome(path_to_mardown)
+	end
+end, { nargs = 0 })
+
+local open_file_by_pgopher = function(path)
+	local cmd = { "pgopher", path }
+	vim.fn.jobstart(cmd, {
+		on_stderr = function(_, data, _)
+			print("Error:", data)
+		end,
+		on_exit = function(_, exit_code)
+			if exit_code == 0 then
+				print("PGOPHER opened succesfully")
+			else
+				print("Failed to open PGOPHER")
+			end
+		end,
+	})
+end
+
+--- for PGOPHER ---
+vim.api.nvim_create_user_command("Pgf", function()
+	local path_to_mardown = get_current_file_path()
+
+	if path_to_mardown then
+		open_file_by_pgopher(path_to_mardown)
+	end
+end, { nargs = 0 })
