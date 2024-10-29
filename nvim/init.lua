@@ -172,6 +172,9 @@ require("gitsigns").setup({
 	},
 })
 
+-- lsp for log
+vim.lsp.set_log_level("debug")
+
 -- LSP config
 -- mason: LSP manager
 require("mason").setup()
@@ -188,23 +191,18 @@ require("lspconfig").pyright.setup {
 }
 
 -- cpp
+local clangd_config_local = vim.fn.getcwd() .. "/.clangd_config.json"
+local path_to_clangd = "clangd"
+if vim.fn.filereadable(clangd_config_local) == 1 then
+	local clangd_config = vim.fn.json_decode(vim.fn.readfile(clangd_config_local))
+	path_to_clangd = clangd_config.path_to_clangd
+end
+
 -- stylua: ignore
 require("lspconfig").clangd.setup {
-    cmd = {"clangd", "--background-index", "--clang-tidy",
+    cmd = {path_to_clangd,"--log=verbose", "--background-index", "--clang-tidy",
     "--completion-style=detailed", "--header-insertion=iwyu",
     "--suggest-missing-includes", "--cross-file-rename"},
-    filetypes = {"c", "cpp"},
-    --on_attach = require'lsp'.on_attach,
-    --on_attach = require('lsp').on_attach {},
-    --[[
-    settings = {
-        clangd = {
-            extraArgs = {
-                "-I/path/to/include/directory"
-            }
-        }
-    }
-    --]]
 }
 
 -- CMake
