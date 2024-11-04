@@ -211,6 +211,8 @@ require("lspconfig").cmake.setup({})
 vim.g.rustfmt_autosave = 1
 -- stylua: ignore
 require("lspconfig").rust_analyzer.setup({
+    --cmd = vim.lsp.rpc.connect("127.0.0.1", 27631),
+    --cmd = {"docker","exec","-i","rust_docker", "/usr/local/cargo/bin/rust-analyzer","-v", "--log-file", "/rust-analyzer.log" },
     on_attach=on_attach,
     settings = {
         ["rust-analyzer"] = {
@@ -228,6 +230,13 @@ require("lspconfig").rust_analyzer.setup({
             procMacro = {
                 enable = true
             },
+            --[[
+            lspMux = {
+                version = "1",
+                method = "connect",
+                server = "rust-analyzer"
+            }
+            --]]
         }
     }
 })
@@ -261,6 +270,9 @@ require("lspconfig").ts_ls.setup({})
 --require('html').html.setup {}
 -- latex
 require("lspconfig").texlab.setup({})
+
+-- VimScript
+require("vimscript_ls")
 
 -- cmp config
 local cmp = require("cmp")
