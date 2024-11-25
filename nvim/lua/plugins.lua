@@ -42,6 +42,15 @@ filer = {
 	"lambdalisue/fern.vim",
 }
 
+-- otter.nvim
+oppter_nvim = {
+	"jmbuhr/otter.nvim",
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter",
+	},
+	opts = {},
+}
+
 return {
 	"cohama/lexima.vim",
 	"lervag/vimtex",
@@ -59,4 +68,5 @@ return {
 	git_plugins,
 	fuzzy,
 	fmt_plugins,
+	oppter_nvim,
 }
