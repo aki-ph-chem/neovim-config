@@ -283,7 +283,7 @@ require("lspconfig").gopls.setup {
 -- JavaScript
 require("lspconfig").ts_ls.setup({})
 --  HTML
---require('html').html.setup {}
+require("lspconfig").html.setup({})
 -- latex
 require("lspconfig").texlab.setup({})
 
