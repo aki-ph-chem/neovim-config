@@ -290,6 +290,9 @@ require("lspconfig").texlab.setup({})
 -- VimScript
 require("vimscript_ls")
 
+-- julia
+require("lspconfig").julials.setup({})
+
 -- cmp config
 local cmp = require("cmp")
 -- stylua: ignore
