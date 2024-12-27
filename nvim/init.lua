@@ -193,8 +193,8 @@ local use_lsp_log_debug = false
 if use_lsp_log_debug then
 	vim.lsp.set_log_level("debug")
 end
---- jump to definition by 'jd'
-vim.keymap.set("n", "jd", "<cmd>:lua vim.lsp.buf.definition()<CR>")
+--- jump to definition by 'gd'
+vim.keymap.set("n", "gd", "<cmd>:lua vim.lsp.buf.definition()<CR>")
 
 -- LSP config
 -- mason: LSP manager
