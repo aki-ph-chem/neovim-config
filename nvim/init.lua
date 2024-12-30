@@ -62,29 +62,6 @@ vim.cmd([[let g:tex_conceal = '']])
 vim.cmd([[syntax enable]])
 --opt.syntax = true
 
--- config of Terminal & ToggleTerm
-require("toggleterm").setup({
-	size = 23,
-})
-map("t", "<Esc>", "<C-\\><C-n>")
-
--- stylua: ignore
-vim.api.nvim_create_user_command("Tt", function()
-    vim.cmd("ToggleTerm")
-end, { nargs = 0 })
-
-vim.api.nvim_create_user_command("Th", function()
-	vim.cmd("ToggleTerm direction=horizontal")
-end, { nargs = 0 })
-
-vim.api.nvim_create_user_command("Tf", function()
-	vim.cmd("ToggleTerm direction=float")
-end, { nargs = 0 })
-
-vim.api.nvim_create_user_command("Tv", function()
-	vim.cmd("ToggleTerm size=60 direction=vertical")
-end, { nargs = 0 })
-
 -- About Fern
 -- j,k : cursor Up/Down
 -- l/h: open directory/ clse directory
