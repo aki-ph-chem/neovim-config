@@ -1,35 +1,35 @@
 -- plugins for lazy.nvim
 
 -- for LSP
-lsp_plugins = {
+local lsp_plugins = {
 	"williamboman/mason.nvim",
 	"neovim/nvim-lspconfig",
 }
 
 -- for cmp
-cmp_plugins = {
+local cmp_plugins = {
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/vim-vsnip",
 }
 
 -- formatter
-fmt_plugins = {
+local fmt_plugins = {
 	"mhartington/formatter.nvim",
 }
 
 -- for git
-git_plugins = {
+local git_plugins = {
 	"tpope/vim-fugitive",
 }
 
 -- fzf
-fuzzy = {
+local fuzzy = {
 	"junegunn/fzf.vim",
 }
 
 -- barbar.nvim
-barbar = {
+local barbar = {
 	"romgrk/barbar.nvim",
 	dependencies = {
 		"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
@@ -38,12 +38,12 @@ barbar = {
 }
 
 -- filer
-filer = {
+local filer = {
 	"lambdalisue/fern.vim",
 }
 
 -- otter.nvim
-oppter_nvim = {
+local oppter_nvim = {
 	"jmbuhr/otter.nvim",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
@@ -68,5 +68,5 @@ return {
 	git_plugins,
 	fuzzy,
 	fmt_plugins,
-	oppter_nvim,
+	--oppter_nvim,
 }
