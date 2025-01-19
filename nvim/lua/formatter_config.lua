@@ -39,6 +39,14 @@ require("formatter").setup {
       end
     },
 
+    c = {
+        require('formatter.filetypes.c').clangformat,
+    },
+
+    cpp = {
+        require('formatter.filetypes.cpp').clangformat,
+    },
+
     go = {
       -- Go filetype
       require("formatter.filetypes.go").goimports,
