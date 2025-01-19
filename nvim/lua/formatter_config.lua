@@ -47,6 +47,10 @@ require("formatter").setup {
         require('formatter.filetypes.cpp').clangformat,
     },
 
+    python = {
+        require('formatter.filetypes.python').ruff,
+    },
+
     go = {
       -- Go filetype
       require("formatter.filetypes.go").goimports,
