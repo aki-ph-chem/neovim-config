@@ -42,6 +42,12 @@ local filer = {
 	"lambdalisue/fern.vim",
 }
 
+-- for DAP
+local dap = {
+	"mfussenegger/nvim-dap",
+	"rcarriga/nvim-dap-ui",
+}
+
 -- otter.nvim
 local oppter_nvim = {
 	"jmbuhr/otter.nvim",
@@ -68,5 +74,6 @@ return {
 	git_plugins,
 	fuzzy,
 	fmt_plugins,
+	dap,
 	--oppter_nvim,
 }
