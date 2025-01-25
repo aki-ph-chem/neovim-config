@@ -176,3 +176,6 @@ vim.keymap.set("n", "gd", "<cmd>:lua vim.lsp.buf.definition()<CR>")
 -- setting of lsp
 require("lsp")
 require("formatter_config")
+
+-- config of DAP
+require("dap_config")
