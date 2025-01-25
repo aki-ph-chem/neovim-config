@@ -1,5 +1,5 @@
 -- Utilities for creating configurations
-local util = require("formatter.util")
+local util = require('formatter.util')
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 -- stylua: ignore
 require("formatter").setup {
@@ -114,8 +114,8 @@ autocmd("BufWritePre", {
 })
 
 -- format by save other file
-augroup("__formatter__", { clear = true })
-autocmd("BufWritePost", {
-	group = "__formatter__",
-	command = ":FormatWrite",
+augroup('__formatter__', { clear = true })
+autocmd('BufWritePost', {
+  group = '__formatter__',
+  command = ':FormatWrite',
 })
