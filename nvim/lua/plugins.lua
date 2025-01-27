@@ -46,6 +46,7 @@ local filer = {
 local dap = {
   'mfussenegger/nvim-dap',
   'rcarriga/nvim-dap-ui',
+  'nvim-neotest/nvim-nio',
 }
 
 -- otter.nvim
