@@ -7,6 +7,11 @@ dap.adapters = {
     type = 'executable',
     command = 'codelldb',
   },
+  gdb = {
+    type = 'executable',
+    command = 'gdb',
+    args = { '--interpreter=dap', '--eval-command', 'set print pretty on' },
+  },
   debugpy = {
     type = 'executable',
     command = vim.fn.getcwd() .. '/.venv/bin/python',
@@ -20,7 +25,7 @@ dap.adapters = {
 dap.configurations = {
   cpp = {
     {
-      name = 'Launch file',
+      name = 'Launch file by codelldb',
       type = 'codelldb',
       request = 'launch',
       program = function()
@@ -29,11 +34,21 @@ dap.configurations = {
       cwd = '${workspaceFolder}',
       stopOnEntry = false,
     },
+    {
+      name = 'Launch file by gdb',
+      type = 'gdb',
+      request = 'launch',
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopAtBeginningOfMainSubprogram = false,
+    },
   },
 
   rust = {
     {
-      name = 'Launch file',
+      name = 'Launch file by codelldb',
       type = 'codelldb',
       request = 'launch',
       program = function()
