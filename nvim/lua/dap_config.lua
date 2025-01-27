@@ -3,27 +3,62 @@ local dap = require('dap')
 
 -- debugger config
 dap.adapters = {
-  codellsb = {
-    type = 'sever',
-    port = '${port}',
-    exectable = {
-      command = vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/adpter/codelldb',
-      args = { '--port', '${port}' },
-    },
+  codelldb = {
+    type = 'executable',
+    command = 'codelldb',
   },
 }
 
 dap.configurations = {
   cpp = {
-    name = 'launch file',
-    type = 'codelldb',
-    request = 'launch',
+    {
+      name = 'Launch file',
+      type = 'codelldb',
+      request = 'launch',
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+    },
+  },
 
-    program = function()
-      return vim.fn.input('Path to exectable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
+  rust = {
+    {
+      name = 'Launch file',
+      type = 'codelldb',
+      request = 'launch',
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+    },
   },
 }
+dap.configurations.c = dap.configurations.cpp
+
+-- commands & keymap
+-- Setting breakpoints
+vim.api.nvim_create_user_command('B', function()
+  vim.cmd("lua require'dap'.toggle_breakpoint()")
+end, { nargs = 0 })
+
+-- Luanching debug session and resuming execution
+vim.api.nvim_create_user_command('C', function()
+  vim.cmd("lua require'dap'.continue()")
+end, { nargs = 0 })
+
+-- Stepping through code
+-- ref: ':help dap-mapping'
+vim.keymap.set('n', '<C-i>', function()
+  require('dap').step_into()
+end)
+vim.keymap.set('n', '<C-o>', function()
+  require('dap').step_over()
+end)
+
+-- Inspecting the state vi the buid-in REPL
+vim.api.nvim_create_user_command('Rpl', function()
+  vim.cmd("lua require'dap'.repl_open()")
+end, { nargs = 0 })
