@@ -57,8 +57,3 @@ end)
 vim.keymap.set('n', '<C-o>', function()
   require('dap').step_over()
 end)
-
--- Inspecting the state vi the buid-in REPL
-vim.api.nvim_create_user_command('Rpl', function()
-  vim.cmd("lua require'dap'.repl_open()")
-end, { nargs = 0 })

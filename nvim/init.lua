@@ -175,3 +175,4 @@ require('formatter_config')
 
 -- config of DAP
 require('dap_config')
+require('dap_ui_config')
