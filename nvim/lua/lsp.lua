@@ -13,16 +13,9 @@ require('lspconfig').pyright.setup {
 }
 
 -- cpp
-local clangd_config_local = vim.fn.getcwd() .. '/.clangd_config.json'
-local path_to_clangd = 'clangd'
-if vim.fn.filereadable(clangd_config_local) == 1 then
-  local clangd_config = vim.fn.json_decode(vim.fn.readfile(clangd_config_local))
-  path_to_clangd = clangd_config.path_to_clangd
-end
-
-require('lspconfig').clangd.setup {
+local clangd_config = {
   cmd = {
-    path_to_clangd,
+    'clangd',
     '--log=verbose',
     '--background-index',
     '--clang-tidy',
@@ -32,6 +25,13 @@ require('lspconfig').clangd.setup {
     '--cross-file-rename',
   },
 }
+
+local path_clangd_config = vim.fn.getcwd() .. '/clangd_config.lua'
+local ok, project_config = pcall(dofile, path_clangd_config)
+if ok then
+  clangd_config = project_config
+end
+require('lspconfig').clangd.setup(clangd_config)
 
 -- CMake
 require('lspconfig').cmake.setup({})
