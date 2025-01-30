@@ -35,12 +35,14 @@ require('lspconfig').clangd.setup(clangd_config)
 
 -- CMake
 require('lspconfig').cmake.setup({})
+
 -- for rustfmt
 vim.g.rustfmt_autosave = 1
-require('lspconfig').rust_analyzer.setup({
+-- Rust
+
+local rust_analyzer_config = {
   --cmd = vim.lsp.rpc.connect("127.0.0.1", 27631),
   --cmd = {"docker","exec","-i","rust_docker", "/usr/local/cargo/bin/rust-analyzer","-v", "--log-file", "/rust-analyzer.log" },
-  on_attach = on_attach,
   settings = {
     ['rust-analyzer'] = {
       imports = {
@@ -66,7 +68,14 @@ require('lspconfig').rust_analyzer.setup({
             --]]
     },
   },
-})
+}
+
+local path_rust_analyzer_config = vim.fn.getcwd() .. '/rust_analyzer_config.lua'
+local ok_rust, project_config_rust = pcall(dofile, path_rust_analyzer_config)
+if ok_rust then
+  rust_analyzer_config = project_config_rust
+end
+require('lspconfig').rust_analyzer.setup(rust_analyzer_config)
 
 -- Lua
 require('lspconfig').lua_ls.setup({
