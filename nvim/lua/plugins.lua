@@ -49,6 +49,13 @@ local dap = {
   'nvim-neotest/nvim-nio',
 }
 
+-- for fzf-lua
+local fzf_lua = {
+  'ibhagwan/fzf-lua',
+  -- optional for icon support
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+}
+
 -- otter.nvim
 local oppter_nvim = {
   'jmbuhr/otter.nvim',
@@ -76,5 +83,6 @@ return {
   fuzzy,
   fmt_plugins,
   dap,
+  fzf_lua,
   --oppter_nvim,
 }
