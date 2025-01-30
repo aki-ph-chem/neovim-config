@@ -13,7 +13,7 @@ end
 
 -- LSP for each programing language
 -- python
-require('lspconfig').pyright.setup {
+local pyright_config = {
   settings = {
     python = {
       pythonPath = './.venv/bin/python',
@@ -35,20 +35,8 @@ local clangd_config = {
   },
 }
 
-local path_clangd_config = vim.fn.getcwd() .. '/clangd_config.lua'
-clangd_config = read_lsp_config(path_clangd_config, clangd_config)
-require('lspconfig').clangd.setup(clangd_config)
-
--- CMake
-require('lspconfig').cmake.setup({})
-
--- for rustfmt
-vim.g.rustfmt_autosave = 1
 -- Rust
-
 local rust_analyzer_config = {
-  --cmd = vim.lsp.rpc.connect("127.0.0.1", 27631),
-  --cmd = {"docker","exec","-i","rust_docker", "/usr/local/cargo/bin/rust-analyzer","-v", "--log-file", "/rust-analyzer.log" },
   settings = {
     ['rust-analyzer'] = {
       imports = {
@@ -65,20 +53,41 @@ local rust_analyzer_config = {
       procMacro = {
         enable = true,
       },
-      --[[
-            lspMux = {
-                version = "1",
-                method = "connect",
-                server = "rust-analyzer"
-            }
-            --]]
     },
   },
 }
 
-local path_rust_analyzer_config = vim.fn.getcwd() .. '/rust_analyzer_config.lua'
-rust_analyzer_config = read_lsp_config(path_rust_analyzer_config, rust_analyzer_config)
+-- Go
+local gols_config = {
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+}
+
+-- pyright
+require('lspconfig').pyright.setup(pyright_config)
+
+-- clangd
+clangd_config = read_lsp_config(vim.fn.getcwd() .. '/clangd_config.lua', clangd_config)
+require('lspconfig').clangd.setup(clangd_config)
+
+-- CMake
+require('lspconfig').cmake.setup({})
+
+-- for rustfmt
+vim.g.rustfmt_autosave = 1
+-- rust-analyzer
+rust_analyzer_config = read_lsp_config(vim.fn.getcwd() .. '/rust_analyzer_config.lua', rust_analyzer_config)
 require('lspconfig').rust_analyzer.setup(rust_analyzer_config)
+
+-- go lang
+require('lspconfig').gopls.setup(gols_config)
 
 -- Lua
 require('lspconfig').lua_ls.setup({
@@ -101,28 +110,14 @@ require('lspconfig').lua_ls.setup({
   },
 })
 
--- go lang
-require('lspconfig').gopls.setup {
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      gofumpt = true,
-    },
-  },
-}
 -- JavaScript
 require('lspconfig').ts_ls.setup({})
 --  HTML
 require('lspconfig').html.setup({})
 -- latex
 require('lspconfig').texlab.setup({})
-
 -- VimScript
 require('vimscript_ls')
-
 -- julia
 require('lspconfig').julials.setup({})
 
