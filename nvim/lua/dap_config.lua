@@ -95,10 +95,13 @@ vim.api.nvim_create_user_command('C', function()
 end, { nargs = 0 })
 
 -- Stepping through code
--- ref: ':help dap-mapping'
+-- ref: ':help dap-mapping', ':help dap-api'
 vim.keymap.set('n', '<C-i>', function()
   require('dap').step_into()
 end)
-vim.keymap.set('n', '<C-o>', function()
+vim.keymap.set('n', '<C-n>', function()
   require('dap').step_over()
+end)
+vim.keymap.set('n', '<C-o>', function()
+  require('dap').step_out()
 end)
