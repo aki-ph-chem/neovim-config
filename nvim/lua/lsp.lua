@@ -2,6 +2,15 @@
 -- mason: LSP manager
 require('mason').setup()
 
+local read_lsp_config = function(path_to_config, config)
+  local ok, project_config = pcall(dofile, path_to_config)
+  if ok then
+    config = project_config
+  end
+
+  return config
+end
+
 -- LSP for each programing language
 -- python
 require('lspconfig').pyright.setup {
@@ -27,10 +36,7 @@ local clangd_config = {
 }
 
 local path_clangd_config = vim.fn.getcwd() .. '/clangd_config.lua'
-local ok, project_config = pcall(dofile, path_clangd_config)
-if ok then
-  clangd_config = project_config
-end
+clangd_config = read_lsp_config(path_clangd_config, clangd_config)
 require('lspconfig').clangd.setup(clangd_config)
 
 -- CMake
@@ -71,10 +77,7 @@ local rust_analyzer_config = {
 }
 
 local path_rust_analyzer_config = vim.fn.getcwd() .. '/rust_analyzer_config.lua'
-local ok_rust, project_config_rust = pcall(dofile, path_rust_analyzer_config)
-if ok_rust then
-  rust_analyzer_config = project_config_rust
-end
+rust_analyzer_config = read_lsp_config(path_rust_analyzer_config, rust_analyzer_config)
 require('lspconfig').rust_analyzer.setup(rust_analyzer_config)
 
 -- Lua
