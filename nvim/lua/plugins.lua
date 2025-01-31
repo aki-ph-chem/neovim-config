@@ -23,11 +23,6 @@ local git_plugins = {
   'tpope/vim-fugitive',
 }
 
--- fzf
-local fuzzy = {
-  'junegunn/fzf.vim',
-}
-
 -- barbar.nvim
 local barbar = {
   'romgrk/barbar.nvim',
@@ -80,7 +75,6 @@ return {
   lsp_plugins,
   cmp_plugins,
   git_plugins,
-  fuzzy,
   fmt_plugins,
   dap,
   fzf_lua,
