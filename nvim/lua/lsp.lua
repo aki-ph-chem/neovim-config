@@ -2,6 +2,44 @@
 -- mason: LSP manager
 require('mason').setup()
 
+local navic = require('nvim-navic')
+navic.setup {
+  icons = {
+    File = ' ',
+    Module = ' ',
+    Namespace = ' ',
+    Package = ' ',
+    Class = ' ',
+    Method = ' ',
+    Property = ' ',
+    Field = ' ',
+    Constructor = ' ',
+    Enum = ' ',
+    Interface = ' ',
+    Function = ' ',
+    Variable = ' ',
+    Constant = ' ',
+    String = ' ',
+    Number = ' ',
+    Boolean = ' ',
+    Array = ' ',
+    Object = ' ',
+    Key = ' ',
+    Null = ' ',
+    EnumMember = ' ',
+    Struct = ' ',
+    Event = ' ',
+    Operator = ' ',
+    TypeParameter = ' ',
+  },
+  lsp = {
+    auto_attach = true,
+  },
+  highlight = true,
+  depth_limit = 9,
+}
+vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+
 -- LSP for each programing language
 -- python
 require('lspconfig').pyright.setup {
@@ -10,6 +48,9 @@ require('lspconfig').pyright.setup {
       pythonPath = './.venv/bin/python',
     },
   },
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end,
 }
 
 -- cpp
@@ -31,6 +72,9 @@ require('lspconfig').clangd.setup {
     '--suggest-missing-includes',
     '--cross-file-rename',
   },
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end,
 }
 
 -- CMake
@@ -40,7 +84,6 @@ vim.g.rustfmt_autosave = 1
 require('lspconfig').rust_analyzer.setup({
   --cmd = vim.lsp.rpc.connect("127.0.0.1", 27631),
   --cmd = {"docker","exec","-i","rust_docker", "/usr/local/cargo/bin/rust-analyzer","-v", "--log-file", "/rust-analyzer.log" },
-  on_attach = on_attach,
   settings = {
     ['rust-analyzer'] = {
       imports = {
@@ -66,6 +109,10 @@ require('lspconfig').rust_analyzer.setup({
             --]]
     },
   },
+
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end,
 })
 
 -- Lua
