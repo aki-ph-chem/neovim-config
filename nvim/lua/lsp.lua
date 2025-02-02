@@ -40,9 +40,18 @@ navic.setup {
 }
 vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
+local read_lsp_config = function(path_to_config, config)
+  local ok, project_config = pcall(dofile, path_to_config)
+  if ok then
+    config = project_config
+  end
+
+  return config
+end
+
 -- LSP for each programing language
 -- python
-require('lspconfig').pyright.setup {
+local pyright_config = {
   settings = {
     python = {
       pythonPath = './.venv/bin/python',
@@ -54,16 +63,9 @@ require('lspconfig').pyright.setup {
 }
 
 -- cpp
-local clangd_config_local = vim.fn.getcwd() .. '/.clangd_config.json'
-local path_to_clangd = 'clangd'
-if vim.fn.filereadable(clangd_config_local) == 1 then
-  local clangd_config = vim.fn.json_decode(vim.fn.readfile(clangd_config_local))
-  path_to_clangd = clangd_config.path_to_clangd
-end
-
-require('lspconfig').clangd.setup {
+local clangd_config = {
   cmd = {
-    path_to_clangd,
+    'clangd',
     '--log=verbose',
     '--background-index',
     '--clang-tidy',
@@ -77,13 +79,8 @@ require('lspconfig').clangd.setup {
   end,
 }
 
--- CMake
-require('lspconfig').cmake.setup({})
--- for rustfmt
-vim.g.rustfmt_autosave = 1
-require('lspconfig').rust_analyzer.setup({
-  --cmd = vim.lsp.rpc.connect("127.0.0.1", 27631),
-  --cmd = {"docker","exec","-i","rust_docker", "/usr/local/cargo/bin/rust-analyzer","-v", "--log-file", "/rust-analyzer.log" },
+-- Rust
+local rust_analyzer_config = {
   settings = {
     ['rust-analyzer'] = {
       imports = {
@@ -100,20 +97,45 @@ require('lspconfig').rust_analyzer.setup({
       procMacro = {
         enable = true,
       },
-      --[[
-            lspMux = {
-                version = "1",
-                method = "connect",
-                server = "rust-analyzer"
-            }
-            --]]
     },
   },
 
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end,
-})
+}
+
+-- Go
+local gols_config = {
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+}
+
+-- pyright
+require('lspconfig').pyright.setup(pyright_config)
+
+-- clangd
+clangd_config = read_lsp_config(vim.fn.getcwd() .. '/clangd_config.lua', clangd_config)
+require('lspconfig').clangd.setup(clangd_config)
+
+-- CMake
+require('lspconfig').cmake.setup({})
+
+-- for rustfmt
+vim.g.rustfmt_autosave = 1
+-- rust-analyzer
+rust_analyzer_config = read_lsp_config(vim.fn.getcwd() .. '/rust_analyzer_config.lua', rust_analyzer_config)
+require('lspconfig').rust_analyzer.setup(rust_analyzer_config)
+
+-- go lang
+require('lspconfig').gopls.setup(gols_config)
 
 -- Lua
 require('lspconfig').lua_ls.setup({
@@ -136,28 +158,14 @@ require('lspconfig').lua_ls.setup({
   },
 })
 
--- go lang
-require('lspconfig').gopls.setup {
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      gofumpt = true,
-    },
-  },
-}
 -- JavaScript
 require('lspconfig').ts_ls.setup({})
 --  HTML
 require('lspconfig').html.setup({})
 -- latex
 require('lspconfig').texlab.setup({})
-
 -- VimScript
 require('vimscript_ls')
-
 -- julia
 require('lspconfig').julials.setup({})
 
