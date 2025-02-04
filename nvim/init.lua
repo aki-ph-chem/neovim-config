@@ -161,14 +161,6 @@ require('gitsigns').setup({
   },
 })
 
--- lsp for log
-local use_lsp_log_debug = false
-if use_lsp_log_debug then
-  vim.lsp.set_log_level('debug')
-end
---- jump to definition by 'gd'
-vim.keymap.set('n', 'gd', '<cmd>:lua vim.lsp.buf.definition()<CR>')
-
 -- setting of lsp
 require('lsp')
 require('formatter_config')
