@@ -42,6 +42,16 @@ local git_plugins = {
       { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
     },
   },
+  {
+    'FabijanZulj/blame.nvim',
+    lazy = false,
+    config = function()
+      require('blame').setup {}
+    end,
+    opts = {
+      blame_options = { '-w' },
+    },
+  },
 }
 
 -- barbar.nvim
