@@ -93,7 +93,6 @@ local oppter_nvim = {
 
 return {
   'cohama/lexima.vim',
-  'lervag/vimtex',
   'tomasiser/vim-code-dark',
   'rust-lang/rust.vim',
   'cespare/vim-toml',
