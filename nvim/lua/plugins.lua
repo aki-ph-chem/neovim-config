@@ -2,7 +2,6 @@
 
 -- for LSP
 local lsp_plugins = {
-  'williamboman/mason.nvim',
   'neovim/nvim-lspconfig',
   'SmiteshP/nvim-navic',
 }

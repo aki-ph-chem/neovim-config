@@ -1,7 +1,4 @@
 -- LSP config
--- mason: LSP manager
-require('mason').setup()
-
 local home_dir = vim.env.HOME
 -- depend on Python
 vim.env.PATH = home_dir .. '/neovim-config/.venv/bin:' .. vim.env.PATH
