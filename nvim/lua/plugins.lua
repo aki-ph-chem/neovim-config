@@ -2,7 +2,6 @@
 
 -- for LSP
 local lsp_plugins = {
-  'williamboman/mason.nvim',
   'neovim/nvim-lspconfig',
   'SmiteshP/nvim-navic',
 }
@@ -91,13 +90,34 @@ local oppter_nvim = {
   opts = {},
 }
 
+-- nvim-lualine
+local nvim_lualine = {
+  'nvim-lualine/lualine.nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+}
+
+--[[
+llama:
+start server in other shell:
+$ ./build_cmake/bin/llama-server\
+    -m models/qwen2.5-coder-3b-q8_0.gguf\
+    --port 8012 -ngl 99 -fa -ub 1024 -b 1024\
+    --ctx-size 0 --cache-reuse 256
+--]]
+local llama = {
+  'ggml-org/llama.vim',
+  lazy = true,
+  keys = {
+    '<leader>llm',
+  },
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
   'rust-lang/rust.vim',
   'cespare/vim-toml',
   'akinsho/toggleterm.nvim',
-  'vim-airline/vim-airline',
   'sindrets/diffview.nvim',
   'vim-skk/eskk.vim',
   filer,
@@ -108,5 +128,7 @@ return {
   fmt_plugins,
   dap,
   fzf_lua,
+  nvim_lualine,
+  llama,
   --oppter_nvim,
 }

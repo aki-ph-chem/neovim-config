@@ -1,6 +1,9 @@
 -- LSP config
--- mason: LSP manager
-require('mason').setup()
+local home_dir = vim.env.HOME
+-- depend on Python
+vim.env.PATH = home_dir .. '/neovim-config/.venv/bin:' .. vim.env.PATH
+-- depend on Node.js
+vim.env.PATH = home_dir .. '/neovim-config/node_modules/.bin:' .. vim.env.PATH
 
 -- lsp for log
 local use_lsp_log_debug = false
