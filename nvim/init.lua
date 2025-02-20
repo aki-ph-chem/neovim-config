@@ -118,3 +118,5 @@ require('dap_config')
 require('dap_ui_config')
 -- config of fzf-lua
 require('fzf_config')
+-- nvim-lualine
+require('lualine').setup({})

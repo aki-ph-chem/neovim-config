@@ -91,13 +91,18 @@ local oppter_nvim = {
   opts = {},
 }
 
+-- nvim-lualine
+local nvim_lualine = {
+  'nvim-lualine/lualine.nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
   'rust-lang/rust.vim',
   'cespare/vim-toml',
   'akinsho/toggleterm.nvim',
-  'vim-airline/vim-airline',
   'sindrets/diffview.nvim',
   'vim-skk/eskk.vim',
   filer,
@@ -108,5 +113,6 @@ return {
   fmt_plugins,
   dap,
   fzf_lua,
+  nvim_lualine,
   --oppter_nvim,
 }
