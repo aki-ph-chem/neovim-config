@@ -119,4 +119,6 @@ require('dap_ui_config')
 -- config of fzf-lua
 require('fzf_config')
 -- nvim-lualine
-require('lualine').setup({})
+require('lualine').setup({
+  options = { theme = 'dracula' },
+})
