@@ -12,6 +12,12 @@ if use_lsp_log_debug then
 end
 --- jump to definition by 'gd'
 vim.keymap.set('n', 'gd', '<cmd>:lua vim.lsp.buf.definition()<CR>')
+-- hover
+vim.keymap.set('n', 'gh', '<cmd>:lua vim.lsp.buf.hover()<CR>')
+-- show ref all
+vim.keymap.set('n', 'gr', '<cmd>:lua vim.lsp.buf.references()<CR>')
+-- rename all
+vim.keymap.set('n', 'gn', '<cmd>:lua vim.lsp.buf.rename()<CR>')
 
 local navic = require('nvim-navic')
 navic.setup {
