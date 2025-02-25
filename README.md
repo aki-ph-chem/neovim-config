@@ -20,6 +20,10 @@ neovimの設定はvimscriptとLuaの両方で書くことが可能であるが�
     - Rust関係: `$cargo make install`
     - その他: システムのパッケージマネージャー(pacman)
 
+## チートシートを`:help mycfg`で参照できるようにする
+
+`nvim/doc/`以下のチートシートを更新した後では`:helptags ~/.config/nvim/doc`を実行しする。
+
 ## 現在の構成
 
 packer.nvimは開発をストップするとのことなので、lazzy.nvimに移行した。
