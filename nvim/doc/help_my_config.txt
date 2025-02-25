@@ -1,0 +1,79 @@
+*mycfg* my config
+
+This file is help of my Neovim config
+
+:help mycfg: all helps
+:help mycfg-lsp: helps of LSP
+:help mycfg-win: helps of window
+:help mycfg-git: helps of Git
+:help mycfg-llama: helps of llama.vim
+:help mycfg-fzf: helps of fzf
+:help mycfg-dbg: helps of debugger
+
+terminal:
+:Tt: toggle terminal horizontal
+:Tv: toggle terminal vertical
+
+Buffer(&Barbar.nvim)
+Ctrl + n: next buffer
+Ctrl + p: previous buffer
+
+*mycfg-lsp* my config of LSP
+
+gd: jump to definition
+gh: show information of variable
+gr: show references of variable
+gn: rename variable name
+
+scroll candiate
+Ctrl + n: next candidate
+Ctrl + p: previous candidate
+
+scroll page of document
+Ctrl + f: next page
+Ctrl + b: previous page
+
+*mycfg-win* window
+
+:Ri: increase horizontal divided window size +10
+:Rd: decrease horizontal divided window size -10
+
+:Rii <n>: increase horizontal divided window size +n
+:Rdd <n>: decrease horizontal divided window size -n
+
+:Vi: increase vertical divided window size +10
+:Vd: decrease vertical divided window size -10
+
+:Vii <n>: increase vertical divided window size +n
+:Vdd <n>: decrease vertical divided window size -n
+
+*mycfg-git* Git
+
+<leader>lg: start lazy git
+Blm: toggle git blame window
+
+*mycfg-fzf* fuzy finder
+
+<leader>f: search from all files
+<leader>g: search from files controled by GiT
+<leader>o: search from recetry opend files
+<leader>b: search from current buffer
+
+*mycfg-dbg* debugger
+
+:Dui: toggle dap UI
+:B: toggle break point
+:C start debug
+Ctrl + o: step over
+Ctrl + i: step in
+Ctrl + k: step out
+
+*mycfg-llama* llama.vim
+
+<leader>llm: load llama.vim
+
+how to start start server:
+$ ./build_cmake/bin/llama-server\
+    -m models/qwen2.5-coder-3b-q8_0.gguf\
+    --port 8012 -ngl 99 -fa -ub 1024 -b 1024\
+    --ctx-size 0 --cache-reuse 256
