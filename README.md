@@ -8,6 +8,18 @@ neovimの設定はvimscriptとLuaの両方で書くことが可能であるが�
 
 [Luaのメモ](https://github.com/aki-ph-chem/Learn-Lua)
 
+## 初期設定
+
+- Neovim本体の管理
+    - bobでバージョンを管理する
+- plugins
+    - lazy.nvimを使用しているのでNeovimを起動すると自動でプラグインがfetch&installされる
+- LSP
+    - Python関係: `$uv sync`
+    - Node.js関係: `$npm install`
+    - Rust関係: `$cargo make install`
+    - その他: システムのパッケージマネージャー(pacman)
+
 ## 現在の構成
 
 packer.nvimは開発をストップするとのことなので、lazzy.nvimに移行した。
