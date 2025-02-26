@@ -122,3 +122,4 @@ require('fzf_config')
 require('lualine').setup({
   options = { theme = 'dracula' },
 })
+require('dashboard')

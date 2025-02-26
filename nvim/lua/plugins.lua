@@ -112,6 +112,14 @@ local llama = {
   },
 }
 
+local alpha_nvim = {
+  'goolord/alpha-nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  config = function()
+    require 'alpha'.setup(require 'alpha.themes.startify'.config)
+  end,
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -130,5 +138,6 @@ return {
   fzf_lua,
   nvim_lualine,
   llama,
+  alpha_nvim,
   --oppter_nvim,
 }
