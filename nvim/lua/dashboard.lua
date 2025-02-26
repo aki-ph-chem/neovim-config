@@ -24,19 +24,13 @@ local arch_logo = {
 }
 
 local cat_logo = {
-  '⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⡶⢶⣦⡀                    ',
-  '⠀⠀⣴⡿⠟⠷⠆⣠⠋⠀⠀⠀⢸⣿                    ',
-  '⠀⠀⣿⡄⠀⠀⠀⠈⠀⠀⠀⠀⣾⡿                    ',
-  '⠀⠀⠹⣿⣦⡀⠀⠀⠀⠀⢀⣾⣿                     ',
-  '⠀⠀⠀⠈⠻⣿⣷⣦⣀⣠⣾⡿                      ',
-  '⠀⠀⠀⠀⠀⠀⠉⠻⢿⡿⠟                       ',
-  '⠀⠀⠀⠀⠀⠀⠀⠀⡟⠀⠀⠀⢠⠏⡆⠀⠀⠀⠀⠀⢀⣀⣤⣤⣤⣀⡀       ',
-  '⠀⠀⠀⠀⡟⢦⡀⠇⠀⠀⣀⠞⠀⠀⠘⡀⢀⡠⠚⣉⠤⠂⠀⠀⠀⠈⠙⢦⡀     ',
-  '⠀⠀⠀⠀⡇⠀⠉⠒⠊⠁⠀⠀⠀⠀⠀⠘⢧⠔⣉⠤⠒⠒⠉⠉⠀⠀⠀⠀⠹⣆    ',
-  '⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⠀⠀⣤⠶⠶⢶⡄⠀⠀⠀⠀⢹⡆  ',
-  '⣀⠤⠒⠒⢺⠒⠀⠀⠀⠀⠀⠀⠀⠀⠤⠊⠀⢸⠀⡿⠀⡀⠀⣀⡟⠀⠀⠀⠀⢸⡇   ',
-  '⠀⠀⣠⠴⠚⢯⡀⠐⠒⠚⠉⠀⢶⠂⠀⣀⠜⠀⢿⡀⠉⠚⠉⠀⠀⠀⠀⣠⠟     ',
-  '⠠⠊⠀⠀⠀⠀⠙⠂⣴⠒⠒⣲⢔⠉⠉⣹⣞⣉⣈⠿⢦⣀⣀⣀⣠⡴⠟       ',
+  '       /\\_____/\\   ',
+  '      /  o   o  \\   ',
+  '     ( ==  ^  == )   ',
+  '      )         (    ',
+  '     (           )   ',
+  '    ( (  )   (  ) )  ',
+  '   (__(__)___(__)__) ',
 }
 
 -- header
@@ -44,6 +38,6 @@ dashboard.section.header.val = cat_logo
 -- menu
 dashboard.section.buttons.val = {}
 -- footer
-dashboard.section.footer.val = { 'Have a productive day!' }
+dashboard.section.footer.val = { 'Have a productive day! (=^・^=)' }
 -- layout
 alpha.setup(dashboard.config)
