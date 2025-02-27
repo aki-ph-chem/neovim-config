@@ -74,9 +74,6 @@ local filer_new = {
   dependencies = {
     'nvim-tree/nvim-web-devicons',
   },
-  config = function()
-    require('nvim-tree').setup {}
-  end,
 }
 
 -- for DAP
