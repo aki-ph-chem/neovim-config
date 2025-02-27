@@ -1,6 +1,5 @@
 -- About Fern
--- j,k : cursor Up/Down
--- l/h: open directory/ clse directory
+-- j,k : cursor Up/Down l/h: open directory/ clse directory
 -- Ctrl + m: open file
 -- Ctrl + h: move to parent direcotry
 -- Enter or e: open file
@@ -50,7 +49,8 @@ require('nvim-tree').setup({
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
+    git_ignored = false,
   },
 })
 
