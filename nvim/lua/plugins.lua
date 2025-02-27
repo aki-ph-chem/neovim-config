@@ -67,6 +67,18 @@ local filer = {
   'lambdalisue/fern.vim',
 }
 
+local filer_new = {
+  'nvim-tree/nvim-tree.lua',
+  version = '*',
+  lazy = false,
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+  },
+  config = function()
+    require('nvim-tree').setup {}
+  end,
+}
+
 -- for DAP
 local dap = {
   'mfussenegger/nvim-dap',
@@ -129,6 +141,7 @@ return {
   'sindrets/diffview.nvim',
   'vim-skk/eskk.vim',
   filer,
+  filer_new,
   barbar,
   lsp_plugins,
   cmp_plugins,
