@@ -102,3 +102,4 @@ require('lualine').setup({
   options = { theme = 'dracula' },
 })
 require('dashboard')
+require('session')

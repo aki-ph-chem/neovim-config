@@ -129,6 +129,11 @@ local alpha_nvim = {
   end,
 }
 
+local ressesion = {
+  'stevearc/resession.nvim',
+  opts = {},
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -149,5 +154,6 @@ return {
   nvim_lualine,
   llama,
   alpha_nvim,
+  ressesion,
   --oppter_nvim,
 }
