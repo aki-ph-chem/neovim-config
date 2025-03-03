@@ -1,3 +1,7 @@
 [tasks.install]
 command = "cargo-binstall"
 args = ["texlab", "stylua", "cargo-clean-recursive"]
+
+[tasks.mkd_ls]
+command = "cargo-binstall"
+args = ["--git", "https://github.com/feel-ix-343/markdown-oxide","markdown-oxide"]
