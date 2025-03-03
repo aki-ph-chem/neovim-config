@@ -25,6 +25,8 @@ gd: jump to definition
 gh: show information of variable
 gr: show references of variable
 gn: rename variable name
+gl: list up all symobl in current buffer
+ga: list up all symobl buffers
 
 scroll candiate
 Ctrl + n: next candidate

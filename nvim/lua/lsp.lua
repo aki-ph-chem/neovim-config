@@ -18,6 +18,10 @@ vim.keymap.set('n', 'gh', '<cmd>:lua vim.lsp.buf.hover()<CR>')
 vim.keymap.set('n', 'gr', '<cmd>:lua vim.lsp.buf.references()<CR>')
 -- rename all
 vim.keymap.set('n', 'gn', '<cmd>:lua vim.lsp.buf.rename()<CR>')
+-- list up all symobl in current buffer
+vim.keymap.set('n', 'gl', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+-- list up all symobl in all buffers
+vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
 
 local navic = require('nvim-navic')
 navic.setup {
