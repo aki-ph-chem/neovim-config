@@ -27,3 +27,24 @@ end)
 vim.keymap.set('n', '<leader>b', function()
   require('fzf-lua').buffers()
 end)
+
+-- config for LSP
+-- list up def
+vim.keymap.set('n', '<leader>d', function()
+  require('fzf-lua').lsp_definitions()
+end)
+
+-- show ref all
+vim.keymap.set('n', '<leader>r', function()
+  require('fzf-lua').lsp_references()
+end)
+
+-- list up symbols
+vim.keymap.set('n', '<leader>l', function()
+  require('fzf-lua').lsp_document_symbols()
+end)
+
+-- list up all symbols
+vim.keymap.set('n', '<leader>a', function()
+  require('fzf-lua').lsp_workspace_symbols()
+end)

@@ -62,6 +62,11 @@ Blm: toggle git blame window
 <leader>o: search from recetry opend files
 <leader>b: search from current buffer
 
+<leader>d: list up definitions
+<leader>r: list up references on cursor
+<leader>l: list up document symobls
+<leader>a: list up all document symobls
+
 *mycfg-dbg* debugger
 
 :Dui: toggle dap UI
