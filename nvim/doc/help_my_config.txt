@@ -9,6 +9,7 @@ This file is help of my Neovim config
 :help mycfg-llama: helps of llama.vim
 :help mycfg-fzf: helps of fzf
 :help mycfg-dbg: helps of debugger
+:help mycfg-ss: helps of resession.nvim
 
 terminal:
 :Tt: toggle terminal horizontal
@@ -77,3 +78,9 @@ $ ./build_cmake/bin/llama-server\
     -m models/qwen2.5-coder-3b-q8_0.gguf\
     --port 8012 -ngl 99 -fa -ub 1024 -b 1024\
     --ctx-size 0 --cache-reuse 256
+
+*mycfg-ss* keymap of resession.nvim
+
+<leader>ss: save current session
+<leader>sl: load saved session
+<leader>sd: delete specific session
