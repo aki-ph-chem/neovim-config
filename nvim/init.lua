@@ -103,3 +103,4 @@ require('lualine').setup({
 })
 require('dashboard')
 require('session')
+require('neovide_config')
