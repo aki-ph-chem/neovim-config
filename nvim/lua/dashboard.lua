@@ -23,6 +23,7 @@ local arch_logo = {
   '.`                                 `  ',
 }
 
+local tody = os.date('%Y-%m-%d %H:%M')
 local cat_logo = {
   '       /\\_____/\\   ',
   '      /  o   o  \\   ',
@@ -31,10 +32,14 @@ local cat_logo = {
   '     (           )   ',
   '    ( (  )   (  ) )  ',
   '   (__(__)___(__)__) ',
+  '',
+  '',
+  ' Now: ' .. tody,
 }
 
 -- header
 dashboard.section.header.val = cat_logo
+local day = os.date('%A')
 -- menu
 dashboard.section.buttons.val = {}
 -- footer
