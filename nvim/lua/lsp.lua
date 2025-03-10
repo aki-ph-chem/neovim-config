@@ -269,3 +269,22 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' },
   }),
 })
+
+cmp.setup.filetype('tex', {
+  sources = cmp.config.sources({
+    {
+      name = 'spell',
+      option = {
+        keep_all_entries = false,
+        enable_in_context = function()
+          return true
+        end,
+        preselect_correct_word = true,
+      },
+    },
+  }),
+})
+
+-- for cmp-spell
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
