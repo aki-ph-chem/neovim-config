@@ -270,6 +270,8 @@ cmp.setup.cmdline(':', {
   }),
 })
 
+-- for cmp-spell
+-- activate source for cmp in *.tex file
 cmp.setup.filetype('tex', {
   sources = cmp.config.sources({
     {
@@ -285,6 +287,11 @@ cmp.setup.filetype('tex', {
   }),
 })
 
--- for cmp-spell
-vim.opt.spell = true
-vim.opt.spelllang = { 'en_us' }
+-- activate spell-check in *.tex file
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'tex' },
+  callback = function()
+    vim.opt.spell = true
+    vim.opt.spelllang = { 'en_us' }
+  end,
+})
