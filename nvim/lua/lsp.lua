@@ -271,6 +271,8 @@ cmp.setup.cmdline(':', {
 })
 
 -- for cmp-spell
+-- add word to black list: zg
+-- reflect the list(en.utf-8.add) in the en.utf-8.add.spl: :mkspell! ~/.config/nvim/spell/en.utf-8.add
 -- activate source for cmp in *.tex file
 cmp.setup.filetype('tex', {
   sources = cmp.config.sources({
