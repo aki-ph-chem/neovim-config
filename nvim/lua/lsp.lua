@@ -190,6 +190,30 @@ require('vimscript_ls')
 -- julia
 require('lspconfig').julials.setup({})
 
+-- for cmp-spell
+-- add word to black list: zg
+-- reflect the list(en.utf-8.add) in the en.utf-8.add.spl: :mkspell! ~/.config/nvim/spell/en.utf-8.add
+-- activate source for cmp in *.tex file
+local spell_check_cfg = {
+  name = 'spell',
+  option = {
+    keep_all_entries = false,
+    enable_in_context = function()
+      return true
+    end,
+    preselect_correct_word = true,
+  },
+}
+-- activate spell-check in *.tex file
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'tex' },
+  callback = function()
+    vim.opt.spell = true
+    vim.opt.spelllang = { 'en_us' }
+  end,
+})
+--spell_check_cfg = {}
+
 -- for markdown-oxide
 -- An example nvim-lspconfig capabilities setting
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -240,6 +264,7 @@ cmp.setup({
     -- { name = 'snippy' }, -- For snippy users.
   }, {
     { name = 'buffer' },
+    spell_check_cfg,
   }),
 })
 
@@ -268,32 +293,4 @@ cmp.setup.cmdline(':', {
   }, {
     { name = 'cmdline' },
   }),
-})
-
--- for cmp-spell
--- add word to black list: zg
--- reflect the list(en.utf-8.add) in the en.utf-8.add.spl: :mkspell! ~/.config/nvim/spell/en.utf-8.add
--- activate source for cmp in *.tex file
-cmp.setup.filetype('tex', {
-  sources = cmp.config.sources({
-    {
-      name = 'spell',
-      option = {
-        keep_all_entries = false,
-        enable_in_context = function()
-          return true
-        end,
-        preselect_correct_word = true,
-      },
-    },
-  }),
-})
-
--- activate spell-check in *.tex file
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'tex' },
-  callback = function()
-    vim.opt.spell = true
-    vim.opt.spelllang = { 'en_us' }
-  end,
 })
