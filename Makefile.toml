@@ -1,6 +1,13 @@
 [tasks.install]
+dependencies = ["lsp", "tools", "mkd_ls"]
+
+[tasks.lsp]
 command = "cargo-binstall"
-args = ["texlab", "stylua", "cargo-clean-recursive"]
+args = ["texlab", "stylua"]
+
+[tasks.tools]
+command = "cargo-binstall"
+args = ["cargo-clean-recursive"]
 
 [tasks.mkd_ls]
 command = "cargo-binstall"
