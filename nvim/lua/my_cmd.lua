@@ -202,3 +202,19 @@ vim.api.nvim_create_user_command('Pgf', function()
     open_file_by_pgopher(path_to_mardown)
   end
 end, { nargs = 0 })
+
+vim.api.nvim_create_user_command('Lm', function()
+  local cmd = { 'llmk' }
+  vim.fn.jobstart(cmd, {
+    on_stderr = function(_, data, _)
+      print('Error:', data)
+    end,
+    on_exit = function(_, exit_code)
+      if exit_code == 0 then
+        print('build by llmk ok!')
+      else
+        print('Failed to build by llmk see *.log file')
+      end
+    end,
+  })
+end, { nargs = 0 })
