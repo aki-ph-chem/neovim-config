@@ -184,7 +184,11 @@ require('lspconfig').ts_ls.setup({})
 --  HTML
 require('lspconfig').html.setup({})
 -- latex
-require('lspconfig').texlab.setup({})
+require('lspconfig').texlab.setup({
+  settings = {
+    texlab = {},
+  },
+})
 -- VimScript
 require('vimscript_ls')
 -- julia
@@ -264,6 +268,7 @@ cmp.setup({
     -- { name = 'snippy' }, -- For snippy users.
   }, {
     { name = 'buffer' },
+    { name = 'path' },
     spell_check_cfg,
   }),
 })
