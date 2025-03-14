@@ -203,6 +203,7 @@ vim.api.nvim_create_user_command('Pgf', function()
   end
 end, { nargs = 0 })
 
+--- for LaTex by llmk  ---
 vim.api.nvim_create_user_command('Lm', function()
   local cmd = { 'llmk' }
   vim.fn.jobstart(cmd, {
