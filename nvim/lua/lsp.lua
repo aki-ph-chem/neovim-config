@@ -186,7 +186,12 @@ require('lspconfig').html.setup({})
 -- latex
 require('lspconfig').texlab.setup({
   settings = {
-    texlab = {},
+    texlab = {
+      forwardSearch = {
+        executable = 'qpdfview',
+        args = { '--unique', '%p#src:%f:%l:1' },
+      },
+    },
   },
 })
 -- VimScript
