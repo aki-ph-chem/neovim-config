@@ -219,3 +219,20 @@ vim.api.nvim_create_user_command('Lm', function()
     end,
   })
 end, { nargs = 0 })
+
+-- BibTeX
+vim.api.nvim_create_user_command('Bb', function(opts)
+  local cmd = { 'bibtex', opts.args }
+  vim.fn.jobstart(cmd, {
+    on_stderr = function(_, data, _)
+      print('Error:', data)
+    end,
+    on_exit = function(_, exit_code)
+      if exit_code == 0 then
+        print('bibtex ok!')
+      else
+        print('Failed to run bibtex')
+      end
+    end,
+  })
+end, { nargs = 1 })
