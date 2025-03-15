@@ -137,6 +137,11 @@ local ressesion = {
   opts = {},
 }
 
+local hlchunk = {
+  'shellRaining/hlchunk.nvim',
+  event = { 'BufReadPre', 'BufNewFile' },
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -158,5 +163,6 @@ return {
   llama,
   alpha_nvim,
   ressesion,
+  hlchunk,
   --oppter_nvim,
 }

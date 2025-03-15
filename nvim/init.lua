@@ -39,26 +39,8 @@ map('i', 'jj', '<Esc>')
 require('lazy').setup('plugins')
 -- my cmd for window size
 require('my_cmd')
-
--- theme
--- vim.cmd[[colorscheme desert]]
--- vim.cmd[[colorscheme default]]
-vim.cmd([[colorscheme codedark]])
-vim.cmd([[set notermguicolors]])
--- 行番号の色を設定
-vim.cmd([[highlight LineNr ctermbg=NONE ctermfg=magenta guibg=NONE guifg=magenta]])
-
--- hightlight
-vim.cmd([[highlight Normal ctermbg=none]])
-vim.cmd([[highlight NonText ctermbg=none]])
-vim.cmd([[highlight LineNr ctermbg=none]])
-vim.cmd([[highlight Folded ctermbg=none]])
-vim.cmd([[highlight EndOfBuffer ctermbg=none]])
-
--- latex syntax
-vim.cmd([[let g:tex_conceal = '']])
-vim.cmd([[syntax enable]])
---opt.syntax = true
+-- appearance
+require('appearance')
 
 -- config for barbar
 -- Move to previous/next
