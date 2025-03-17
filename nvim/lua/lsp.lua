@@ -213,9 +213,10 @@ local spell_check_cfg = {
     preselect_correct_word = true,
   },
 }
+
 -- activate spell-check in *.tex file
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'tex' },
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = { '*.tex' },
   callback = function()
     vim.opt.spell = true
     vim.opt.spelllang = { 'en_us' }
