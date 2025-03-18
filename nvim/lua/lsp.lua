@@ -184,6 +184,7 @@ require('lspconfig').ts_ls.setup({})
 --  HTML
 require('lspconfig').html.setup({})
 -- latex
+-- Ref: https://github.com/latex-lsp/texlab/wiki/Configuration
 require('lspconfig').texlab.setup({
   settings = {
     texlab = {
