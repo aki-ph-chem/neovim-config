@@ -187,6 +187,14 @@ require('lspconfig').html.setup({})
 require('lspconfig').texlab.setup({
   settings = {
     texlab = {
+      --[[
+      build = {
+        executable = 'llmk',
+        args = {},
+        onSave = true,
+        forwardSearchAfter = false,
+      },
+      --]]
       forwardSearch = {
         executable = 'qpdfview',
         args = { '--unique', '%p#src:%f:%l:1' },

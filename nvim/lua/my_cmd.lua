@@ -204,9 +204,10 @@ vim.api.nvim_create_user_command('Pgf', function()
 end, { nargs = 0 })
 
 --- for LaTex by llmk  ---
+local build_latex = { 'llmk' }
+--- build by ':Lm'
 vim.api.nvim_create_user_command('Lm', function()
-  local cmd = { 'llmk' }
-  vim.fn.jobstart(cmd, {
+  vim.fn.jobstart(build_latex, {
     on_stderr = function(_, data, _)
       print('Error:', data)
     end,
@@ -219,6 +220,25 @@ vim.api.nvim_create_user_command('Lm', function()
     end,
   })
 end, { nargs = 0 })
+
+--- build by save
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.tex',
+  callback = function()
+    vim.fn.jobstart(build_latex, {
+      on_stderr = function(_, data, _)
+        print('Error:', data)
+      end,
+      on_exit = function(_, exit_code)
+        if exit_code == 0 then
+          print('build by llmk ok!')
+        else
+          print('Failed to build by llmk see *.log file')
+        end
+      end,
+    })
+  end,
+})
 
 -- BibTeX
 vim.api.nvim_create_user_command('Bb', function(opts)
