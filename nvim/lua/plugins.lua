@@ -65,12 +65,7 @@ local barbar = {
   },
 }
 
--- filer
 local filer = {
-  'lambdalisue/fern.vim',
-}
-
-local filer_new = {
   'nvim-tree/nvim-tree.lua',
   version = '*',
   lazy = false,
@@ -151,7 +146,6 @@ return {
   'sindrets/diffview.nvim',
   'vim-skk/eskk.vim',
   filer,
-  filer_new,
   barbar,
   lsp_plugins,
   cmp_plugins,
