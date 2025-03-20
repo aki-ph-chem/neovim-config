@@ -223,7 +223,7 @@ end, { nargs = 0 })
 
 --- build by save
 vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = '*.tex',
+  pattern = { '*.tex', '*.bib' },
   callback = function()
     vim.fn.jobstart(build_latex, {
       on_stderr = function(_, data, _)
