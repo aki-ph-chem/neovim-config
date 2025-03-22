@@ -137,6 +137,11 @@ local hlchunk = {
   event = { 'BufReadPre', 'BufNewFile' },
 }
 
+local markdown_preview = {
+  'OXY2DEV/markview.nvim',
+  lazy = false,
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -158,5 +163,6 @@ return {
   alpha_nvim,
   ressesion,
   hlchunk,
+  markdown_preview,
   --oppter_nvim,
 }
