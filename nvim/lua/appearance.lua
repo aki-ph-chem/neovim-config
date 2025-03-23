@@ -34,3 +34,9 @@ require('hlchunk').setup({
 require('lualine').setup({
   options = { theme = 'dracula' },
 })
+
+-- markview
+vim.keymap.set('n', '<leader>mkd', function()
+  print('Hi')
+  vim.cmd('Markview toggle <CR>')
+end)
