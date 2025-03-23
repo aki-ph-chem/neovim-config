@@ -29,3 +29,8 @@ require('hlchunk').setup({
     enable = true,
   },
 })
+
+-- nvim-lualine
+require('lualine').setup({
+  options = { theme = 'dracula' },
+})

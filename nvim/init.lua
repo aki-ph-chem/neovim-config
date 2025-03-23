@@ -35,13 +35,6 @@ end
 map('i', 'jj', '<Esc>')
 --map('v','vv','<C-v>')
 
--- load lazy for plugins
-require('lazy').setup('plugins')
--- my cmd for window size
-require('my_cmd')
--- appearance
-require('appearance')
-
 -- config for barbar
 -- Move to previous/next
 map('n', '<C-p>', '<Cmd>BufferPrevious<CR>', opts)
@@ -61,6 +54,13 @@ vim.api.nvim_create_user_command('Dfc', function()
   vim.cmd(': DiffviewClose')
 end, { nargs = 0 })
 
+-- load lazy for plugins
+require('lazy').setup('plugins')
+-- my cmd for window size
+require('my_cmd')
+-- appearance
+require('appearance')
+
 -- filer
 require('filer')
 
@@ -79,10 +79,6 @@ require('dap_config')
 require('dap_ui_config')
 -- config of fzf-lua
 require('fzf_config')
--- nvim-lualine
-require('lualine').setup({
-  options = { theme = 'dracula' },
-})
 require('dashboard')
 require('session')
 require('neovide_config')
