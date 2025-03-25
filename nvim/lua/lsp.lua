@@ -314,3 +314,13 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' },
   }),
 })
+
+-- pop up the results from LSP
+vim.api.nvim_create_autocmd('CursorHold', {
+  callback = function()
+    vim.diagnostic.open_float(nil, { focusable = false })
+  end,
+})
+
+-- set 300ms for CursorHold
+vim.o.updatetime = 300
