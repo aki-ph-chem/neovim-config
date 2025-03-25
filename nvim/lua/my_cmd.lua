@@ -57,16 +57,16 @@ vim.api.nvim_create_user_command('Tt', function()
   vim.cmd('ToggleTerm')
 end, { nargs = 0 })
 
-vim.api.nvim_create_user_command('Th', function()
-  vim.cmd('ToggleTerm direction=horizontal')
+vim.api.nvim_create_user_command('Thn', function()
+  vim.cmd('TermNew size=20 direction=horizontal')
 end, { nargs = 0 })
 
 vim.api.nvim_create_user_command('Tf', function()
-  vim.cmd('ToggleTerm direction=float')
+  vim.cmd('TermNew direction=float')
 end, { nargs = 0 })
 
-vim.api.nvim_create_user_command('Tv', function()
-  vim.cmd('ToggleTerm size=60 direction=vertical')
+vim.api.nvim_create_user_command('Tvn', function()
+  vim.cmd('TermNew size=60 direction=vertical')
 end, { nargs = 0 })
 
 -- for cargo
