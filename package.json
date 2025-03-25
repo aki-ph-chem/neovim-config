@@ -21,8 +21,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "typescript": "^5.7.3",
-    "typescript-language-server": "^4.3.3",
+    "typescript": "^5.8.2",
+    "typescript-language-server": "^4.3.4",
     "vscode-langservers-extracted": "^4.10.0"
   }
 }
