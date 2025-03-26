@@ -119,6 +119,16 @@ dap.configurations = {
     },
   },
 }
+
+local read_dap_config = function(config, path_to_config)
+  local ok, project_config = pcall(dofile, path_to_config)
+  if ok then
+    table.insert(config, project_config)
+  end
+end
+
+read_dap_config(dap.configurations.cpp, vim.fn.getcwd() .. '/dap_cpp.lua')
+
 dap.configurations.c = dap.configurations.cpp
 
 -- commands & keymap
