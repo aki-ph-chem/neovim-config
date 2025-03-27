@@ -1,5 +1,7 @@
 *mycfg* my config
 
+After editing help pages under the `nvim/doc/`, you should execute `:helptags ~/.config/nvim/doc`.
+
 This file is help of my Neovim config
 
 :help mycfg: all helps
@@ -69,9 +71,12 @@ Blm: toggle git blame window
 
 *mycfg-dbg* debugger
 
-:Dui: toggle dap UI
-:B: toggle break point
-:C start debug
+:Dui toggle dap UI
+:B   toggle break point
+:Bc  clear alla breakpoints
+:C   start debug
+:Cr  restart current session
+:Cr  terminate current session
 Ctrl + o: step over
 Ctrl + i: step in
 Ctrl + k: step out

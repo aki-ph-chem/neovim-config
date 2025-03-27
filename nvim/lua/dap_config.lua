@@ -148,8 +148,14 @@ vim.api.nvim_create_user_command('C', function()
   require('dap').continue()
 end, { nargs = 0 })
 
-vim.api.nvim_create_user_command('Cn', function()
-  vim.cmd('DapNew<CR>')
+-- relaunch current session
+vim.api.nvim_create_user_command('Cr', function()
+  require('dap').restart()
+end, { nargs = 0 })
+
+-- terminate current session
+vim.api.nvim_create_user_command('Ct', function()
+  require('dap').terminate()
 end, { nargs = 0 })
 
 -- Stepping through code
