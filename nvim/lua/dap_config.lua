@@ -134,7 +134,7 @@ dap.configurations.c = dap.configurations.cpp
 -- commands & keymap
 -- Setting breakpoints
 vim.api.nvim_create_user_command('B', function()
-  require(dap).toggle_breakpoint()
+  require('dap').toggle_breakpoint()
 end, { nargs = 0 })
 
 -- ref: ':help dap-user-commands', ':help dap-api'
@@ -145,7 +145,7 @@ end, { nargs = 0 })
 
 -- Luanching debug session and resuming execution
 vim.api.nvim_create_user_command('C', function()
-  require(dap).continue()
+  require('dap').continue()
 end, { nargs = 0 })
 
 vim.api.nvim_create_user_command('Cn', function()
