@@ -134,12 +134,22 @@ dap.configurations.c = dap.configurations.cpp
 -- commands & keymap
 -- Setting breakpoints
 vim.api.nvim_create_user_command('B', function()
-  vim.cmd("lua require'dap'.toggle_breakpoint()")
+  require(dap).toggle_breakpoint()
+end, { nargs = 0 })
+
+-- ref: ':help dap-user-commands', ':help dap-api'
+-- clearn all breakpoints
+vim.api.nvim_create_user_command('Bc', function()
+  require('dap').clear_breakpoints()
 end, { nargs = 0 })
 
 -- Luanching debug session and resuming execution
 vim.api.nvim_create_user_command('C', function()
-  vim.cmd("lua require'dap'.continue()")
+  require(dap).continue()
+end, { nargs = 0 })
+
+vim.api.nvim_create_user_command('Cn', function()
+  vim.cmd('DapNew<CR>')
 end, { nargs = 0 })
 
 -- Stepping through code
@@ -153,3 +163,6 @@ end)
 vim.keymap.set('n', '<C-k>', function()
   require('dap').step_out()
 end)
+
+vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapStopped', { text = '➡️', texthl = '', linehl = '', numhl = '' })
