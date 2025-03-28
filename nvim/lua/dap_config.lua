@@ -172,3 +172,22 @@ end)
 
 vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapStopped', { text = '➡️', texthl = '', linehl = '', numhl = '' })
+
+-- I want to implement the function to select binary for debug by lua-fzf UI
+-- This code is draft (or sample)
+-- The function select file by fzf-lua (WIP)
+vim.api.nvim_create_user_command('Ff', function()
+  require('fzf-lua').files({
+    prompt = 'Select a file: ',
+    -- not work ...
+    actions = {
+      ['default'] = function(selected)
+        if selected and #selected > 0 then
+          -- get file path of selected file
+          local file_path = selected[1]
+          print('you select ' .. file_path .. ' !')
+        end
+      end,
+    },
+  })
+end, { nargs = 0 })
