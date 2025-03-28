@@ -40,3 +40,8 @@ vim.keymap.set('n', '<leader>mkd', function()
   print('Hi')
   vim.cmd('Markview toggle <CR>')
 end)
+
+-- virtual line (need Neovim latest! (>= 0.11.0) )
+vim.diagnostic.config({
+  virtual_lines = true,
+})
