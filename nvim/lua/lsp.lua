@@ -98,6 +98,10 @@ local clangd_config = {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end,
+
+  root_markers = { 'compile_commands.json', 'compile_flags.txt' },
+
+  filetypes = { 'c', 'cpp' },
 }
 
 -- Rust
@@ -144,7 +148,8 @@ require('lspconfig').pyright.setup(pyright_config)
 
 -- clangd
 clangd_config = read_lsp_config(vim.fn.getcwd() .. '/clangd_config.lua', clangd_config)
-require('lspconfig').clangd.setup(clangd_config)
+vim.lsp.config.clangd = clangd_config
+vim.lsp.enable({ 'clangd' })
 
 -- CMake
 require('lspconfig').cmake.setup({})

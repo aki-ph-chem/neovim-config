@@ -39,19 +39,11 @@ vim.api.nvim_create_user_command('Vdd', function(ops)
   vim.cmd('vertical resize -' .. ops.args)
 end, { nargs = 1 })
 
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 -- config of Terminal & ToggleTerm
 require('toggleterm').setup({
   size = 23,
 })
-map('t', '<Esc>', '<C-\\><C-n>')
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
 vim.api.nvim_create_user_command('Tt', function()
   vim.cmd('ToggleTerm')
