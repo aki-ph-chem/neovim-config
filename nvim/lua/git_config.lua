@@ -54,3 +54,13 @@ require('gitsigns').setup({
 vim.api.nvim_create_user_command('Blm', function()
   vim.cmd('BlameToggle window')
 end, { nargs = 0 })
+
+-- config diffview.nvim
+-- require("diffview.actions").setup({})
+vim.api.nvim_create_user_command('Dfo', function()
+  vim.cmd(': DiffviewOpen')
+end, { nargs = 0 })
+
+vim.api.nvim_create_user_command('Dfc', function()
+  vim.cmd(': DiffviewClose')
+end, { nargs = 0 })
