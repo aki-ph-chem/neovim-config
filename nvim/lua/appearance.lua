@@ -37,7 +37,6 @@ require('lualine').setup({
 
 -- markview
 vim.keymap.set('n', '<leader>mkd', function()
-  print('Hi')
   vim.cmd('Markview toggle <CR>')
 end)
 

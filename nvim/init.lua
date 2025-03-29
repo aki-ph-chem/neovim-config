@@ -22,17 +22,8 @@ opt.smartindent = true
 opt.shiftwidth = 4
 opt.expandtab = true
 vim.g.mapleader = ','
-
---- for key map
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-map('i', 'jj', '<Esc>')
+-- <Esc> -> 'jj'
+vim.keymap.set('i', 'jj', '<Esc>')
 
 -- config for barbar(buffer)
 -- Move to previous/next
