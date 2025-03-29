@@ -33,14 +33,19 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map('i', 'jj', '<Esc>')
---map('v','vv','<C-v>')
 
 -- config for barbar(buffer)
 -- Move to previous/next
-map('n', '<C-p>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<C-n>', '<Cmd>BufferNext<CR>', opts)
+vim.keymap.set('n', '<C-p>', function()
+  vim.cmd('BufferPrevious')
+end)
+vim.keymap.set('n', '<C-n>', function()
+  vim.cmd('BufferNext')
+end)
 -- Close buffer
-map('n', '<leader>e', '<Cmd>BufferClose<CR>', opts)
+vim.keymap.set('n', '<leader>e', function()
+  vim.cmd('BufferClose')
+end)
 
 -- delete all buffer
 vim.keymap.set('n', '<leader>x', function()
@@ -53,16 +58,6 @@ vim.keymap.set('n', '<leader>x', function()
 end)
 
 vim.cmd([[let $BASH_ENV = "~/.bash_aliases"]])
-
--- config diffview.nvim
--- require("diffview.actions").setup({})
-vim.api.nvim_create_user_command('Dfo', function()
-  vim.cmd(': DiffviewOpen')
-end, { nargs = 0 })
-
-vim.api.nvim_create_user_command('Dfc', function()
-  vim.cmd(': DiffviewClose')
-end, { nargs = 0 })
 
 -- load lazy for plugins
 require('lazy').setup('plugins')
