@@ -79,6 +79,21 @@ dap.configurations = {
       cwd = '${workspaceFolder}',
       stopOnEntry = false,
     },
+
+    {
+      name = 'Launch file by codelldb with args',
+      type = 'codelldb',
+      request = 'launch',
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug', 'file')
+      end,
+      args = function()
+        local input = vim.fn.input('Args: ')
+        return vim.split(input, ' ')
+      end,
+      cwd = '${workspaceFolder}',
+      stopAtBeginningOfMainSubprogram = false,
+    },
   },
 
   python = {
