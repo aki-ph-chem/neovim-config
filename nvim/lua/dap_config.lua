@@ -192,8 +192,8 @@ vim.fn.sign_define('DapStopped', { text = '➡️', texthl = '', linehl = '', nu
 -- This code is draft (or sample)
 -- The function select file by fzf-lua (WIP)
 vim.api.nvim_create_user_command('Ff', function()
-  require('fzf-lua').files({
-    prompt = 'Select a file: ',
+  -- need fd command (it is written by Rust!)
+  require('fzf-lua').fzf_exec('fd --type f', {
     -- not work ...
     actions = {
       ['default'] = function(selected)
