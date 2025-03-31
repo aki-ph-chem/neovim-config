@@ -13,13 +13,28 @@ This file is help of my Neovim config
 :help mycfg-dbg: helps of debugger
 :help mycfg-ss: helps of resession.nvim
 
-terminal:
+terminal(by ToggleTerm):
 :Tt: toggle terminal horizontal
 :Tv: toggle terminal vertical
+:Tf: toggle terminal floating window
+:Thn: TermNew size=20 direction=horizontal
+:Tvn: TermNew size=60 direction=vertical
 
-Buffer(&Barbar.nvim)
+Buffer(&Barbar.nvim):
 Ctrl + n: next buffer
 Ctrl + p: previous buffer
+<leader> + e: close current buffers
+<leader> + x: close all buffers
+
+window:
+:Ri: horizontal window size +10
+:Rd: horizontal window size -10
+:Rii <number>: horizontal window size +<number>
+:Rdd <number>: horizontal window size -<number>
+:Vi: vertical window size +10
+:Vd: vertical window size -10
+:Vii <number>: vertical window size +<number>
+:Vdd <number>: vertical window size -<number>
 
 *mycfg-lsp* my config of LSP
 

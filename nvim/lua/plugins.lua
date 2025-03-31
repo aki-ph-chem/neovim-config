@@ -142,6 +142,10 @@ local markdown_preview = {
   lazy = false,
 }
 
+local teal_lang = {
+  'teal-language/vim-teal',
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -164,5 +168,6 @@ return {
   ressesion,
   hlchunk,
   markdown_preview,
+  teal_lang,
   --oppter_nvim,
 }
