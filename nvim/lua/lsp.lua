@@ -4,6 +4,12 @@ local home_dir = vim.env.HOME
 vim.env.PATH = home_dir .. '/neovim-config/.venv/bin:' .. vim.env.PATH
 -- depend on Node.js
 vim.env.PATH = home_dir .. '/neovim-config/node_modules/.bin:' .. vim.env.PATH
+-- teal-language-server
+-- installed by below
+--[[
+$ luarocks install --tree ./.lua_modules teal-language-server
+--]]
+vim.env.PATH = home_dir .. '/neovim-config/.lua_modules/bin:' .. vim.env.PATH
 
 -- lsp for log
 local use_lsp_log_debug = false
@@ -184,6 +190,8 @@ require('lspconfig').lua_ls.setup({
   },
 })
 
+-- Teal
+require('lspconfig').teal_ls.setup {}
 -- JavaScript
 require('lspconfig').ts_ls.setup({})
 --  HTML
