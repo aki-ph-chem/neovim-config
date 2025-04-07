@@ -148,18 +148,13 @@ end
 --- for Google-Chrome ---
 local open_file_by_chrome = function(path)
   local cmd = { 'google-chrome-stable', path }
-  vim.fn.jobstart(cmd, {
-    on_stderr = function(_, data, _)
-      print('Error:', data)
-    end,
-    on_exit = function(_, exit_code)
-      if exit_code == 0 then
-        print('Chrome opened succesfully')
-      else
-        print('Failed to open Chrome')
-      end
-    end,
-  })
+  vim.system(cmd, { text = true }, function(result)
+    if result.code == 0 then
+      print('Chrome opend succesfully: ' .. result.stdout)
+    else
+      print('Error: ' .. result.stderr)
+    end
+  end)
 end
 
 vim.api.nvim_create_user_command('Mkd', function()
@@ -248,3 +243,17 @@ vim.api.nvim_create_user_command('Bb', function(opts)
     end,
   })
 end, { nargs = 1 })
+
+--[[
+## memo to call external commands
+
+- ref
+    - https://neovim.io/doc/user/lua.html#vim.system()
+    - https://neovim.io/doc/user/luvref.html#uv.spawn()
+    - https://neovim.io/doc/user/job_control.html
+    - https://neovim.io/doc/user/lua.html#vim.rpcnotify()
+
+- External command invocation => vim.system() or vim.uv.spawn(), the latter is a lower-level API
+- Messge Pack RPC => vim.fn.jobstart() or vim.rpcnotify(), the latter is a newer API, the former is more legacy
+
+--]]
