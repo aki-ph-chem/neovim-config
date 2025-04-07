@@ -28,7 +28,7 @@ end)
 vim.keymap.set('n', '<leader>x', function()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     -- Delete only if buffer is loaded and unchanged
-    if vim.api.nvim_buf_is_loaded(bufnr) and not vim.api.nvim_buf_get_option(bufnr, 'modified') then
+    if vim.api.nvim_buf_is_loaded(bufnr) and not vim.bo[bufnr].modified then
       vim.api.nvim_buf_delete(bufnr, { force = true })
     end
   end
@@ -39,11 +39,7 @@ vim.api.nvim_create_user_command('Bx', function(opts)
   local pattern = vim.regex(opts.args)
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     local buffer_name = vim.api.nvim_buf_get_name(bufnr)
-    if
-      vim.api.nvim_buf_is_loaded(bufnr)
-      and not vim.api.nvim_buf_get_option(bufnr, 'modified')
-      and pattern:match_str(buffer_name)
-    then
+    if vim.api.nvim_buf_is_loaded(bufnr) and not vim.bo[bufnr].modified and pattern:match_str(buffer_name) then
       vim.api.nvim_buf_delete(bufnr, { force = true })
     end
   end
