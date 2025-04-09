@@ -167,18 +167,13 @@ end, { nargs = 0 })
 
 local open_file_by_pgopher = function(path)
   local cmd = { 'pgopher', path }
-  vim.fn.jobstart(cmd, {
-    on_stderr = function(_, data, _)
-      print('Error:', data)
-    end,
-    on_exit = function(_, exit_code)
-      if exit_code == 0 then
-        print('PGOPHER opened succesfully')
-      else
-        print('Failed to open PGOPHER')
-      end
-    end,
-  })
+  vim.system(cmd, { text = true }, function(result)
+    if result.code == 0 then
+      print('PGOPHER opend succesfully')
+    else
+      print('Error: ' .. result.stderr)
+    end
+  end)
 end
 
 --- for PGOPHER ---
@@ -194,54 +189,39 @@ end, { nargs = 0 })
 local build_latex = { 'llmk' }
 --- build by ':Lm'
 vim.api.nvim_create_user_command('Lm', function()
-  vim.fn.jobstart(build_latex, {
-    on_stderr = function(_, data, _)
-      print('Error:', data)
-    end,
-    on_exit = function(_, exit_code)
-      if exit_code == 0 then
-        print('build by llmk ok!')
-      else
-        print('Failed to build by llmk see *.log file')
-      end
-    end,
-  })
+  vim.system(build_latex, { text = true }, function(result)
+    if result.code == 0 then
+      print('build by llmk ok')
+    else
+      print('Failed to build by llmk see *.log file')
+    end
+  end)
 end, { nargs = 0 })
 
 --- build by save
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = { '*.tex', '*.bib' },
   callback = function()
-    vim.fn.jobstart(build_latex, {
-      on_stderr = function(_, data, _)
-        print('Error:', data)
-      end,
-      on_exit = function(_, exit_code)
-        if exit_code == 0 then
-          print('build by llmk ok!')
-        else
-          print('Failed to build by llmk see *.log file')
-        end
-      end,
-    })
+    vim.system(build_latex, { text = true }, function(result)
+      if result.code == 0 then
+        print('build by llmk ok')
+      else
+        print('Failed to build by llmk see *.log file')
+      end
+    end)
   end,
 })
 
 -- BibTeX
 vim.api.nvim_create_user_command('Bb', function(opts)
   local cmd = { 'bibtex', opts.args }
-  vim.fn.jobstart(cmd, {
-    on_stderr = function(_, data, _)
-      print('Error:', data)
-    end,
-    on_exit = function(_, exit_code)
-      if exit_code == 0 then
-        print('bibtex ok!')
-      else
-        print('Failed to run bibtex')
-      end
-    end,
-  })
+  vim.system(cmd, { text = true }, function(result)
+    if result.code == 0 then
+      print('bibtex ok!')
+    else
+      print('Failed to run bibtex')
+    end
+  end)
 end, { nargs = 1 })
 
 --[[
