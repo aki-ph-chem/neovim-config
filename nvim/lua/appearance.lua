@@ -41,6 +41,8 @@ vim.keymap.set('n', '<leader>mkd', function()
 end)
 
 -- virtual line (need Neovim latest! (>= 0.11.0) )
-vim.diagnostic.config({
-  virtual_lines = true,
-})
+-- toggle by <leader>vln
+vim.keymap.set('n', '<leader>vln', function()
+  local new_config = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle diagnostic virtual_lines' })
