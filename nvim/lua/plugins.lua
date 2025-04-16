@@ -146,6 +146,11 @@ local teal_lang = {
   'teal-language/vim-teal',
 }
 
+local overseer = {
+  'stevearc/overseer.nvim',
+  opts = {},
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -169,5 +174,6 @@ return {
   hlchunk,
   markdown_preview,
   teal_lang,
+  overseer,
   --oppter_nvim,
 }
