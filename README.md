@@ -1,26 +1,31 @@
 # About this repository
 
-[english](./README_EN.md)
+## Neovim itself
 
-neovim での設定ファイルとその備忘録を書いておく。
+manage Neovim version by `bob`
 
-neovimの設定はvimscriptとLuaの両方で書くことが可能であるが、筆者はLuaで設定ファイルを書く。
+## plugin manager
 
-[Luaのメモ](https://github.com/aki-ph-chem/Learn-Lua)
+use `lazy.nvim`
 
-## 初期設定
+##  directory structure
 
-- Neovim本体の管理
-    - bobでバージョンを管理する
-- plugins
-    - lazy.nvimを使用しているのでNeovimを起動すると自動でプラグインがfetch&installされる
+I have a configuration file in `neovim-config/nvim` and a symbolic link to `nvim` in ~/.config
+
+- init.lua
+	- config file of neovim
+- lua/plugins.lua
+	- config file of plugin
+
+## how to manage LSP
+
 - LSP
-    - Python関係: `$uv sync`
-    - Node.js関係: `$npm install`
-    - Rust関係: `$cargo make install`
-    - その他: システムのパッケージマネージャー(pacman)
+    - Python: `$uv sync`
+    - Node.js: `$npm install`
+    - Rust: `$cargo make install`
+    - other: system package manager (pacman)
 
-## チートシートを`:help mycfg`で参照できるようにする
+## chea sheet can be seen by `:help mycfg`
 
 `nvim/doc/`以下のチートシートを更新した後では`:helptags ~/.config/nvim/doc`を実行しする。
 
@@ -69,14 +74,6 @@ $ sudo pacman -S nerd-fonts
     2. 辞書のダウンロード(sudo pacman -S skk-jisyo)
     3. 辞書のpathを登録
 
-### 現在のディレクトリ構成
-
-`neovim-config/nvim`に設定ファイルを置いていて、`nvim`を~/.configにシンボリックリンクを貼っている
-
-- init.lua
-	- neovimの設定ファイル
-- lua/plugins.lua
-	- pluginマネージャの設定ファイル
 
 ## 少し前での構成
 
