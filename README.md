@@ -29,6 +29,15 @@ I have a configuration file in `neovim-config/nvim` and a symbolic link to `nvim
 
 `nvim/doc/`以下のチートシートを更新した後では`:helptags ~/.config/nvim/doc`を実行しする。
 
+## ime
+
+use skk (vim-skk/eskk.vim)
+
+- steps:
+    1. install plugins
+    2. download directory file (sudo acman -S skk-jisyo)
+    3. register path to directory file
+
 ## 現在の構成
 
 packer.nvimは開発をストップするとのことなので、lazzy.nvimに移行した。
@@ -64,15 +73,6 @@ $ sudo pacman -S nerd-fonts
     - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
     - [vim-fugitive](https://github.com/tpope/vim-fugitive)
     - [vim-airline](https://github.com/vim-airline/vim-airline)
-
-### now(2024 0909)
-
-日本語入力にskk(vim-skk/eskk.vim)の導入を検討中
-
-- 必要なこと:
-    1. プラグインのインストール
-    2. 辞書のダウンロード(sudo pacman -S skk-jisyo)
-    3. 辞書のpathを登録
 
 
 ## 少し前での構成
