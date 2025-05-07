@@ -1,17 +1,19 @@
 # About this repository
 
-## Neovim itself
+## Version of Neovim itself
 
-manage Neovim version by `bob`
+Version of Neovim is controled by [bob](https://github.com/MordechaiHadad/bob)
 
 ## plugin manager
 
-use `lazy.nvim`
+use [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ##  directory structure
 
 I have a configuration file in `neovim-config/nvim` and a symbolic link to `nvim` in ~/.config
 
+<!-- ToDo -->
+<!-- Luaのファイルはまだ沢山あるよ! -->
 - init.lua
 	- config file of neovim
 - lua/plugins.lua
@@ -20,14 +22,14 @@ I have a configuration file in `neovim-config/nvim` and a symbolic link to `nvim
 ## how to manage LSP
 
 - LSP
-    - Python: `$uv sync`
-    - Node.js: `$npm install`
-    - Rust: `$cargo make install`
-    - other: system package manager (pacman)
+    - Python: `$uv sync` (managed by uv)
+    - Node.js: `$npm install` (managed by npm)
+    - Rust: `$cargo make install` (managed by cargo-make)
+    - other: system package manager (manage by pacman)
 
 ## chea sheet can be seen by `:help mycfg`
 
-`nvim/doc/`以下のチートシートを更新した後では`:helptags ~/.config/nvim/doc`を実行しする。
+After updating the cheat sheet under `nvim/doc/`, run `:helptags ~/.config/nvim/doc`.
 
 ## ime
 
@@ -38,34 +40,40 @@ use skk (vim-skk/eskk.vim)
     2. download directory file (sudo acman -S skk-jisyo)
     3. register path to directory file
 
-## 現在の構成
+## Current config
 
-packer.nvimは開発をストップするとのことなので、lazzy.nvimに移行した。
+use lazy.nvim (migrated from packer.nvim)
 
-- プラグインマネージャー
+- plugin manager
     - [lazy.nvim](https://github.com/folke/lazy.nvim)
-- LSP関連のプラグイン
+- for LSP
     - [mason.nvim](https://github.com/williamboman/mason.nvim])
     - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
     - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- 補完関連のプラグイン
+- for code cmp
     - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
     - [nvim-cmp-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
     - [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)
 
-- テーマ
-    - [vim-code-dark](https://github.com/tomasiser/vim-code-dark):Visual Studio Code風のテーマ
+- theme
+    - [vim-code-dark](https://github.com/tomasiser/vim-code-dark): Visual Studio Code like theme
 
-- バッファ管理
-    - [barbar.nvim](https://github.com/romgrk/barbar.nvim): vs-codeのタブのようにバッファを管理できる(要 nerd-fonts)
+- buffer manager like tab
+    - [barbar.nvim](https://github.com/romgrk/barbar.nvim): (look like VsCode tab) (need nerd-fonts!)
 
-nerd-fontsはパッケージマネージャより導入した
+- font
+    - NerdFonts: introduced by below:
 
 ```bash
-$ sudo pacman -S nerd-fonts
+$ git clone --branch=master --depth 1 https://github.com/ryanoasis/nerd-fonts.git
+$ cd nerd-fonts
+$ ./install.sh
+$ cd ..
+$ rm -r nerd-fonts
+$ du -s ~/.local/share/fonts/NerdFonts
 ```
 
-- その他
+- others
     - [lexima.vim](https://github.com/cohama/lexima.vim)
     - [vimtex](https://github.com/lervag/vimtex)
     - [rust.vim](https://github.com/rust-lang/rust.vim)
