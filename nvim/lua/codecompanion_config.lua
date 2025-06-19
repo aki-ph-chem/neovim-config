@@ -11,8 +11,8 @@ require('codecompanion').setup({
   },
   strategies = {
     chat = {
+      adapter = 'gemini',
       slash_commands = {
-        adapter = 'gemini',
         ['buffer'] = {
           opts = {
             provider = 'fzf_lua',
