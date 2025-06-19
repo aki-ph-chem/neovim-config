@@ -53,3 +53,6 @@ require('codecompanion').setup({
 vim.api.nvim_create_user_command('Cct', function()
   vim.cmd(':CodeCompanionChat Toggle')
 end, { nargs = 0 })
+
+-- expand 'CodeCompanion'  by ':cc<space>'
+vim.cmd([[cab cc CodeCompanion]])
