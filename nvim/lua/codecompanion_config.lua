@@ -1,3 +1,8 @@
+--[[
+- ref
+    - Configuring Adapters: https://codecompanion.olimorris.dev/configuration/adapters
+    - eiji.page NeovimのAIプラグインcodecompanion.nvimの使い方: https://eiji.page/blog/neovim-codecompanion-intro/
+--]]
 require('codecompanion').setup({
   adapters = {
     gemini = function()
