@@ -146,6 +146,24 @@ local teal_lang = {
   'teal-language/vim-teal',
 }
 
+local overseer = {
+  'stevearc/overseer.nvim',
+  opts = {},
+}
+
+local codecompanion = {
+  'olimorris/codecompanion.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-treesitter/nvim-treesitter',
+  },
+  opts = {},
+  lazy = true,
+  keys = {
+    '<leader>lc',
+  },
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -169,5 +187,7 @@ return {
   hlchunk,
   markdown_preview,
   teal_lang,
+  overseer,
+  codecompanion,
   --oppter_nvim,
 }

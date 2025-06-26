@@ -52,6 +52,7 @@ Ctrl + p: previous candidate
 scroll page of document
 Ctrl + f: next page
 Ctrl + b: previous page
+<leader>vln: toggle virtual line is active or not active
 
 *mycfg-win* window
 

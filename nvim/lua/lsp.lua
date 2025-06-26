@@ -185,6 +185,9 @@ require('lspconfig').lua_ls.setup({
   },
 })
 
+-- Nix Language
+require('lspconfig').nil_ls.setup {}
+
 -- Teal
 require('lspconfig').teal_ls.setup {}
 -- JavaScript

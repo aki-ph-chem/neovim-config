@@ -43,3 +43,5 @@ require('fzf_config')
 require('dashboard')
 require('session')
 require('neovide_config')
+-- codecompanions
+require('codecompanion_config')
