@@ -172,6 +172,7 @@ return {
   'akinsho/toggleterm.nvim',
   'sindrets/diffview.nvim',
   'vim-skk/eskk.vim',
+  'neovimhaskell/haskell-vim',
   filer,
   barbar,
   lsp_plugins,
