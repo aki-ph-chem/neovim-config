@@ -128,6 +128,14 @@ local hlchunk = {
   event = { 'BufReadPre', 'BufNewFile' },
 }
 
+local tree_sitter = {
+  'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    'OXY2DEV/markview.nvim',
+  },
+  lazy = false,
+}
+
 local markdown_preview = {
   'OXY2DEV/markview.nvim',
   lazy = false,
@@ -177,6 +185,7 @@ return {
   alpha_nvim,
   ressesion,
   hlchunk,
+  tree_sitter,
   markdown_preview,
   teal_lang,
   overseer,
