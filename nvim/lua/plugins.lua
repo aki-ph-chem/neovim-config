@@ -88,15 +88,6 @@ local fzf_lua = {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
 }
 
--- otter.nvim
-local oppter_nvim = {
-  'jmbuhr/otter.nvim',
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter',
-  },
-  opts = {},
-}
-
 -- nvim-lualine
 local nvim_lualine = {
   'nvim-lualine/lualine.nvim',
@@ -190,5 +181,4 @@ return {
   teal_lang,
   overseer,
   codecompanion,
-  --oppter_nvim,
 }
