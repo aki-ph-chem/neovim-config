@@ -163,6 +163,11 @@ local codecompanion = {
   },
 }
 
+local plugins_depended_on_denops = {
+  'vim-denops/denops.vim',
+  'vim-skk/skkeleton',
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -190,4 +195,5 @@ return {
   teal_lang,
   overseer,
   codecompanion,
+  plugins_depended_on_denops,
 }
