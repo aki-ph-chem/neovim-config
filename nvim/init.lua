@@ -30,6 +30,7 @@ require('git_config')
 
 -- eskk
 require('skk')
+--require('skkeleton')
 
 -- setting of lsp
 require('lsp')

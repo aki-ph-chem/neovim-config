@@ -88,15 +88,6 @@ local fzf_lua = {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
 }
 
--- otter.nvim
-local oppter_nvim = {
-  'jmbuhr/otter.nvim',
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter',
-  },
-  opts = {},
-}
-
 -- nvim-lualine
 local nvim_lualine = {
   'nvim-lualine/lualine.nvim',
@@ -137,6 +128,14 @@ local hlchunk = {
   event = { 'BufReadPre', 'BufNewFile' },
 }
 
+local tree_sitter = {
+  'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    'OXY2DEV/markview.nvim',
+  },
+  lazy = false,
+}
+
 local markdown_preview = {
   'OXY2DEV/markview.nvim',
   lazy = false,
@@ -164,6 +163,11 @@ local codecompanion = {
   },
 }
 
+local plugins_depended_on_denops = {
+  'vim-denops/denops.vim',
+  'vim-skk/skkeleton',
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -186,9 +190,10 @@ return {
   alpha_nvim,
   ressesion,
   hlchunk,
+  tree_sitter,
   markdown_preview,
   teal_lang,
   overseer,
   codecompanion,
-  --oppter_nvim,
+  plugins_depended_on_denops,
 }
