@@ -306,6 +306,7 @@ cmp.setup({
   }, {
     { name = 'buffer' },
     { name = 'path' },
+    { name = 'skkeleton' },
     spell_check_cfg,
   }),
 })
