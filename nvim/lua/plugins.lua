@@ -136,11 +136,6 @@ local tree_sitter = {
   lazy = false,
 }
 
-local markdown_preview = {
-  'OXY2DEV/markview.nvim',
-  lazy = false,
-}
-
 local teal_lang = {
   'teal-language/vim-teal',
 }
@@ -191,7 +186,6 @@ return {
   ressesion,
   hlchunk,
   tree_sitter,
-  markdown_preview,
   teal_lang,
   overseer,
   codecompanion,
