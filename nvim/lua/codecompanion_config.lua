@@ -3,6 +3,8 @@
     - Configuring Adapters: https://codecompanion.olimorris.dev/configuration/adapters
     - eiji.page NeovimのAIプラグインcodecompanion.nvimの使い方: https://eiji.page/blog/neovim-codecompanion-intro/
 --]]
+
+local my_adapter = 'gemini'
 require('codecompanion').setup({
   adapters = {
     gemini = function()
@@ -16,7 +18,7 @@ require('codecompanion').setup({
   },
   strategies = {
     chat = {
-      adapter = 'gemini',
+      adapter = my_adapter,
       slash_commands = {
         ['buffer'] = {
           opts = {
@@ -46,10 +48,10 @@ require('codecompanion').setup({
       },
     },
     inline = {
-      adapter = 'gemini',
+      adapter = my_adapter,
     },
     agent = {
-      adapter = 'gemini',
+      adapter = my_adapter,
     },
   },
 })
