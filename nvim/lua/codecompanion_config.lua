@@ -95,4 +95,10 @@ vim.api.nvim_create_user_command('Ccs', function(opts)
 end, { nargs = '*' })
 
 -- set ~/.local/share/nvim/cc_saves/ as cc_save
-vim.env.cc_s = vim.env.HOME .. '/.local/share/nvim/cc_saves'
+local CC_SAVES = vim.env.HOME .. '/.local/share/nvim/cc_saves'
+vim.env.cc_s = CC_SAVES
+
+-- load saved chat
+vim.api.nvim_create_user_command('Ccl', function(opts)
+  require('fzf-lua').files({ cwd = CC_SAVES })
+end, { nargs = 0 })
