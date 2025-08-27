@@ -12,6 +12,7 @@ This file is help of my Neovim config
 :help mycfg-fzf: helps of fzf
 :help mycfg-dbg: helps of debugger
 :help mycfg-ss: helps of resession.nvim
+:help mycfg-companion helps of codecompanion.nvim
 
 terminal(by ToggleTerm):
 :Tt: toggle terminal horizontal
@@ -112,3 +113,9 @@ $ ./build_cmake/bin/llama-server\
 <leader>ss: save current session
 <leader>sl: load saved session
 <leader>sd: delete specific session
+
+*mycfg-companion* codecompanion.nvim
+
+:Cct : open chat
+:Ccl :load saved chat by fzf-lua UI
+:Ccs <file_name> : save chat as $HOME/.local/share/nvim/cc_saves/<file_name>.md
