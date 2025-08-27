@@ -43,6 +43,6 @@ local day = os.date('%A')
 -- menu
 dashboard.section.buttons.val = {}
 -- footer
-dashboard.section.footer.val = { 'Have a productive day! (=^・^=)' }
+dashboard.section.footer.val = { 'Have a productive day! (=^・^=)', "help by ':help mycfg'" }
 -- layout
 alpha.setup(dashboard.config)
