@@ -7,20 +7,22 @@
 -- ToDo: switch of adapters
 local my_adapter = 'gemini'
 require('codecompanion').setup({
-  adapters = {
-    gemini = function()
-      return require('codecompanion.adapters').extend('gemini', {
-        env = { api_key = vim.env.GEMINI_API_KEY },
-      })
-    end,
-    azure_openai = function()
-      return require('codecompanion.adapters').extend('azure_openai', {
-        env = {
-          api_key = vim.env.AZURE_OPENAI_API_KEY,
-          endpoint = vim.env.AZURE_OPENAI_END_POINT,
-        },
-      })
-    end,
+  http = {
+    adapters = {
+      gemini = function()
+        return require('codecompanion.adapters').extend('gemini', {
+          env = { api_key = vim.env.GEMINI_API_KEY },
+        })
+      end,
+      azure_openai = function()
+        return require('codecompanion.adapters').extend('azure_openai', {
+          env = {
+            api_key = vim.env.AZURE_OPENAI_API_KEY,
+            endpoint = vim.env.AZURE_OPENAI_END_POINT,
+          },
+        })
+      end,
+    },
   },
   opts = {
     language = 'Japanese',
