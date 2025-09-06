@@ -135,6 +135,7 @@ local tree_sitter = {
     'OXY2DEV/markview.nvim',
   },
   lazy = false,
+  build = ':TSUpdate',
 }
 
 local teal_lang = {
