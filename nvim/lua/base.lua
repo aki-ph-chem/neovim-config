@@ -1,4 +1,5 @@
 -- basic config
+-- how to check keymap: `:nmap <key>`
 local opt = vim.opt
 opt.mouse = 'a'
 opt.title = true
@@ -33,6 +34,18 @@ vim.keymap.set('n', '<leader>x', function()
     end
   end
 end)
+
+vim.keymap.set('n', '<leader>p', function()
+  -- information of current buffer
+  local path = vim.api.nvim_buf_get_name(0)
+
+  -- when path is not exist
+  if path and path ~= '' then
+    print(path)
+  else
+    print('Buffer is not associated with a file')
+  end
+end, { noremap = true, silent = true, desc = 'Print current file path' })
 
 -- delete all buffers when buffer name match regex pattern
 vim.api.nvim_create_user_command('Bx', function(opts)

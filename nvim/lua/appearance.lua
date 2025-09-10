@@ -46,3 +46,17 @@ vim.keymap.set('n', '<leader>vln', function()
   local new_config = not vim.diagnostic.config().virtual_lines
   vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
+
+-- config for nvim-treesitter
+-- update parser: `TSUpdate`
+require('nvim-treesitter.configs').setup {
+  ensure_installed = { 'c', 'cpp', 'python', 'lua', 'rust', 'bash', 'markdown', 'markdown_inline' },
+  sync_install = false,
+  auto_install = true,
+  ignore_install = {},
+  modules = {},
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}

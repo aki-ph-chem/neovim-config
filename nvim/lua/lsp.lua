@@ -254,6 +254,9 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 --spell_check_cfg = {}
+-- if you switch spell check
+-- you can do by below:
+-- `:lua vim.opt.spell = not vim.opt.spell`
 
 -- for markdown-oxide
 -- An example nvim-lspconfig capabilities setting
