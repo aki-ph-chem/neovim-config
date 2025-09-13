@@ -38,6 +38,10 @@ require('formatter').setup {
       end,
     },
 
+    json = {
+      require('formatter.filetypes.json').jq,
+    },
+
     c = {
       require('formatter.filetypes.c').clangformat,
     },
