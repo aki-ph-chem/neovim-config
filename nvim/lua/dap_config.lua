@@ -133,7 +133,21 @@ dap.configurations = {
       end,
     },
   },
+  lua = {
+    {
+      type = 'nlua',
+      request = 'attach',
+      name = 'Attach to running Neovim instance',
+    },
+  },
 }
+
+dap.adapters.nlua = function(callback, config)
+  callback({ type = 'server', host = config.host or '127.0.0.1', port = config.port or 8086 })
+end
+vim.keymap.set('n', '<leader>yl', function()
+  require 'osv'.launch({ port = 8086 })
+end, { noremap = true })
 
 local read_dap_config = function(config, path_to_config)
   local ok, project_config = pcall(dofile, path_to_config)

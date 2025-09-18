@@ -77,7 +77,9 @@ local filer = {
 
 -- for DAP
 local dap = {
-  'mfussenegger/nvim-dap',
+  { 'mfussenegger/nvim-dap', dependencies = {
+    'jbyuki/one-small-step-for-vimkind',
+  }, lazy = false },
   'rcarriga/nvim-dap-ui',
   'nvim-neotest/nvim-nio',
 }
