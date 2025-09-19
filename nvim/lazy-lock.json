@@ -7,7 +7,7 @@
   "cmp-path": { "branch": "main", "commit": "c642487086dbd9a93160e1679a1327be111cbc25" },
   "cmp-skkeleton": { "branch": "main", "commit": "ae74491bc73b868c60f69e4362d3bea29a6bf74d" },
   "cmp-spell": { "branch": "master", "commit": "694a4e50809d6d645c1ea29015dad0c293f019d6" },
-  "codecompanion.nvim": { "branch": "main", "commit": "8d55059b63bcf53e8b4d3d0885c37b2282d6fa2d" },
+  "codecompanion.nvim": { "branch": "main", "commit": "61b2ab5f4f534c1c5625a1d57ab1e071cc81d2fc" },
   "denops.vim": { "branch": "main", "commit": "a278b8342459e4687f24d4d575d72ff593326cee" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "eskk.vim": { "branch": "master", "commit": "e530575790cca5d6603b8ab984298459ecf3c0c0" },
@@ -40,7 +40,7 @@
   "toggleterm.nvim": { "branch": "main", "commit": "9a88eae817ef395952e08650b3283726786fb5fb" },
   "vim-code-dark": { "branch": "master", "commit": "4624dc223bf574aa9a731c2383c579847303c380" },
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
-  "vim-teal": { "branch": "master", "commit": "c87b8931afa68376b88ff721336f31512b9384f1" },
+  "vim-teal": { "branch": "master", "commit": "a416397cf7aad7b03ef53fd3d9847fd764bcbfee" },
   "vim-toml": { "branch": "main", "commit": "1b63257680eeb65677eb1ca5077809a982756d58" },
   "vim-vsnip": { "branch": "master", "commit": "0a4b8419e44f47c57eec4c90df17567ad4b1b36e" }
 }
