@@ -146,26 +146,32 @@ local gols_config = {
 }
 
 -- pyright
-require('lspconfig').pyright.setup(pyright_config)
+vim.lsp.config.pyright = pyright_config
+vim.lsp.enable({ 'pyright' })
 
 -- clangd
 clangd_config = read_lsp_config(vim.fn.getcwd() .. '/clangd_config.lua', clangd_config)
-require('lspconfig').clangd.setup(clangd_config)
+vim.lsp.config.clangd = clangd_config
+vim.lsp.enable({ 'clangd' })
 
 -- CMake
-require('lspconfig').cmake.setup({})
+vim.lsp.config.cmake = {}
+vim.lsp.enable({ 'cmake' })
 
 -- for rustfmt
 vim.g.rustfmt_autosave = 1
+
 -- rust-analyzer
 rust_analyzer_config = read_lsp_config(vim.fn.getcwd() .. '/rust_analyzer_config.lua', rust_analyzer_config)
-require('lspconfig').rust_analyzer.setup(rust_analyzer_config)
+vim.lsp.config.rust_analyzer = rust_analyzer_config
+vim.lsp.enable({ 'rust_analyzer' })
 
 -- go lang
-require('lspconfig').gopls.setup(gols_config)
+vim.lsp.config.gopls = gols_config
+vim.lsp.enable({ 'gopls' })
 
 -- Lua
-require('lspconfig').lua_ls.setup({
+vim.lsp.config.lua_ls = {
   settings = {
     Lua = {
       runtime = {
@@ -183,20 +189,28 @@ require('lspconfig').lua_ls.setup({
       },
     },
   },
-})
+}
+vim.lsp.enable({ 'lua_ls' })
 
 -- Nix Language
-require('lspconfig').nil_ls.setup {}
+vim.lsp.config.nil_ls = {}
+vim.lsp.enable({ 'nil_ls' })
 
 -- Teal
-require('lspconfig').teal_ls.setup {}
+vim.lsp.config.teal_ls = {}
+vim.lsp.enable({ 'teal_ls' })
+
 -- JavaScript
-require('lspconfig').ts_ls.setup({})
+vim.lsp.config.ts_ls = {}
+vim.lsp.enable({ 'ts_ls' })
+
 --  HTML
-require('lspconfig').html.setup({})
+vim.lsp.config.html = {}
+vim.lsp.enable({ 'html' })
+
 -- latex
 -- Ref: https://github.com/latex-lsp/texlab/wiki/Configuration
-require('lspconfig').texlab.setup({
+vim.lsp.config.texlab = {
   settings = {
     texlab = {
       --[[
@@ -213,14 +227,20 @@ require('lspconfig').texlab.setup({
       },
     },
   },
-})
+}
+vim.lsp.enable({ 'texlab' })
+
 -- VimScript
 require('vimscript_ls')
+
 -- julia
-require('lspconfig').julials.setup({})
+vim.lsp.config.julials = {}
+vim.lsp.enable({ 'julials' })
 
 -- Haskell
-require('lspconfig').hls.setup({})
+vim.lsp.config.hls = {}
+vim.lsp.enable({ 'hls' })
+
 vim.g.haskell_enable_quantification = 1 -- to enable highlighting of `forall`
 vim.g.haskell_enable_recursivedo = 1 -- to enable highlighting of `mdo` and `rec`
 vim.g.haskell_enable_arrowsyntax = 1 -- to enable highlighting of `proc`
@@ -262,7 +282,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 -- An example nvim-lspconfig capabilities setting
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require('lspconfig').markdown_oxide.setup({
+vim.lsp.config.markdown_oxide = {
   -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
   -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
   capabilities = vim.tbl_deep_extend('force', capabilities, {
@@ -273,7 +293,8 @@ require('lspconfig').markdown_oxide.setup({
     },
   }),
   --on_attach = on_attach, -- configure your on attach config
-})
+}
+vim.lsp.enable({ 'markdown_oxide' })
 
 -- cmp config
 local cmp = require('cmp')
