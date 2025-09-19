@@ -35,6 +35,22 @@ vim.keymap.set('n', '<leader>x', function()
   end
 end)
 
+vim.keymap.set('n', '<leader>cx', function()
+  local cwd = vim.fn.getcwd()
+  local regex = vim.regex('^' .. cwd)
+
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    local path = vim.api.nvim_buf_get_name(bufnr)
+    if not regex:match_str(path) then
+      vim.api.nvim_buf_delete(bufnr, { force = true })
+    end
+  end
+end, {
+  noremap = true,
+  silent = true,
+  desc = 'Delete all buffers referencing files in directories that are not the working directory',
+})
+
 vim.keymap.set('n', '<leader>p', function()
   -- information of current buffer
   local path = vim.api.nvim_buf_get_name(0)

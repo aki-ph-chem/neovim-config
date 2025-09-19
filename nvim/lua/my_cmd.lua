@@ -224,6 +224,17 @@ vim.api.nvim_create_user_command('Bb', function(opts)
   end)
 end, { nargs = 1 })
 
+-- open *.pdf file by qpdfview
+vim.api.nvim_create_user_command('Pdf', function(opts)
+  local path_args = opts.args
+  local home_dir = vim.env.HOME
+  local path = ''
+  path = string.gsub(path_args, '~', home_dir)
+
+  local cmd = { 'qpdfview', path }
+  vim.system(cmd, { text = true }, function(_) end)
+end, { nargs = 1 })
+
 --[[
 ## memo to call external commands
 
