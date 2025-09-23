@@ -17,17 +17,34 @@ if use_lsp_log_debug then
   vim.lsp.set_log_level('debug')
 end
 --- jump to definition by 'gd'
-vim.keymap.set('n', 'gd', '<cmd>:lua vim.lsp.buf.definition()<CR>')
+vim.keymap.set('n', 'gd', function()
+  vim.lsp.buf.definition()
+end)
+
 -- hover
-vim.keymap.set('n', 'gh', '<cmd>:lua vim.lsp.buf.hover()<CR>')
+vim.keymap.set('n', 'gh', function()
+  vim.lsp.buf.hover()
+end)
+
 -- show ref all
-vim.keymap.set('n', 'gr', '<cmd>:lua vim.lsp.buf.references()<CR>')
+vim.keymap.set('n', 'gr', function()
+  vim.lsp.buf.references()
+end)
+
 -- rename all
-vim.keymap.set('n', 'gn', '<cmd>:lua vim.lsp.buf.rename()<CR>')
+vim.keymap.set('n', 'gn', function()
+  vim.lsp.buf.rename()
+end)
+
 -- list up all symobl in current buffer
-vim.keymap.set('n', 'gl', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+vim.keymap.set('n', 'gl', function()
+  vim.lsp.buf.document_symbol()
+end)
+
 -- list up all symobl in all buffers
-vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+vim.keymap.set('n', 'ga', function()
+  vim.lsp.buf.workspace_symbol()
+end)
 
 local navic = require('nvim-navic')
 navic.setup {
