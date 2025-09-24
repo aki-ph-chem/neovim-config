@@ -15,8 +15,8 @@ neovimの設定はvimscriptとLuaの両方で書くことが可能であるが�
 - plugins
     - lazy.nvimを使用しているのでNeovimを起動すると自動でプラグインがfetch&installされる
 - LSP
-    - Python関係: `$uv sync`
-    - Node.js関係: `$npm install`
+    - Python関係: `$uv sync`, `$uv lock --upgrade`
+    - Node.js関係: `$npm install`, `$npm update`
     - Rust関係: `$cargo make install`
     - その他: システムのパッケージマネージャー(pacman)
 
