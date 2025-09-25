@@ -247,6 +247,19 @@ vim.lsp.config.texlab = {
 }
 vim.lsp.enable({ 'texlab' })
 
+-- for Typst
+-- ref: https://myriad-dreamin.github.io/tinymist/frontend/neovim.html
+vim.lsp.config.tinymist = {
+  cmd = { 'tinymist', 'lsp' },
+  settings = {
+    filetypes = { 'typst' },
+    formatterMode = 'typstyle',
+    exportPdf = 'onType',
+    semanticTokens = 'disable',
+  },
+}
+vim.lsp.enable({ 'tinymist' })
+
 -- VimScript
 require('vimscript_ls')
 
