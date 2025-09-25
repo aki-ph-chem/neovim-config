@@ -157,11 +157,22 @@ local open_file_by_chrome = function(path)
   end)
 end
 
+local open_file_by_chromium = function(path)
+  local cmd = { 'chromium', path }
+  vim.system(cmd, { text = true }, function(result)
+    if result.code == 0 then
+      print('Chrome opend succesfully: ' .. result.stdout)
+    else
+      print('Error: ' .. result.stderr)
+    end
+  end)
+end
+
 vim.api.nvim_create_user_command('Mkd', function()
   local path_to_mardown = get_current_file_path()
 
   if path_to_mardown then
-    open_file_by_chrome(path_to_mardown)
+    open_file_by_chromium(path_to_mardown)
   end
 end, { nargs = 0 })
 
