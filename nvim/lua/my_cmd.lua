@@ -145,37 +145,6 @@ local get_current_file_path = function()
   return current_file
 end
 
---- for Google-Chrome ---
-local open_file_by_chrome = function(path)
-  local cmd = { 'google-chrome-stable', path }
-  vim.system(cmd, { text = true }, function(result)
-    if result.code == 0 then
-      print('Chrome opend succesfully: ' .. result.stdout)
-    else
-      print('Error: ' .. result.stderr)
-    end
-  end)
-end
-
-local open_file_by_chromium = function(path)
-  local cmd = { 'chromium', path }
-  vim.system(cmd, { text = true }, function(result)
-    if result.code == 0 then
-      print('Chrome opend succesfully: ' .. result.stdout)
-    else
-      print('Error: ' .. result.stderr)
-    end
-  end)
-end
-
-vim.api.nvim_create_user_command('Mkd', function()
-  local path_to_mardown = get_current_file_path()
-
-  if path_to_mardown then
-    open_file_by_chromium(path_to_mardown)
-  end
-end, { nargs = 0 })
-
 local open_file_by_pgopher = function(path)
   local cmd = { 'pgopher', path }
   vim.system(cmd, { text = true }, function(result)
@@ -195,45 +164,6 @@ vim.api.nvim_create_user_command('Pgf', function()
     open_file_by_pgopher(path_to_mardown)
   end
 end, { nargs = 0 })
-
---- for LaTex by llmk  ---
-local build_latex = { 'llmk' }
---- build by ':Lm'
-vim.api.nvim_create_user_command('Lm', function()
-  vim.system(build_latex, { text = true }, function(result)
-    if result.code == 0 then
-      print('build by llmk ok')
-    else
-      print('Failed to build by llmk see *.log file')
-    end
-  end)
-end, { nargs = 0 })
-
---- build by save
-vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = { '*.tex', '*.bib' },
-  callback = function()
-    vim.system(build_latex, { text = true }, function(result)
-      if result.code == 0 then
-        print('build by llmk ok')
-      else
-        print('Failed to build by llmk see *.log file')
-      end
-    end)
-  end,
-})
-
--- BibTeX
-vim.api.nvim_create_user_command('Bb', function(opts)
-  local cmd = { 'bibtex', opts.args }
-  vim.system(cmd, { text = true }, function(result)
-    if result.code == 0 then
-      print('bibtex ok!')
-    else
-      print('Failed to run bibtex')
-    end
-  end)
-end, { nargs = 1 })
 
 -- open *.pdf file by qpdfview
 vim.api.nvim_create_user_command('Pdf', function(opts)

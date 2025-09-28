@@ -35,6 +35,7 @@ require('skk')
 -- setting of lsp
 require('lsp')
 require('formatter_config')
+require('languages')
 
 -- config of DAP
 require('dap_config')

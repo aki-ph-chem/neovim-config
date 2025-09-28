@@ -225,28 +225,6 @@ vim.lsp.enable({ 'ts_ls' })
 vim.lsp.config.html = {}
 vim.lsp.enable({ 'html' })
 
--- latex
--- Ref: https://github.com/latex-lsp/texlab/wiki/Configuration
-vim.lsp.config.texlab = {
-  settings = {
-    texlab = {
-      --[[
-      build = {
-        executable = 'llmk',
-        args = {},
-        onSave = true,
-        forwardSearchAfter = false,
-      },
-      --]]
-      forwardSearch = {
-        executable = 'qpdfview',
-        args = { '--unique', '%p#src:%f:%l:1' },
-      },
-    },
-  },
-}
-vim.lsp.enable({ 'texlab' })
-
 -- for Typst
 -- ref: https://myriad-dreamin.github.io/tinymist/frontend/neovim.html
 vim.lsp.config.tinymist = {
@@ -307,24 +285,6 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 -- if you switch spell check
 -- you can do by below:
 -- `:lua vim.opt.spell = not vim.opt.spell`
-
--- for markdown-oxide
--- An example nvim-lspconfig capabilities setting
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-vim.lsp.config.markdown_oxide = {
-  -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
-  -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
-  capabilities = vim.tbl_deep_extend('force', capabilities, {
-    workspace = {
-      didChangeWatchedFiles = {
-        dynamicRegistration = true,
-      },
-    },
-  }),
-  --on_attach = on_attach, -- configure your on attach config
-}
-vim.lsp.enable({ 'markdown_oxide' })
 
 -- cmp config
 local cmp = require('cmp')
