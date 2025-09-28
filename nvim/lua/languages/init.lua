@@ -1,2 +1,5 @@
 require('languages.latex')
 require('languages.markdown')
+require('languages.typst')
+require('languages.lua')
+require('languages.haskell')

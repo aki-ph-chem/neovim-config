@@ -187,28 +187,6 @@ vim.lsp.enable({ 'rust_analyzer' })
 vim.lsp.config.gopls = gols_config
 vim.lsp.enable({ 'gopls' })
 
--- Lua
-vim.lsp.config.lua_ls = {
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-        pathStrict = true,
-        path = { '?.lua', '?/init.lua' },
-      },
-      workspace = {
-        library = vim.list_extend(vim.api.nvim_get_runtime_file('lua', true), {
-          '${3rd}/luv/library',
-          '${3rd}/busted/library',
-          '${3rd}/luassert/library',
-        }),
-        checkThirdParty = 'Disable',
-      },
-    },
-  },
-}
-vim.lsp.enable({ 'lua_ls' })
-
 -- Nix Language
 vim.lsp.config.nil_ls = {}
 vim.lsp.enable({ 'nil_ls' })
@@ -225,38 +203,12 @@ vim.lsp.enable({ 'ts_ls' })
 vim.lsp.config.html = {}
 vim.lsp.enable({ 'html' })
 
--- for Typst
--- ref: https://myriad-dreamin.github.io/tinymist/frontend/neovim.html
-vim.lsp.config.tinymist = {
-  cmd = { 'tinymist' },
-  filetypes = { 'typst' },
-  settings = {
-    formatterMode = 'typstyle',
-    exportPdf = 'onType',
-    semanticTokens = 'disable',
-  },
-}
-vim.lsp.enable({ 'tinymist' })
-
 -- VimScript
 require('vimscript_ls')
 
 -- julia
 vim.lsp.config.julials = {}
 vim.lsp.enable({ 'julials' })
-
--- Haskell
-vim.lsp.config.hls = {}
-vim.lsp.enable({ 'hls' })
-
-vim.g.haskell_enable_quantification = 1 -- to enable highlighting of `forall`
-vim.g.haskell_enable_recursivedo = 1 -- to enable highlighting of `mdo` and `rec`
-vim.g.haskell_enable_arrowsyntax = 1 -- to enable highlighting of `proc`
-vim.g.haskell_enable_pattern_synonyms = 1 -- to enable highlighting of `pattern`
-vim.g.haskell_enable_typeroles = 1 -- to enable highlighting of type roles
-vim.g.haskell_enable_static_pointers = 1 -- to enable highlighting of `static`
-vim.g.haskell_backpack = 1 -- to enable highlighting of backpack keywords
-vim.g.haskell_classic_highlighting = 1
 
 -- for cmp-spell
 -- add word to black list: zg
