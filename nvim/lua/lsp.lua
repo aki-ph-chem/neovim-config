@@ -1,15 +1,4 @@
--- LSP config
-local home_dir = vim.env.HOME
--- depend on Python
-vim.env.PATH = home_dir .. '/neovim-config/.venv/bin:' .. vim.env.PATH
--- depend on Node.js
-vim.env.PATH = home_dir .. '/neovim-config/node_modules/.bin:' .. vim.env.PATH
--- teal-language-server
--- installed by below
---[[
-$ luarocks install --tree ./.lua_modules teal-language-server
---]]
-vim.env.PATH = home_dir .. '/neovim-config/.lua_modules/bin:' .. vim.env.PATH
+-- LSP config --
 
 -- lsp for log
 local use_lsp_log_debug = false
@@ -45,48 +34,6 @@ end)
 vim.keymap.set('n', 'ga', function()
   vim.lsp.buf.workspace_symbol()
 end)
-
--- LSP for each programing language
-
--- Go
-local gols_config = {
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      gofumpt = true,
-    },
-  },
-}
-
--- go lang
-vim.lsp.config.gopls = gols_config
-vim.lsp.enable({ 'gopls' })
-
--- Nix Language
-vim.lsp.config.nil_ls = {}
-vim.lsp.enable({ 'nil_ls' })
-
--- Teal
-vim.lsp.config.teal_ls = {}
-vim.lsp.enable({ 'teal_ls' })
-
--- JavaScript
-vim.lsp.config.ts_ls = {}
-vim.lsp.enable({ 'ts_ls' })
-
---  HTML
-vim.lsp.config.html = {}
-vim.lsp.enable({ 'html' })
-
--- VimScript
-require('vimscript_ls')
-
--- julia
-vim.lsp.config.julials = {}
-vim.lsp.enable({ 'julials' })
 
 -- for cmp-spell
 -- add word to black list: zg

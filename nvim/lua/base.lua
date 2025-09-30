@@ -75,3 +75,6 @@ vim.api.nvim_create_user_command('Bx', function(opts)
 end, { nargs = 1 })
 
 vim.cmd([[let $BASH_ENV = "~/.bash_aliases"]])
+
+-- VimScript
+require('vimscript_ls')
