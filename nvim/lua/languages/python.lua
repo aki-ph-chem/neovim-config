@@ -1,9 +1,5 @@
 local utl = require('languages.utl')
 
-local current_dir = vim.fn.getcwd()
-vim.env.PATH = current_dir .. '/.venv/bin:' .. vim.env.PATH
-vim.env.VIRTUAL_ENV = current_dir .. '/.venv'
-
 -- python
 local pyright_config = {
   settings = {
@@ -12,6 +8,9 @@ local pyright_config = {
     },
   },
   on_attach = function(client, bufnr)
+    local current_dir = vim.fn.getcwd()
+    vim.env.PATH = current_dir .. '/.venv/bin:' .. vim.env.PATH
+    vim.env.VIRTUAL_ENV = current_dir .. '/.venv'
     utl.navic.attach(client, bufnr)
   end,
 }
