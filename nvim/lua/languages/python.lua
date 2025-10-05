@@ -18,3 +18,11 @@ local pyright_config = {
 -- pyright
 vim.lsp.config.pyright = pyright_config
 vim.lsp.enable({ 'pyright' })
+
+require('formatter').setup({
+  filetype = {
+    python = {
+      require('formatter.filetypes.python').ruff,
+    },
+  },
+})

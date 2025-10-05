@@ -25,3 +25,16 @@ vim.lsp.enable({ 'clangd' })
 -- CMake
 vim.lsp.config.cmake = {}
 vim.lsp.enable({ 'cmake' })
+
+-- formatter: clangformat
+require('formatter').setup({
+  filetype = {
+    c = {
+      require('formatter.filetypes.c').clangformat,
+    },
+
+    cpp = {
+      require('formatter.filetypes.cpp').clangformat,
+    },
+  },
+})
