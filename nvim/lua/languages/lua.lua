@@ -21,6 +21,7 @@ vim.lsp.config.lua_ls = {
 vim.lsp.enable({ 'lua_ls' })
 
 -- formatter: stylua
+local util = require('formatter.util')
 require('formatter').setup({
   filetype = {
     -- Formatter configurations for filetype "lua" go here
