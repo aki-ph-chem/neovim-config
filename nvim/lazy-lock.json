@@ -10,6 +10,7 @@
   "codecompanion.nvim": { "branch": "main", "commit": "38db66c4e20032821bd166f7012291fe99f1e8f3" },
   "denops.vim": { "branch": "main", "commit": "a278b8342459e4687f24d4d575d72ff593326cee" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
+  "direnv": { "branch": "master", "commit": "1418f217e5caf4af120b1a8482522a5c69edfd6e" },
   "eskk.vim": { "branch": "master", "commit": "e530575790cca5d6603b8ab984298459ecf3c0c0" },
   "formatter.nvim": { "branch": "master", "commit": "b9d7f853da1197b83b8edb4cc4952f7ad3a42e41" },
   "fzf-lua": { "branch": "main", "commit": "e9d95a29514c1a239c570c9d4077b7adca419161" },

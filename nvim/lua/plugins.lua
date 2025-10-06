@@ -168,6 +168,10 @@ local plugins_depended_on_denops = {
   'vim-skk/skkeleton',
 }
 
+local direnv = {
+  'direnv/direnv',
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -195,4 +199,5 @@ return {
   overseer,
   codecompanion,
   plugins_depended_on_denops,
+  direnv,
 }
