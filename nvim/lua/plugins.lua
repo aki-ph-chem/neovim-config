@@ -169,7 +169,14 @@ local plugins_depended_on_denops = {
 }
 
 local direnv = {
-  'direnv/direnv',
+  'actionshrimp/direnv.nvim',
+  opts = {
+    async = true,
+    type = 'dir',
+    on_direnv_finished = function()
+      print('direnv: ok!')
+    end,
+  },
 }
 
 return {
