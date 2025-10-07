@@ -188,6 +188,7 @@ return {
   'sindrets/diffview.nvim',
   'vim-skk/eskk.vim',
   'neovimhaskell/haskell-vim',
+  'rcarriga/nvim-notify',
   filer,
   barbar,
   lsp_plugins,
