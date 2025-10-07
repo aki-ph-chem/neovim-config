@@ -4,8 +4,6 @@ local utl = require('languages.utl')
 vim.lsp.config.ts_ls = {
   settings = {},
   on_attach = function(client, bufnr)
-    local current_dir = vim.fn.getcwd()
-    vim.env.PATH = current_dir .. '/node_modules/.bin:' .. vim.env.PATH
     utl.navic.attach(client, bufnr)
   end,
 }

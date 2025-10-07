@@ -8,16 +8,27 @@ local pyright_config = {
     },
   },
   on_attach = function(client, bufnr)
-    local current_dir = vim.fn.getcwd()
-    vim.env.PATH = current_dir .. '/.venv/bin:' .. vim.env.PATH
-    vim.env.VIRTUAL_ENV = current_dir .. '/.venv'
+    print('use pyright')
     utl.navic.attach(client, bufnr)
   end,
 }
 
--- pyright
-vim.lsp.config.pyright = pyright_config
-vim.lsp.enable({ 'pyright' })
+local ty_config = {
+  settings = {},
+  on_attach = function(client, bufnr)
+    print('use ty')
+    utl.navic.attach(client, bufnr)
+  end,
+}
+
+-- pyright or ty
+if os.getenv('TY') then
+  vim.lsp.config.ty = pyright_config
+  vim.lsp.enable({ 'ty' })
+else
+  vim.lsp.config.pyright = pyright_config
+  vim.lsp.enable({ 'pyright' })
+end
 
 require('formatter').setup({
   filetype = {

@@ -21,3 +21,7 @@ vim.lsp.enable({ 'html' })
 -- julia
 vim.lsp.config.julials = {}
 vim.lsp.enable({ 'julials' })
+
+-- asm
+vim.lsp.asm_lsp = {}
+vim.lsp.enable({ 'asm_lsp' })
