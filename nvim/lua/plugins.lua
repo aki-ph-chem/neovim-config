@@ -172,7 +172,7 @@ local direnv = {
   'actionshrimp/direnv.nvim',
   opts = {
     async = true,
-    type = 'dir',
+    type = os.getenv('BUF') and 'buffer' or 'dir',
     on_direnv_finished = function()
       print('direnv: ok!')
     end,
