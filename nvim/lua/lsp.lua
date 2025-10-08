@@ -1,7 +1,7 @@
 -- LSP config --
 
 -- lsp for log
-local use_lsp_log_debug = false
+local use_lsp_log_debug = os.getenv('LSP_DEBUG')
 if use_lsp_log_debug then
   vim.lsp.set_log_level('debug')
 end

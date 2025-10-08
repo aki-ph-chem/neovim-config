@@ -13,6 +13,7 @@ This file is help of my Neovim config
 :help mycfg-dbg: helps of debugger
 :help mycfg-ss: helps of resession.nvim
 :help mycfg-companion helps of codecompanion.nvim
+:help mycfg-env: helps of environment variables to control neovim behaviour
 
 terminal(by ToggleTerm):
 :Tt: toggle terminal horizontal
@@ -119,3 +120,14 @@ $ ./build_cmake/bin/llama-server\
 :Cct : open chat
 :Ccl :load saved chat by fzf-lua UI
 :Ccs <file_name> : save chat as $HOME/.local/share/nvim/cc_saves/<file_name>.md
+
+*mycfg-env*
+
+run neovim like below
+
+$ <ENV_VAR_NAME>=1 nvim
+
+LSP_DEBUG: set vim.lsp.set_log_level('debug')
+TS_OFF: turn off syntax highligting by tree-sitter
+BUF: set type = 'buffer' for direnv.nvim
+TS: use ty as a language server & type checker for Python

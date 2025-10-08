@@ -49,14 +49,36 @@ end, { desc = 'Toggle diagnostic virtual_lines' })
 
 -- config for nvim-treesitter
 -- update parser: `TSUpdate`
-require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'c', 'cpp', 'python', 'lua', 'rust', 'bash', 'markdown', 'markdown_inline' },
-  sync_install = false,
-  auto_install = true,
-  ignore_install = {},
-  modules = {},
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}
+--
+-- parser for some language may need tree-sitter-cli
+-- then execute beloww:
+-- $ cargo install --locked tree-sitter-cli # install tree-sitter-cli
+local use_tree_sitter_hightlight = os.getenv('TS_OFF')
+if use_tree_sitter_hightlight then
+  require('nvim-treesitter.configs').setup {
+    ensure_installed = {
+      'c',
+      'cpp',
+      'python',
+      'lua',
+      'rust',
+      'bash',
+      'markdown',
+      'markdown_inline',
+      'gitignore',
+      'yaml',
+      'xml',
+      'latex',
+      'bibtex',
+      'toml',
+    },
+    sync_install = false,
+    auto_install = true,
+    ignore_install = {},
+    modules = {},
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+  }
+end
