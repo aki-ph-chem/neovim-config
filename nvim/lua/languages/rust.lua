@@ -32,4 +32,16 @@ vim.lsp.config.rust_analyzer = rust_analyzer_config
 vim.lsp.enable({ 'rust_analyzer' })
 
 -- for rustfmt
-vim.g.rustfmt_autosave = 1
+require('formatter').setup({
+  filetype = {
+    rust = {
+      function()
+        return {
+          exe = 'rustfmt',
+          args = {},
+          stdin = true,
+        }
+      end,
+    },
+  },
+})
