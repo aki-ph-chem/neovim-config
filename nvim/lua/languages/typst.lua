@@ -4,9 +4,23 @@ vim.lsp.config.tinymist = {
   cmd = { 'tinymist' },
   filetypes = { 'typst' },
   settings = {
-    formatterMode = 'typstyle',
     exportPdf = 'onType',
     semanticTokens = 'disable',
   },
 }
 vim.lsp.enable({ 'tinymist' })
+
+-- for typstyle
+require('formatter').setup {
+  filetype = {
+    typst = {
+      function()
+        return {
+          exe = 'typstyle',
+          args = {},
+          stdin = true,
+        }
+      end,
+    },
+  },
+}

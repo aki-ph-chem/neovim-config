@@ -1,14 +1,16 @@
 -- Nix Language
 vim.lsp.config.nil_ls = {
-  settings = {
-    ['nil'] = {
-      formatting = {
-        command = { 'nixfmt' },
-      },
-    },
-  },
+  settings = {},
 }
 vim.lsp.enable({ 'nil_ls' })
+
+require('formatter').setup({
+  filetype = {
+    nix = {
+      require('formatter.filetypes.nix').nixfmt,
+    },
+  },
+})
 
 -- Teal
 vim.lsp.config.teal_ls = {}
