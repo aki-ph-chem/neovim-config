@@ -24,7 +24,11 @@ local arch_logo = {
 }
 
 local tody = os.date('%Y-%m-%d %H:%M')
+local user_name = vim.env.USER
+
 local cat_logo = {
+  '        Hi! ' .. user_name,
+  '',
   '       /\\_____/\\   ',
   '      /  o   o  \\   ',
   '     ( ==  ^  == )   ',
