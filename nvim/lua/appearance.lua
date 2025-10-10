@@ -53,6 +53,8 @@ end, { desc = 'Toggle diagnostic virtual_lines' })
 -- parser for some language may need tree-sitter-cli
 -- then execute beloww:
 -- $ cargo install --locked tree-sitter-cli # install tree-sitter-cli
+-- or
+-- install tree-sitter by home-manager
 local use_tree_sitter_hightlight = os.getenv('TS_OFF')
 if use_tree_sitter_hightlight then
   require('nvim-treesitter.configs').setup {
