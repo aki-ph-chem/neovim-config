@@ -1,192 +1,154 @@
-# About this repository
+# ⚙️ Neovim Configuration
 
-[english](./README_EN.md)
+This repository contains my personal configuration files for **Neovim**.
 
-neovim での設定ファイルとその備忘録を書いておく。
+## 🛠️ Configuration Management
 
-neovimの設定はvimscriptとLuaの両方で書くことが可能であるが、筆者はLuaで設定ファイルを書く。
+| Component                              | Method/Tool                   | Notes                                                                       |
+|----------------------------------------|-------------------------------|-----------------------------------------------------------------------------|
+| **Some Language server & other tools** | Managed by [Nix home-manager] | The main Nix configuration is located in the [aki-ph-chem/nix]  repository. |
+| **Plugin Manager**                     | [folke/lazy.nvim]             | Modern, fast, and feature-rich plugin manager.                              |
 
-[Luaのメモ](https://github.com/aki-ph-chem/Learn-Lua)
+[Nix home-manager]: https://github.com/nix-community/home-manager
+[folke/lazy.nvim]: https://github.com/folke/lazy.nvim
+[aki-ph-chem/nix]: https://github.com/aki-ph-chem/nix
 
-## 初期設定
+## 🚀 Key Features
 
-- Neovim本体の管理
-    - bobでバージョンを管理する
-- plugins
-    - lazy.nvimを使用しているのでNeovimを起動すると自動でプラグインがfetch&installされる
-- LSP
-    - Python関係: `$uv sync`, `$uv lock --upgrade`
-    - Node.js関係: `$npm install`, `$npm update`
-    - Rust関係: `$cargo make install`
-    - その他: システムのパッケージマネージャー(pacman)
+### Language Server Protocol (LSP) & Formatting
 
-## チートシートを`:help mycfg`で参照できるようにする
+LSP and formatters are primarily managed through the configuration, supporting various languages:
 
-`nvim/doc/`以下のチートシートを更新した後では`:helptags ~/.config/nvim/doc`を実行しする。
+  * **Python:** `uv` (for `pyright`, `ruff`)
+  * **TypeScript/JavaScript:** `npm` (`ts-server`)
+  * **Others:** Configuration supports Nix home-manager or project-local setups.
 
-## 現在の構成
+### 🌳 Directory Structure 🌳
 
-packer.nvimは開発をストップするとのことなので、lazzy.nvimに移行した。
+The configuration files are organized as follows:
 
-- プラグインマネージャー
-    - [lazy.nvim](https://github.com/folke/lazy.nvim)
-- LSP関連のプラグイン
-    - [mason.nvim](https://github.com/williamboman/mason.nvim])
-    - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
-    - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- 補完関連のプラグイン
-    - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-    - [nvim-cmp-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-    - [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)
+  * The main configuration is located in the `neovim-config/nvim` directory.
+  * A symbolic link should be created from this directory to `~/.config/nvim`.
 
-- テーマ
-    - [vim-code-dark](https://github.com/tomasiser/vim-code-dark):Visual Studio Code風のテーマ
-
-- バッファ管理
-    - [barbar.nvim](https://github.com/romgrk/barbar.nvim): vs-codeのタブのようにバッファを管理できる(要 nerd-fonts)
-
-nerd-fontsはパッケージマネージャより導入した
-
-```bash
-$ sudo pacman -S nerd-fonts
-```
-
-- その他
-    - [lexima.vim](https://github.com/cohama/lexima.vim)
-    - [vimtex](https://github.com/lervag/vimtex)
-    - [rust.vim](https://github.com/rust-lang/rust.vim)
-    - [nerdtree](https://github.com/preservim/nerdtree)
-    - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
-    - [vim-fugitive](https://github.com/tpope/vim-fugitive)
-    - [vim-airline](https://github.com/vim-airline/vim-airline)
-
-### now(2024 0909)
-
-日本語入力にskk(vim-skk/eskk.vim)の導入を検討中
-
-- 必要なこと:
-    1. プラグインのインストール
-    2. 辞書のダウンロード(sudo pacman -S skk-jisyo)
-    3. 辞書のpathを登録
-
-### 現在のディレクトリ構成
-
-`neovim-config/nvim`に設定ファイルを置いていて、`nvim`を~/.configにシンボリックリンクを貼っている
-
-- init.lua
-	- neovimの設定ファイル
-- lua/plugins.lua
-	- pluginマネージャの設定ファイル
-
-## 少し前での構成
-
-プラグインマネージャとしては
-[packer.nvim](https://github.com/wbthomason/packer.nvim)を使う
+| File/Path                      | Description                                                                        |
+|--------------------------------|------------------------------------------------------------------------------------|
+| `init.lua`                     | The primary Neovim configuration file.                                             |
+| `lua/plugins.lua`              | config for the [folke/lazy.nvim]  plugin manager.                                  |
+| `lua/base.lua`                 | basic setup                                                                        |
+| `lua/languages/*.lua`          | setup for each languages                                                           |
+| `lua/codecompanion_config.lua` | config for [olimorris/codecompanion.nvim]                                          |
+| `lua/dap_config.lua`           | config for [mfussenegger/nvim-dap]                                                 |
+| `lua/dap_ui.lua`               | config for [rcarriga/nvim-dap-ui]                                                  |
+| `lua/dashboard.lua`            | config for dashboard                                                               |
+| `lua/filer.lua`                | config for [nvim-tree/nvim-tree.lua]                                               |
+| `lua/formatter_config.lua`     | config for [mhartington/formatter.nvim]                                            |
+| `lua/fzf_config.lua`           | config for [ibhagwan/fzf-lua]                                                      |
+| `lua/git_config.lua`           | config for [tpope/vim-fugitive], [kdheepak/lazygit.nvim], [FabijanZulj/blame.nvim] |
+| `lua/lsp.lua`                  | config for LSP & Completion                                                        |
+| `lua/my_cmd.lua`               | Simple command I created myself                                                    |
+| `lua/session.lua`              | config for [stevearc/resession.nvim]                                               |
+| `lua/skkeleton.lua`            | config for [vim-skk/skkeleton]                                                     |
+| `lua/appearance.lua`           | colnfig for [OXY2DEV/markview.nvim] and others related to visual                   |
+| `lua/skk.lua`                  | config for `eskk`: not used now                                                    |
+| `lua/neovide_config.lua`       | config for `neovide`: not used now                                                 |
+| `lua/vimscript_ls.lua`         | config for Language Server for VimScript: not used now                             |
 
 
-筆者の環境はArch Linuxであるので、AURからnvim-packer-gitとしてインストールする
+### Cheatsheet
 
-### ディレクトリの構成
+A personalized cheatsheet is available within Neovim.
 
-neovimの設定ファイルが置かれている。
+  * Access via `:help mycfg`.
+  * The help files are written to the `nvim/doc` directory.
+  * To make changes visible, run the command: `:helptags ~/.config/nvim/doc`
 
-~/.configにシンボリックリンクを貼ってある
+## ⭐ 🔌 Plugin Highlights ⭐
 
-- init.lua
-	- neovimの設定ファイル
+| Category                  | Plugin                         | Description                                      |
+|---------------------------|--------------------------------|--------------------------------------------------|
+| **LSP & Completion**      | [neovim/nvim-lspconfig]        | Common configurations for Neovim's built-in LSP. |
+|                           | [hrsh7th/nvim-cmp]             | Auto-completion plugin.                          |
+|                           | [hrsh7th/cmp-nvim-lsp]         | LSP source for `nvim-cmp`.                       |
+|                           | [hrsh7th/vim-vsnip]            | Snippet engine.                                  |
+|                           | [hrsh7th/cmp-path]             | path source for `nvim-cmp`                       |
+|                           | [hrsh7th/cmp-buffer]           | Buffer source for `nvim-cmp`                     |
+| **SKK**                   | [vim-skk/skkeleton]            | SKK implmented by `denops.vim`                   |
+|                           | [rinx/cmp-skkeleton]           | Skkeleton source for `nvim-cmp`                  |
+| **Spell check**           | [f3fora/cmp-spell]             | Spell check source for `nvim-cmp`                |
+| **Breadcrumb navigation** | [SmiteshP/nvim-navic]          | Breadcrumb navigation                            |
+| **Git**                   | [tpope/vim-fugitive]           | show code diff in right side.                    |
+|                           | [kdheepak/lazygit.nvim]        | integration with LazyGit                         |
+|                           | [FabijanZulj/blame.nvim]       | show `git blame`                                 |
+| **Status Line**           | [nvim-lualine/lualine.nvim]    | Lean & mean status/tabline for Neovim.           |
+| **Code Formatter**        | [mhartington/formatter.nvim]   | code formatter support                           |
+| **theme**                 | [tomasiser/vim-code-dark]      | VSCode like theme                                |
+| **Buffer Contorol**       | [romgrk/barbar.nvim]           | contorol buffer like tab                         |
+| **Filer**                 | [nvim-tree/nvim-tree.lua]      | filer                                            |
+| **Debug**                 | [mfussenegger/nvim-dap]        | DAP client                                       |
+|                           | [rcarriga/nvim-dap-ui]         | UI for debugger                                  |
+| **Fuzzy Finder**          | [ibhagwan/fzf-lua]             | fzf integration                                  |
+| **Session Manager**       | [stevearc/resession.nvim]      | save & load neovim session                       |
+| **Direnv**                | [actionshrimp/direnv.nvim]     | direnv integration                               |
+| **Markdown preview**      | [OXY2DEV/markview.nvim]        | preview markview on Neovim                       |
+| **LLM integuration**      | [olimorris/codecompanion.nvim] | LLM integuration on Neovim                       |
 
-- lua/plugins.lua
-	- pluginマネージャの設定ファイル
 
-- plugins/packer_compiled.lua
-    - Packerによってコンパイルされた中間コード
+<!-- for LSP & cmp -->
+[neovim/nvim-lspconfig]: https://github.com/neovim/nvim-lspconfig
+[hrsh7th/nvim-cmp]: https://github.com/hrsh7th/nvim-cmp
+[hrsh7th/cmp-nvim-lsp]: https://github.com/hrsh7th/cmp-nvim-lsp
+[hrsh7th/vim-vsnip]: https://github.com/hrsh7th/vim-vsnip
+[hrsh7th/cmp-path]: https://github.com/hrsh7th/cmp-path
+[hrsh7th/cmp-buffer]: https://github.com/hrsh7th/cmp-buffer
 
-#### now(2023 01.26)
+<!-- cmp for SKK -->
+[vim-skk/skkeleton]: https://github.com/vim-skk/skkeleton
+[rinx/cmp-skkeleton]: https://github.com/rinx/cmp-skkeleton
+<!-- spell check -->
+[f3fora/cmp-spell]: https://github.com/f3fora/cmp-spell
+<!-- Breadcrumb navigation -->
+[SmiteshP/nvim-navic]: https://github.com/SmiteshP/nvim-navic
+<!-- Git -->
+[tpope/vim-fugitive]: https://github.com/tpope/vim-fugitive
+[kdheepak/lazygit.nvim]: https://github.com/kdheepak/lazygit.nvim
+[FabijanZulj/blame.nvim]: https://github.com/FabijanZulj/blame.nvim
 
-- LSPの導入がうまくいかない.....
+<!-- status line -->
+[nvim-lualine/lualine.nvim]: https://github.com/nvim-lualine/lualine.nvim
+<!-- Terminal -->
+[akinsho/toggleterm.nvim]: https://github.com/akinsho/toggleterm.nvim
+<!-- formatter -->
+[mhartington/formatter.nvim]: https://github.com/mhartington/formatter.nvim
+<!-- theme -->
+[tomasiser/vim-code-dark]: https://github.com/tomasiser/vim-code-dark
+<!-- buffer control -->
+[romgrk/barbar.nvim]: https://github.com/romgrk/barbar.nvim
+<!-- filer -->
+[nvim-tree/nvim-tree.lua]: https://github.com/nvim-tree/nvim-tree.lua
 
-- LSP関連のプラグイン
-    - [mason.nvim](https://github.com/williamboman/mason.nvim])
-    - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
-    - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+<!-- Debug -->
+[mfussenegger/nvim-dap]: https://github.com/mfussenegger/nvim-dap
+[rcarriga/nvim-dap-ui]: https://github.com/rcarriga/nvim-dap-ui
+<!-- fuzzy finder -->
+[ibhagwan/fzf-lua]: https://github.com/ibhagwan/fzf-lua
+<!-- session manager -->
+[stevearc/resession.nvim]: https://github.com/stevearc/resession.nvim
+<!-- direnv -->
+[actionshrimp/direnv.nvim]: https://github.com/actionshrimp/direnv.nvim
+<!-- Markdown preview -->
+[OXY2DEV/markview.nvim]: https://github.com/OXY2DEV/markview.nvim
+<!-- codecompanion -->
+[olimorris/codecompanion.nvim]: https://github.com/olimorris/codecompanion.nvim
 
-masonでとりあえずpythonのlspを入れてみたが得になにかが変わった感じではないのだが?
 
-#### now(2023 02.4)
+<!-- font -->
+[Nerd Fonts]: https://www.nerdfonts.com/
 
-とりあえず、現在は以下のような感じ。気が向いたらファイルの分割化をするかも。
-- LSP、コード補完の設定までok
-    - 以下のようにinit.luaに追加したらLSPが動いた
 
-```Lua
--- mason: LSPマネージャー
-require("mason").setup()
-require("mason-lspconfig").setup()
-```
-- コード補完
-    - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp),[cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp),[vim-vsnip](https://github.com/hrsh7th/vim-vsnip)を使っている
-   - 設定: nvim-cmpのGitHubにあった設定を利用。
+## 🇯🇵 Japanese Input Setup
 
-- 言語ごとのLSPの導入
-    - Masonを用いて欲しいサーバーをインストールした後で以下のように設定をinit.luaに書き込む(以下ではPython,C++,Rust,Lua)
+To enable Japanese input, the following steps are required:
 
-```Lua
--- python
-require("lspconfig").pyright.setup {}
--- cpp
-require("lspconfig").clangd.setup {}
--- Rust
-require("lspconfig").rust_analyzer.setup {}
--- Lua
-require("lspconfig").sumneko_lua.setup {}
-```
-
-## lazy.nvimに移行する
-
-packer.nvimは開発をストップするとのことなので、lazzy.nimに移行する。
-
-### 作業flow
-
-1. まずMasonで管理しているLSPを削除する
-2. packer.nvimで管理しているプラグインに依存するコードをinit.luaから削除する
-3. packer.nvimで管理しているプラグインを削除する
-4. packer.nvimを削除する
-5. lazy.nvimをインストールする
-6. lazy.nvim用に`init.lua`, `lua/plugins.lua`を書き換える
-
-### Lazyを導入する
-
-[公式](https://github.com/folke/lazy.nvim)のやり方に習ってインストールする。
-
-`init.lua`に以下を書き込む
-
-```Lua
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-```
-
-プラグインは`lua/plugins.lua`に以下のように書き込む
-
-```Lua
-return {
-    "<plugin_name>"
-}
-```
-
-これを読み込むために`init.lua`側に
-
-```Lua
-require("lazy").setup("plugins")
-```
-
-と書き込む。
+1.  **Install the plugin (eskk or skkeleton)** (via `lazy.nvim` as configured in `lua/plugins.lua`).
+2.  **Download the dictionary** (e.g., using `sudo pacman -S skk-jisyo` on Arch-based systems).
+3.  **Register the dictionary path** in the configuration.
