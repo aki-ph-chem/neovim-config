@@ -4,10 +4,10 @@ This repository contains my personal configuration files for **Neovim**.
 
 ## 🛠️ Configuration Management
 
-| Component              | Method/Tool                   | Notes                                                                       |
-|------------------------|-------------------------------|-----------------------------------------------------------------------------|
-| **Neovim Core Config** | Managed by [Nix home-manager] | The main Nix configuration is located in the [aki-ph-chem/nix]  repository. |
-| **Plugin Manager**     | [folke/lazy.nvim]             | Modern, fast, and feature-rich plugin manager.                              |
+| Component                              | Method/Tool                   | Notes                                                                       |
+|----------------------------------------|-------------------------------|-----------------------------------------------------------------------------|
+| **Some Language server & other tools** | Managed by [Nix home-manager] | The main Nix configuration is located in the [aki-ph-chem/nix]  repository. |
+| **Plugin Manager**                     | [folke/lazy.nvim]             | Modern, fast, and feature-rich plugin manager.                              |
 
 [Nix home-manager]: https://www.google.com/search?q=https://nixos.org/manual/home-manager/index.html
 [folke/lazy.nvim]: https://github.com/folke/lazy.nvim
@@ -45,37 +45,47 @@ A personalized cheatsheet is available within Neovim.
 
 ## 🔌 Plugin Highlights
 
-| Category              | Plugin            | Description                                                                  |
-|-----------------------|-------------------|------------------------------------------------------------------------------|
-| **LSP & Completion**  | [nvim-lspconfig]  | Common configurations for Neovim's built-in LSP.                             |
-|                       | [nvim-cmp]        | Auto-completion plugin.                                                      |
-|                       | [cmp-nvim-lsp]    | LSP source for `nvim-cmp`.                                                   |
-|                       | [vim-vsnip]       | Snippet engine.                                                              |
-| **Theming**           | [vim-code-dark]   | A dark color scheme inspired by Visual Studio Code.                          |
-| **Buffer Management** | [barbar.nvim]     | VS Code-like tab interface for buffer management. **Requires [Nerd Fonts].** |
-| **Terminal**          | [toggleterm.nvim] | Simple and efficient terminal toggling.                                      |
-| **File Explorer**     | [nerdtree]        | A tree-style file system explorer.                                           |
-| **Version Control**   | [vim-fugitive]    | The best Git wrapper of all time.                                            |
-| **Status Line**       | [vim-airline]     | Lean & mean status/tabline for Vim and Neovim.                               |
-| **Language Support**  | [vimtex]          | A modern LaTeX plugin.                                                       |
-| **Rust**              | [rust.vim]        | Better support for the Rust programming language.                            |
-| **Input**             | [lexima.vim]      | Enhances automatic bracket/quote closing.                                    |
+| Category                  | Plugin                       | Description                                      |
+|---------------------------|------------------------------|--------------------------------------------------|
+| **LSP & Completion**      | [neovim/nvim-lspconfig]      | Common configurations for Neovim's built-in LSP. |
+|                           | [hrsh7th/nvim-cmp]           | Auto-completion plugin.                          |
+|                           | [hrsh7th/cmp-nvim-lsp]       | LSP source for `nvim-cmp`.                       |
+|                           | [hrsh7th/vim-vsnip]          | Snippet engine.                                  |
+|                           | [hrsh7th/cmp-path]           | path source for `nvim-cmp`                       |
+|                           | [hrsh7th/cmp-buffer]         | Buffer source for `nvim-cmp`                     |
+|                           | [rinx/cmp-skkeleton]         | Skkeleton source for `nvim-cmp`                  |
+|                           | [f3fora/cmp-spell]           | Spell check source for `nvim-cmp`                |
+| **Breadcrumb navigation** | [SmiteshP/nvim-navic]        | Breadcrumb navigation                            |
+| **Git**                   | [vim-fugitive]               | show code diff in right side.                    |
+| **Status Line**           | [nvim-lualine/lualine.nvim]  | Lean & mean status/tabline for Neovim.           |
+| **code formatter**        | [mhartington/formatter.nvim] | code formatter support                           |
+| **Support for LaTex**     | [vimtex]                     | A modern LaTeX plugin.                           |
 
 
-[nvim-lspconfig]: https://github.com/neovim/nvim-lspconfig
-[nvim-cmp]: https://github.com/hrsh7th/nvim-cmp
-[cmp-nvim-lsp]: https://github.com/hrsh7th/cmp-nvim-lsp
-[vim-vsnip]: https://github.com/hrsh7th/vim-vsnip
+[neovim/nvim-lspconfig]: https://github.com/neovim/nvim-lspconfig
+[hrsh7th/nvim-cmp]: https://github.com/hrsh7th/nvim-cmp
+[hrsh7th/cmp-nvim-lsp]: https://github.com/hrsh7th/cmp-nvim-lsp
+[hrsh7th/vim-vsnip]: https://github.com/hrsh7th/vim-vsnip
+[hrsh7th/cmp-path]: https://github.com/hrsh7th/cmp-path
+[hrsh7th/cmp-buffer]: https://github.com/hrsh7th/cmp-buffer
+
+[rinx/cmp-skkeleton]: https://github.com/rinx/cmp-skkeleton
+[SmiteshP/nvim-navic]: https://github.com/SmiteshP/nvim-navic
+[f3fora/cmp-spell]: https://github.com/f3fora/cmp-spell
+[nvim-lualine/lualine.nvim]: https://github.com/nvim-lualine/lualine.nvim
+
 [vim-code-dark]: https://github.com/tomasiser/vim-code-dark
 [barbar.nvim]: https://github.com/romgrk/barbar.nvim
 [toggleterm.nvim]: https://github.com/akinsho/toggleterm.nvim
 [nerdtree]: https://github.com/preservim/nerdtree
 [vim-fugitive]: https://github.com/tpope/vim-fugitive
-[vim-airline]: https://github.com/vim-airline/vim-airline
+
 [vimtex]: https://github.com/lervag/vimtex
 [rust.vim]: https://github.com/rust-lang/rust.vim
 [lexima.vim]: https://github.com/cohama/lexima.vim
 [Nerd Fonts]: https://www.nerdfonts.com/
+
+[mhartington/formatter.nvim]: https://github.com/mhartington/formatter.nvim
 
 ## 🇯🇵 Japanese Input Setup
 
