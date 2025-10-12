@@ -149,6 +149,6 @@ A personalized cheatsheet is available within Neovim.
 
 To enable Japanese input, the following steps are required:
 
-1.  **Install the plugin** (via `lazy.nvim` as configured).
+1.  **Install the plugin (eskk or skkeleton)** (via `lazy.nvim` as configured in `lua/plugins.lua`).
 2.  **Download the dictionary** (e.g., using `sudo pacman -S skk-jisyo` on Arch-based systems).
 3.  **Register the dictionary path** in the configuration.
