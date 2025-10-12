@@ -43,7 +43,7 @@ A personalized cheatsheet is available within Neovim.
   * The help files are written to the `nvim/doc` directory.
   * To make changes visible, run the command: `:helptags ~/.config/nvim/doc`
 
-## 🔌 Plugin Highlights
+## ⭐ 🔌 Plugin Highlights ⭐
 
 | Category                  | Plugin                       | Description                                      |
 |---------------------------|------------------------------|--------------------------------------------------|
@@ -65,12 +65,12 @@ A personalized cheatsheet is available within Neovim.
 | **theme**                 | [tomasiser/vim-code-dark]    | VSCode like theme                                |
 | **Buffer Contorol**       | [romgrk/barbar.nvim]         | contorol buffer like tab                         |
 | **Filer**                 | [nvim-tree/nvim-tree.lua]    | filer                                            |
-| **Debug**                 | [mfussenegger/nvim-dap]      |                                                  |
-|                           | [rcarriga/nvim-dap-ui]       |                                                  |
-| **Fuzzy Finder**          | [ibhagwan/fzf-lua]           |                                                  |
-| **Session Manager**       | [stevearc/resession.nvim]    |                                                  |
-| **Direnv**                | [actionshrimp/direnv.nvim]   |                                                  |
-| **Markdown preview**      | [OXY2DEV/markview.nvim]      |                                                  | 
+| **Debug**                 | [mfussenegger/nvim-dap]      | DAP client                                       |
+|                           | [rcarriga/nvim-dap-ui]       | UI for debugger                                  |
+| **Fuzzy Finder**          | [ibhagwan/fzf-lua]           | fzf integration                                  |
+| **Session Manager**       | [stevearc/resession.nvim]    | save & load neovim session                       |
+| **Direnv**                | [actionshrimp/direnv.nvim]   | direnv integration                               |
+| **Markdown preview**      | [OXY2DEV/markview.nvim]      | preview markview on Neovim                       | 
 
 
 <!-- for LSP & cmp -->
