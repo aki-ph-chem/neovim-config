@@ -53,15 +53,27 @@ A personalized cheatsheet is available within Neovim.
 |                           | [hrsh7th/vim-vsnip]          | Snippet engine.                                  |
 |                           | [hrsh7th/cmp-path]           | path source for `nvim-cmp`                       |
 |                           | [hrsh7th/cmp-buffer]         | Buffer source for `nvim-cmp`                     |
+| **SKK**                   | [vim-skk/skkeleton]          | SKK implmented by `denops.vim`                   |
 |                           | [rinx/cmp-skkeleton]         | Skkeleton source for `nvim-cmp`                  |
-|                           | [f3fora/cmp-spell]           | Spell check source for `nvim-cmp`                |
+| **Spell check**           | [f3fora/cmp-spell]           | Spell check source for `nvim-cmp`                |
 | **Breadcrumb navigation** | [SmiteshP/nvim-navic]        | Breadcrumb navigation                            |
-| **Git**                   | [vim-fugitive]               | show code diff in right side.                    |
+| **Git**                   | [tpope/vim-fugitive]         | show code diff in right side.                    |
+|                           | [kdheepak/lazygit.nvim]      | integration with LazyGit                         |
+|                           | [FabijanZulj/blame.nvim]     | show `git blame`                                 |
 | **Status Line**           | [nvim-lualine/lualine.nvim]  | Lean & mean status/tabline for Neovim.           |
-| **code formatter**        | [mhartington/formatter.nvim] | code formatter support                           |
-| **Support for LaTex**     | [vimtex]                     | A modern LaTeX plugin.                           |
+| **Code Formatter**        | [mhartington/formatter.nvim] | code formatter support                           |
+| **theme**                 | [tomasiser/vim-code-dark]    | VSCode like theme                                |
+| **Buffer Contorol**       | [romgrk/barbar.nvim]         | contorol buffer like tab                         |
+| **Filer**                 | [nvim-tree/nvim-tree.lua]    | filer                                            |
+| **Debug**                 | [mfussenegger/nvim-dap]      |                                                  |
+|                           | [rcarriga/nvim-dap-ui]       |                                                  |
+| **Fuzzy Finder**          | [ibhagwan/fzf-lua]           |                                                  |
+| **Session Manager**       | [stevearc/resession.nvim]    |                                                  |
+| **Direnv**                | [actionshrimp/direnv.nvim]   |                                                  |
+| **Markdown preview**      | [OXY2DEV/markview.nvim]      |                                                  | 
 
 
+<!-- for LSP & cmp -->
 [neovim/nvim-lspconfig]: https://github.com/neovim/nvim-lspconfig
 [hrsh7th/nvim-cmp]: https://github.com/hrsh7th/nvim-cmp
 [hrsh7th/cmp-nvim-lsp]: https://github.com/hrsh7th/cmp-nvim-lsp
@@ -69,23 +81,47 @@ A personalized cheatsheet is available within Neovim.
 [hrsh7th/cmp-path]: https://github.com/hrsh7th/cmp-path
 [hrsh7th/cmp-buffer]: https://github.com/hrsh7th/cmp-buffer
 
+<!-- cmp for SKK -->
+[vim-skk/skkeleton]: https://github.com/vim-skk/skkeleton
 [rinx/cmp-skkeleton]: https://github.com/rinx/cmp-skkeleton
-[SmiteshP/nvim-navic]: https://github.com/SmiteshP/nvim-navic
+<!-- spell check -->
 [f3fora/cmp-spell]: https://github.com/f3fora/cmp-spell
+<!-- Breadcrumb navigation -->
+[SmiteshP/nvim-navic]: https://github.com/SmiteshP/nvim-navic
+<!-- Git -->
+[tpope/vim-fugitive]: https://github.com/tpope/vim-fugitive
+[kdheepak/lazygit.nvim]: https://github.com/kdheepak/lazygit.nvim
+[FabijanZulj/blame.nvim]: https://github.com/FabijanZulj/blame.nvim
+
+<!-- status line -->
 [nvim-lualine/lualine.nvim]: https://github.com/nvim-lualine/lualine.nvim
+<!-- Terminal -->
+[akinsho/toggleterm.nvim]: https://github.com/akinsho/toggleterm.nvim
+<!-- formatter -->
+[mhartington/formatter.nvim]: https://github.com/mhartington/formatter.nvim
+<!-- theme -->
+[tomasiser/vim-code-dark]: https://github.com/tomasiser/vim-code-dark
+<!-- buffer control -->
+[romgrk/barbar.nvim]: https://github.com/romgrk/barbar.nvim
+<!-- filer -->
+[nvim-tree/nvim-tree.lua]: https://github.com/nvim-tree/nvim-tree.lua
 
-[vim-code-dark]: https://github.com/tomasiser/vim-code-dark
-[barbar.nvim]: https://github.com/romgrk/barbar.nvim
-[toggleterm.nvim]: https://github.com/akinsho/toggleterm.nvim
-[nerdtree]: https://github.com/preservim/nerdtree
-[vim-fugitive]: https://github.com/tpope/vim-fugitive
+<!-- Debug -->
+[mfussenegger/nvim-dap]: https://github.com/mfussenegger/nvim-dap
+[rcarriga/nvim-dap-ui]: https://github.com/rcarriga/nvim-dap-ui
+<!-- fuzzy finder -->
+[ibhagwan/fzf-lua]: https://github.com/ibhagwan/fzf-lua
+<!-- session manager -->
+[stevearc/resession.nvim]: https://github.com/stevearc/resession.nvim
+<!-- direnv -->
+[actionshrimp/direnv.nvim]: https://github.com/actionshrimp/direnv.nvim
+<!-- Markdown preview -->
+[OXY2DEV/markview.nvim]: https://github.com/OXY2DEV/markview.nvim
 
-[vimtex]: https://github.com/lervag/vimtex
-[rust.vim]: https://github.com/rust-lang/rust.vim
-[lexima.vim]: https://github.com/cohama/lexima.vim
+
+<!-- font -->
 [Nerd Fonts]: https://www.nerdfonts.com/
 
-[mhartington/formatter.nvim]: https://github.com/mhartington/formatter.nvim
 
 ## 🇯🇵 Japanese Input Setup
 
