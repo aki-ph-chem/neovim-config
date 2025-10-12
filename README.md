@@ -9,7 +9,7 @@ This repository contains my personal configuration files for **Neovim**.
 | **Some Language server & other tools** | Managed by [Nix home-manager] | The main Nix configuration is located in the [aki-ph-chem/nix]  repository. |
 | **Plugin Manager**                     | [folke/lazy.nvim]             | Modern, fast, and feature-rich plugin manager.                              |
 
-[Nix home-manager]: https://www.google.com/search?q=https://nixos.org/manual/home-manager/index.html
+[Nix home-manager]: https://github.com/nix-community/home-manager
 [folke/lazy.nvim]: https://github.com/folke/lazy.nvim
 [aki-ph-chem/nix]: https://github.com/aki-ph-chem/nix
 
@@ -33,7 +33,7 @@ The configuration files are organized as follows:
 | File/Path                      | Description                                                                        |
 |--------------------------------|------------------------------------------------------------------------------------|
 | `init.lua`                     | The primary Neovim configuration file.                                             |
-| `lua/plugins.lua`              | Configuration file for the `lazy.nvim` plugin manager.                             |
+| `lua/plugins.lua`              | config for the [folke/lazy.nvim]  plugin manager.                                  |
 | `lua/base.lua`                 | basic setup                                                                        |
 | `lua/languages/*.lua`          | setup for each languages                                                           |
 | `lua/codecompanion_config.lua` | config for [olimorris/codecompanion.nvim]                                          |
