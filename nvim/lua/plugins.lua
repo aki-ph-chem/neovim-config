@@ -189,6 +189,7 @@ return {
   'vim-skk/eskk.vim',
   'neovimhaskell/haskell-vim',
   'rcarriga/nvim-notify',
+  'Kicamon/markdown-table-mode.nvim',
   filer,
   barbar,
   lsp_plugins,

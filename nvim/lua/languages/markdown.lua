@@ -55,3 +55,6 @@ vim.api.nvim_create_user_command('Mkd', function()
     open_file_by_chromium(path_to_mardown)
   end
 end, { nargs = 0 })
+
+--Run the :Mtm command to toggle markdown table mode.
+require('markdown-table-mode').setup()
