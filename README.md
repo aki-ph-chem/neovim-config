@@ -23,17 +23,36 @@ LSP and formatters are primarily managed through the configuration, supporting v
   * **TypeScript/JavaScript:** `npm` (`ts-server`)
   * **Others:** Configuration supports Nix home-manager or project-local setups.
 
-### Directory Structure
+### 🌳 Directory Structure 🌳
 
 The configuration files are organized as follows:
 
   * The main configuration is located in the `neovim-config/nvim` directory.
   * A symbolic link should be created from this directory to `~/.config/nvim`.
 
-| File/Path         | Description                                            |
-|-------------------|--------------------------------------------------------|
-| `init.lua`        | The primary Neovim configuration file.                 |
-| `lua/plugins.lua` | Configuration file for the `lazy.nvim` plugin manager. |
+| File/Path                      | Description                                                                        |
+|--------------------------------|------------------------------------------------------------------------------------|
+| `init.lua`                     | The primary Neovim configuration file.                                             |
+| `lua/plugins.lua`              | Configuration file for the `lazy.nvim` plugin manager.                             |
+| `lua/base.lua`                 | basic setup                                                                        |
+| `lua/languages/*.lua`          | setup for each languages                                                           |
+| `lua/codecompanion_config.lua` | config for [olimorris/codecompanion.nvim]                                          |
+| `lua/dap_config.lua`           | config for [mfussenegger/nvim-dap]                                                 |
+| `lua/dap_ui.lua`               | config for [rcarriga/nvim-dap-ui]                                                  |
+| `lua/dashboard.lua`            | config for dashboard                                                               |
+| `lua/filer.lua`                | config for [nvim-tree/nvim-tree.lua]                                               |
+| `lua/formatter_config.lua`     | config for [mhartington/formatter.nvim]                                            |
+| `lua/fzf_config.lua`           | config for [ibhagwan/fzf-lua]                                                      |
+| `lua/git_config.lua`           | config for [tpope/vim-fugitive], [kdheepak/lazygit.nvim], [FabijanZulj/blame.nvim] |
+| `lua/lsp.lua`                  | config for LSP & Completion                                                        |
+| `lua/my_cmd.lua`               | Simple command I created myself                                                    |
+| `lua/session.lua`              | config for [stevearc/resession.nvim]                                               |
+| `lua/skkeleton.lua`            | config for [vim-skk/skkeleton]                                                     |
+| `lua/appearance.lua`           | colnfig for [OXY2DEV/markview.nvim] and others related to visual                   |
+| `lua/skk.lua`                  | config for `eskk`: not used now                                                    |
+| `lua/neovide_config.lua`       | config for `neovide`: not used now                                                 |
+| `lua/vimscript_ls.lua`         | config for Language Server for VimScript: not used now                             |
+
 
 ### Cheatsheet
 
@@ -45,32 +64,33 @@ A personalized cheatsheet is available within Neovim.
 
 ## ⭐ 🔌 Plugin Highlights ⭐
 
-| Category                  | Plugin                       | Description                                      |
-|---------------------------|------------------------------|--------------------------------------------------|
-| **LSP & Completion**      | [neovim/nvim-lspconfig]      | Common configurations for Neovim's built-in LSP. |
-|                           | [hrsh7th/nvim-cmp]           | Auto-completion plugin.                          |
-|                           | [hrsh7th/cmp-nvim-lsp]       | LSP source for `nvim-cmp`.                       |
-|                           | [hrsh7th/vim-vsnip]          | Snippet engine.                                  |
-|                           | [hrsh7th/cmp-path]           | path source for `nvim-cmp`                       |
-|                           | [hrsh7th/cmp-buffer]         | Buffer source for `nvim-cmp`                     |
-| **SKK**                   | [vim-skk/skkeleton]          | SKK implmented by `denops.vim`                   |
-|                           | [rinx/cmp-skkeleton]         | Skkeleton source for `nvim-cmp`                  |
-| **Spell check**           | [f3fora/cmp-spell]           | Spell check source for `nvim-cmp`                |
-| **Breadcrumb navigation** | [SmiteshP/nvim-navic]        | Breadcrumb navigation                            |
-| **Git**                   | [tpope/vim-fugitive]         | show code diff in right side.                    |
-|                           | [kdheepak/lazygit.nvim]      | integration with LazyGit                         |
-|                           | [FabijanZulj/blame.nvim]     | show `git blame`                                 |
-| **Status Line**           | [nvim-lualine/lualine.nvim]  | Lean & mean status/tabline for Neovim.           |
-| **Code Formatter**        | [mhartington/formatter.nvim] | code formatter support                           |
-| **theme**                 | [tomasiser/vim-code-dark]    | VSCode like theme                                |
-| **Buffer Contorol**       | [romgrk/barbar.nvim]         | contorol buffer like tab                         |
-| **Filer**                 | [nvim-tree/nvim-tree.lua]    | filer                                            |
-| **Debug**                 | [mfussenegger/nvim-dap]      | DAP client                                       |
-|                           | [rcarriga/nvim-dap-ui]       | UI for debugger                                  |
-| **Fuzzy Finder**          | [ibhagwan/fzf-lua]           | fzf integration                                  |
-| **Session Manager**       | [stevearc/resession.nvim]    | save & load neovim session                       |
-| **Direnv**                | [actionshrimp/direnv.nvim]   | direnv integration                               |
-| **Markdown preview**      | [OXY2DEV/markview.nvim]      | preview markview on Neovim                       | 
+| Category                  | Plugin                         | Description                                      |
+|---------------------------|--------------------------------|--------------------------------------------------|
+| **LSP & Completion**      | [neovim/nvim-lspconfig]        | Common configurations for Neovim's built-in LSP. |
+|                           | [hrsh7th/nvim-cmp]             | Auto-completion plugin.                          |
+|                           | [hrsh7th/cmp-nvim-lsp]         | LSP source for `nvim-cmp`.                       |
+|                           | [hrsh7th/vim-vsnip]            | Snippet engine.                                  |
+|                           | [hrsh7th/cmp-path]             | path source for `nvim-cmp`                       |
+|                           | [hrsh7th/cmp-buffer]           | Buffer source for `nvim-cmp`                     |
+| **SKK**                   | [vim-skk/skkeleton]            | SKK implmented by `denops.vim`                   |
+|                           | [rinx/cmp-skkeleton]           | Skkeleton source for `nvim-cmp`                  |
+| **Spell check**           | [f3fora/cmp-spell]             | Spell check source for `nvim-cmp`                |
+| **Breadcrumb navigation** | [SmiteshP/nvim-navic]          | Breadcrumb navigation                            |
+| **Git**                   | [tpope/vim-fugitive]           | show code diff in right side.                    |
+|                           | [kdheepak/lazygit.nvim]        | integration with LazyGit                         |
+|                           | [FabijanZulj/blame.nvim]       | show `git blame`                                 |
+| **Status Line**           | [nvim-lualine/lualine.nvim]    | Lean & mean status/tabline for Neovim.           |
+| **Code Formatter**        | [mhartington/formatter.nvim]   | code formatter support                           |
+| **theme**                 | [tomasiser/vim-code-dark]      | VSCode like theme                                |
+| **Buffer Contorol**       | [romgrk/barbar.nvim]           | contorol buffer like tab                         |
+| **Filer**                 | [nvim-tree/nvim-tree.lua]      | filer                                            |
+| **Debug**                 | [mfussenegger/nvim-dap]        | DAP client                                       |
+|                           | [rcarriga/nvim-dap-ui]         | UI for debugger                                  |
+| **Fuzzy Finder**          | [ibhagwan/fzf-lua]             | fzf integration                                  |
+| **Session Manager**       | [stevearc/resession.nvim]      | save & load neovim session                       |
+| **Direnv**                | [actionshrimp/direnv.nvim]     | direnv integration                               |
+| **Markdown preview**      | [OXY2DEV/markview.nvim]        | preview markview on Neovim                       |
+| **LLM integuration**      | [olimorris/codecompanion.nvim] | LLM integuration on Neovim                       |
 
 
 <!-- for LSP & cmp -->
@@ -117,6 +137,8 @@ A personalized cheatsheet is available within Neovim.
 [actionshrimp/direnv.nvim]: https://github.com/actionshrimp/direnv.nvim
 <!-- Markdown preview -->
 [OXY2DEV/markview.nvim]: https://github.com/OXY2DEV/markview.nvim
+<!-- codecompanion -->
+[olimorris/codecompanion.nvim]: https://github.com/olimorris/codecompanion.nvim
 
 
 <!-- font -->
