@@ -10,7 +10,16 @@ vim.lsp.config.ts_ls = {
 vim.lsp.enable({ 'ts_ls' })
 
 -- config for Biome formatter
-local biome_formatter = {
+local biome_tool = {
+  -- for Lint
+  -- output Lint/Format result by `check` command as JSON format and analyze by efm-langserver
+  lintCommand = 'biome check --apply-unsafe --format-kind json --stdin-file-path ${INPUT}',
+  lintStdin = true,
+  lintFormats = { '%f:%l:%c %m' },
+  lintSource = 'Biome',
+  lintIgnoreExitCode = true, -- DO NOT exit efm-langserver when ERROR
+
+  -- for Format
   formatCommand = 'biome format --stdin-file-path ${INPUT} --skip-project',
   formatStdin = true,
 }
@@ -21,10 +30,10 @@ vim.lsp.config.efm = {
 
   settings = {
     languages = {
-      javascript = { biome_formatter },
-      javascriptreact = { biome_formatter },
-      typescript = { biome_formatter },
-      typescriptreact = { biome_formatter },
+      javascript = { biome_tool },
+      javascriptreact = { biome_tool },
+      typescript = { biome_tool },
+      typescriptreact = { biome_tool },
     },
     rootMarkers = {
       '.git/',
@@ -36,6 +45,9 @@ vim.lsp.config.efm = {
   init_options = {
     documentFormatting = true,
     documentRangeFormatting = true,
+    -- Lint
+    documentDiagnostics = true,
+    codeAction = true,
   },
 
   filetypes = {
