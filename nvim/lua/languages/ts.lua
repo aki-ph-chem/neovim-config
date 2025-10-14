@@ -20,8 +20,21 @@ local biome_tool = {
   lintIgnoreExitCode = true, -- DO NOT exit efm-langserver when ERROR
 
   -- for Format
-  formatCommand = 'biome format --stdin-file-path ${INPUT} --skip-project',
+  formatCommand = 'biome format --stdin-file-path ${INPUT}',
   formatStdin = true,
+
+  rootMarkers = {
+    './git',
+    'package.json',
+    'biome.json',
+  },
+}
+
+local languages = {
+  javascript = { biome_tool },
+  javascriptreact = { biome_tool },
+  typescript = { biome_tool },
+  typescriptreact = { biome_tool },
 }
 
 -- config for efm-langserver by vim.lsp.config
@@ -29,17 +42,7 @@ vim.lsp.config.efm = {
   cmd = { 'efm-langserver' },
 
   settings = {
-    languages = {
-      javascript = { biome_tool },
-      javascriptreact = { biome_tool },
-      typescript = { biome_tool },
-      typescriptreact = { biome_tool },
-    },
-    rootMarkers = {
-      '.git/',
-      'package.json',
-      'biome.json',
-    },
+    languages = languages,
   },
 
   init_options = {
@@ -50,12 +53,7 @@ vim.lsp.config.efm = {
     codeAction = true,
   },
 
-  filetypes = {
-    'javascript',
-    'javascriptreact',
-    'typescript',
-    'typescriptreact',
-  },
+  filetypes = vim.tbl_keys(languages),
 }
 
 -- activate efm
