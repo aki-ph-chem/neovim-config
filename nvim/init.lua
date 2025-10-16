@@ -29,8 +29,12 @@ require('filer')
 require('git_config')
 
 -- eskk
-require('skk')
---require('skkeleton')
+local skkeleton_off = os.getenv('SKL_OFF')
+if not skkeleton_off then
+  require('skkeleton')
+else
+  require('skk')
+end
 
 -- setting of lsp
 require('lsp')
