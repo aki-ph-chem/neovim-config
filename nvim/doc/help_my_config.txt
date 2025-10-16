@@ -131,3 +131,4 @@ LSP_DEBUG: set vim.lsp.set_log_level('debug')
 TS_OFF: turn off syntax highligting by tree-sitter
 BUF: set type = 'buffer' for direnv.nvim
 TY: use ty as a language server & type checker for Python
+SKL_OFF: not use skkeleton as a Japanese input 
