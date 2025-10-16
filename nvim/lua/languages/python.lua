@@ -30,10 +30,62 @@ else
   vim.lsp.enable({ 'pyright' })
 end
 
-require('formatter').setup({
-  filetype = {
-    python = {
-      require('formatter.filetypes.python').ruff,
-    },
+local ruff_format = {
+  formatCommand = 'ruff format --no-cache --stdin-filename  ${INPUT}',
+  formatStdin = true,
+  rootMarkers = {
+    'pyproject.toml',
+    'setup.py',
+    'requirements.txt',
+    'ruff.toml',
   },
+}
+
+local ruff_lint = {
+  prefix = 'ruff',
+  lintSource = 'efm/ruff',
+  lintCommand = 'ruff check --quiet --output-format github --stdin-filename "${INPUT}',
+  lintStdin = true,
+  lintFormats = {
+    '::%trror title=%.%#,file=%.%#,line=%.%#,col=%.%#,endLine=%.%#,endColumn=%.%#::%f:%l:%c: %m',
+    '::%tarning title=%.%#,file=%.%#,line=%.%#,col=%.%#,endLine=%.%#,endColumn=%.%#::%f:%l:%c: %m',
+  },
+  lintSeverity = 2,
+  rootMarkers = {
+    'ruff.toml',
+    'pyproject.toml',
+    'setup.cfg',
+  },
+}
+
+local languages = {
+  python = { ruff_format, ruff_lint },
+}
+
+-- config for efm-langserver by vim.lsp.config
+vim.lsp.config.efm = {
+  cmd = { 'efm-langserver' },
+
+  settings = {
+    languages = languages,
+  },
+
+  init_options = {
+    documentFormatting = true,
+    documentRangeFormatting = true,
+  },
+
+  filetypes = vim.tbl_keys(languages),
+}
+
+vim.lsp.enable({ 'efm' })
+
+-- format by save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = {
+    '*.py',
+  },
+  callback = function()
+    vim.lsp.buf.format({ async = true })
+  end,
 })
