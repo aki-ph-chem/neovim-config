@@ -9,6 +9,17 @@ M.read_lsp_config = function(path_to_config, config)
   return config
 end
 
+M.merge_arrays = function(...)
+  local tables_to_merge = { ... }
+  local result = {}
+
+  for _, t in ipairs(tables_to_merge) do
+    table.move(t, 1, #t, #result + 1, result)
+  end
+
+  return result
+end
+
 M.navic = require('nvim-navic')
 M.navic.setup {
   icons = {
