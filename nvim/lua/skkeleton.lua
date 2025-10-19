@@ -6,6 +6,8 @@
     - https://qiita.com/atakig/items/e187d067ff9e865f51f9
 --]]
 
+local skk_jisyo_l_path = os.getenv('SKK_JISYO_L_PATH') or '/usr/share/skk/SKK-JISYO.L'
+
 -- Ctrl + j: enable skkeleton
 -- Ctrl + l: disable skkeleton
 vim.api.nvim_set_keymap('i', '<C-j>', '<Plug>(skkeleton-enable)', { noremap = true })
@@ -15,7 +17,7 @@ vim.api.nvim_set_keymap('c', '<C-l>', '<Plug>(skkeleton-disable)', { noremap = t
 
 vim.fn['skkeleton#config']({
   globalDictionaries = {
-    '/usr/share/skk/SKK-JISYO.L',
+    skk_jisyo_l_path,
   },
   eggLikeNewline = true,
   keepState = true,
