@@ -15,9 +15,13 @@ vim.api.nvim_set_keymap('c', '<C-j>', '<Plug>(skkeleton-enable)', { noremap = tr
 vim.api.nvim_set_keymap('i', '<C-l>', '<Plug>(skkeleton-disable)', { noremap = true })
 vim.api.nvim_set_keymap('c', '<C-l>', '<Plug>(skkeleton-disable)', { noremap = true })
 
+-- from: https://github.com/ymrl/SKK-JISYO.emoji-ja
+local skk_emoji_jisyo_ja_path = os.getenv('SKK_JISYO_EMOJI_JA_PATH')
+
 vim.fn['skkeleton#config']({
   globalDictionaries = {
     skk_jisyo_l_path,
+    skk_emoji_jisyo_ja_path,
   },
   eggLikeNewline = true,
   keepState = true,
