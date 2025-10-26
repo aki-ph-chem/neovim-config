@@ -17,11 +17,15 @@ vim.api.nvim_set_keymap('c', '<C-l>', '<Plug>(skkeleton-disable)', { noremap = t
 
 -- from: https://github.com/ymrl/SKK-JISYO.emoji-ja
 local skk_emoji_jisyo_ja_path = os.getenv('SKK_JISYO_EMOJI_JA_PATH')
+-- use by Ctrl + j + /
+--from: https://github.com/uasi/skk-emoji-jisyo
+local skk_emoji_jisyo_path = os.getenv('SKK_JISYO_EMOJI_PATH')
 
 vim.fn['skkeleton#config']({
   globalDictionaries = {
     skk_jisyo_l_path,
     skk_emoji_jisyo_ja_path,
+    skk_emoji_jisyo_path,
   },
   eggLikeNewline = true,
   keepState = true,
