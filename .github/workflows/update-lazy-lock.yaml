@@ -1,0 +1,10 @@
+name: update lazy-lock.json 
+on:
+  workflow_dispatch:
+
+jobs:
+  udpate-lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
