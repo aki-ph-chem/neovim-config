@@ -5,6 +5,21 @@ on:
 jobs:
   udpate-lockfile:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}:latest
+
     steps:
-      - name: checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - name: install plugins
+        run: |
+          ln -s "$PWD/nvim" /root/.config/nvim
+          TS_OFF=1 USER=root /root/nvim-linux-x86_64/bin/nvim  --headless +qa
+
+      - name: update plugins
+        run: |
+          TS_OFF=1 USER=root /root/nvim-linux-x86_64/bin/nvim  --headless "+Lazy! sync" +qa
+
+      - name: show lazy-lock.json  
+        run: |
+          git diff nvim/lazy-lock.json
