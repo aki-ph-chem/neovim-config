@@ -24,6 +24,10 @@ jobs:
         run: |
           ln -s "$PWD/nvim" /root/.config/nvim
 
+      - name: DEBUG (check symlink)
+        run: |
+          echo -e "DEBUG: check symlink:\n$(cat ~/.config/nvim/init.lua  | head -15)"
+
       - name: install plugins
         run: |
           TS_OFF=1 USER=root /root/nvim-linux-x86_64/bin/nvim  --headless +qa
