@@ -12,9 +12,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: install plugins
+      - name: DEBUG (show current directory) 
+        run: |
+          echo "DEBUG: current directory: $PWD"
+
+      - name: DEBUG (show nvim version) 
+        run: |
+          echo -e "DEBUG: nvim version:\n$(/root/nvim-linux-x86_64/bin/nvim --version)"
+
+      - name: setup config files 
         run: |
           ln -s "$PWD/nvim" /root/.config/nvim
+
+      - name: install plugins
+        run: |
           TS_OFF=1 USER=root /root/nvim-linux-x86_64/bin/nvim  --headless +qa
 
       - name: update plugins
@@ -23,4 +34,4 @@ jobs:
 
       - name: show lazy-lock.json  
         run: |
-          git diff nvim/lazy-lock.json
+          cat nvim/lazy-lock.json
