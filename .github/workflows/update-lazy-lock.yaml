@@ -18,17 +18,22 @@ jobs:
         run: |
           echo "DEBUG: current directory: $PWD"
 
+      - name: DEBUG (show $HOME)
+        run: |
+          echo -e "DEBUG: home directory: $HOME"
+
       - name: DEBUG (show nvim version) 
         run: |
           echo -e "DEBUG: nvim version:\n$(/root/nvim-linux-x86_64/bin/nvim --version)"
 
       - name: setup config files 
         run: |
-          ln -s "$PWD/nvim" /root/.config/nvim
+          mkdir "$HOME/.config"
+          ln -s "$PWD/nvim" "$HOME/.config/nvim"
 
       - name: DEBUG (check symlink)
         run: |
-          echo -e "DEBUG: check symlink:\n$(cat ~/.config/nvim/init.lua  | head -15)"
+          echo -e "DEBUG: check symlink:\n$(cat ${HOME}/.config/nvim/init.lua  | head -15)"
 
       - name: install plugins
         run: |
