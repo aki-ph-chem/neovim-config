@@ -1,6 +1,5 @@
 name: update lazy-lock.json 
 on:
-  pull_request:
   workflow_dispatch:
     inputs:
       # Input name (label visible to the user)
@@ -9,6 +8,9 @@ on:
         required: false # Do not make input mandatory (setting to true makes it mandatory)
         type: string    # Specify the type of input value (string, choice, boolean, environment)
         default: 'Manual Run' # Default value
+  schedule:
+    # Runs daily at UTC 15:00 (JST 0:00)
+    - cron: '0 15 * * *'
 
 jobs:
   udpate-lockfile:
@@ -35,3 +37,18 @@ jobs:
       - name: show lazy-lock.json  
         run: |
           cat nvim/lazy-lock.json
+
+      - name:  Create PR 
+        id: meta
+        run: |
+          {
+            echo "date=$(date +%Y-%m-%d-%H-%M)"
+          } >> $GITHUB_OUTPUT
+
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          title: "update(plugins): update nvim plugins ${{ steps.meta.outputs.date }}"
+          commit-message: "update(plugins): update nvim plugins at ${{ steps.meta.outputs.date }}"
+          branch: "update-nvim-plugin-at-${{ steps.meta.outputs.date }}"
+          add-paths: |
+            nvim/lazy-lock.json
