@@ -8,6 +8,9 @@ on:
         required: false # Do not make input mandatory (setting to true makes it mandatory)
         type: string    # Specify the type of input value (string, choice, boolean, environment)
         default: 'Manual Run' # Default value
+  schedule:
+    # Runs daily at UTC 15:00 (JST 0:00)
+    - cron: '0 15 * * *'
 
 jobs:
   udpate-lockfile:
