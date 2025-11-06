@@ -1,6 +1,5 @@
 name: update lazy-lock.json 
 on:
-  pull_request:
   workflow_dispatch:
     inputs:
       # Input name (label visible to the user)
