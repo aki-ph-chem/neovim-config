@@ -1,0 +1,37 @@
+name: update lazy-lock.json 
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      # Input name (label visible to the user)
+      message: 
+        description: 'Please enter the purpose or a note for this manual run.' # Required. The description displayed in the UI.
+        required: false # Do not make input mandatory (setting to true makes it mandatory)
+        type: string    # Specify the type of input value (string, choice, boolean, environment)
+        default: 'Manual Run' # Default value
+
+jobs:
+  udpate-lockfile:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}:latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup config files 
+        run: |
+          mkdir "$HOME/.config"
+          ln -s "$PWD/nvim" "$HOME/.config/nvim"
+
+      - name: install plugins
+        run: |
+          TS_OFF=1 /root/nvim-linux-x86_64/bin/nvim  --headless +qa
+
+      - name: update plugins
+        run: |
+          TS_OFF=1 /root/nvim-linux-x86_64/bin/nvim  --headless "+Lazy! sync" +qa
+
+      - name: show lazy-lock.json  
+        run: |
+          cat nvim/lazy-lock.json
