@@ -2,6 +2,13 @@ name: update lazy-lock.json
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      # Input name (label visible to the user)
+      message: 
+        description: 'Please enter the purpose or a note for this manual run.' # Required. The description displayed in the UI.
+        required: false # Do not make input mandatory (setting to true makes it mandatory)
+        type: string    # Specify the type of input value (string, choice, boolean, environment)
+        default: 'Manual Run' # Default value
 
 jobs:
   udpate-lockfile:
@@ -12,34 +19,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: DEBUG (show current directory) 
-        run: |
-          echo "DEBUG: current directory: $PWD"
-
-      - name: DEBUG (show $HOME)
-        run: |
-          echo -e "DEBUG: home directory: $HOME"
-
-      - name: DEBUG (show nvim version) 
-        run: |
-          echo -e "DEBUG: nvim version:\n$(/root/nvim-linux-x86_64/bin/nvim --version)"
-
       - name: setup config files 
         run: |
           mkdir "$HOME/.config"
           ln -s "$PWD/nvim" "$HOME/.config/nvim"
 
-      - name: DEBUG (check symlink)
-        run: |
-          echo -e "DEBUG: check symlink:\n$(cat ${HOME}/.config/nvim/init.lua  | head -15)"
-
       - name: install plugins
         run: |
-          TS_OFF=1 USER=root /root/nvim-linux-x86_64/bin/nvim  --headless +qa
+          TS_OFF=1 /root/nvim-linux-x86_64/bin/nvim  --headless +qa
 
       - name: update plugins
         run: |
-          TS_OFF=1 USER=root /root/nvim-linux-x86_64/bin/nvim  --headless "+Lazy! sync" +qa
+          TS_OFF=1 /root/nvim-linux-x86_64/bin/nvim  --headless "+Lazy! sync" +qa
 
       - name: show lazy-lock.json  
         run: |
