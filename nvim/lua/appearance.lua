@@ -37,7 +37,7 @@ require('lualine').setup({
 
 -- markview
 vim.keymap.set('n', '<leader>mkd', function()
-  vim.cmd('Markview toggle <CR>')
+  vim.cmd('Markview Toggle <CR>')
 end)
 
 -- virtual line (need Neovim latest! (>= 0.11.0) )
