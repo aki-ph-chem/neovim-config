@@ -24,7 +24,7 @@ jobs:
       - name: cache neovim plugins
         uses: actions/cache@v4 
         with:
-          path: "$HOME/.local/share/nvim/lazy"
+          path: "~/.local/share/nvim/lazy"
           key: ${{ runner.os }}-neovim-${{ hashFiles('**/lazy-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-neovim-
