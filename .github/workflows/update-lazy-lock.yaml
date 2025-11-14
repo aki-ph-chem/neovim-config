@@ -50,7 +50,7 @@ jobs:
         id: meta
         run: |
           {
-            echo "date=$(date +%Y-%m-%d-%H-%M)"
+            echo "date=$(TZ=Asia/Tokyo date +%Y-%m-%d-%H-%M)"
           } >> $GITHUB_OUTPUT
 
       - uses: peter-evans/create-pull-request@v7
