@@ -36,11 +36,11 @@ jobs:
 
       - name: install plugins
         run: |
-          TS_OFF=1 /root/nvim-linux-x86_64/bin/nvim  --headless +qa
+          TS_OFF=1 USER=aki "$NVIM_EXEC_PATH"  --headless +qa
 
       - name: update plugins
         run: |
-          TS_OFF=1 /root/nvim-linux-x86_64/bin/nvim  --headless "+Lazy! sync" +qa
+          TS_OFF=1 USER=aki "$NVIM_EXEC_PATH"  --headless "+Lazy! sync" +qa
 
       - name: show lazy-lock.json  
         run: |
@@ -50,7 +50,7 @@ jobs:
         id: meta
         run: |
           {
-            echo "date=$(date +%Y-%m-%d-%H-%M)"
+            echo "date=$(TZ=Asia/Tokyo date +%Y-%m-%d-%H-%M)"
           } >> $GITHUB_OUTPUT
 
       - uses: peter-evans/create-pull-request@v7
