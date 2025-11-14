@@ -3,7 +3,7 @@ FROM ubuntu:latest
 WORKDIR /nvim
 
 RUN apt update -y && \ 
-    apt install wget tar git -y &&\
+    apt install wget tar git tzdata -y &&\
     rm -rf /var/lib/apt/lists/*
 
 RUN wget https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.tar.gz && \
