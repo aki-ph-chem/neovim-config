@@ -36,11 +36,11 @@ jobs:
 
       - name: install plugins
         run: |
-          TS_OFF=1 /root/nvim-linux-x86_64/bin/nvim  --headless +qa
+          TS_OFF=1 USER=aki /root/nvim-linux-x86_64/bin/nvim  --headless +qa
 
       - name: update plugins
         run: |
-          TS_OFF=1 /root/nvim-linux-x86_64/bin/nvim  --headless "+Lazy! sync" +qa
+          TS_OFF=1 USER=aki /root/nvim-linux-x86_64/bin/nvim  --headless "+Lazy! sync" +qa
 
       - name: show lazy-lock.json  
         run: |
