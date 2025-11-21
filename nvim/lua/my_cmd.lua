@@ -165,14 +165,18 @@ vim.api.nvim_create_user_command('Pgf', function()
   end
 end, { nargs = 0 })
 
--- open *.pdf file by qpdfview
+-- open *.pdf file by Zathura or other
+vim.env.PUBS = vim.env.HOME .. '/.pubs/doc'
+
 vim.api.nvim_create_user_command('Pdf', function(opts)
   local path_args = opts.args
-  local home_dir = vim.env.HOME
-  local path = ''
-  path = string.gsub(path_args, '~', home_dir)
+  local path = string.gsub(path_args, '~', vim.env.HOME)
+  path = string.gsub(path, '$PUBS', vim.env.PUBS)
 
-  local cmd = { 'qpdfview', path }
+  -- if you set PDF_READER='qpdfview' the value of pdf_reader is qpdfview
+  local pdf_reader = os.getenv('PDF_READER') and os.getenv('PDF_READER') or 'zathura'
+
+  local cmd = { pdf_reader, path }
   vim.system(cmd, { text = true }, function(_) end)
 end, { nargs = 1 })
 
