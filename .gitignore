@@ -1,6 +1,3 @@
-.venv
-node_modules
 nvim/doc/tags
 nvim/spell/*.spl
-.lua_modules
 .env
