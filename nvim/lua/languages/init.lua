@@ -1,7 +1,5 @@
 -- inject path to language servers --
 local home_dir = vim.env.HOME
--- depend on Node.js
-vim.env.PATH = home_dir .. '/neovim-config/node_modules/.bin:' .. vim.env.PATH
 -- teal-language-server
 -- installed by below
 --[[
