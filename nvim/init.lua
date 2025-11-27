@@ -1,3 +1,6 @@
+-- base
+require('base')
+
 -- install(bootstrap) lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -12,23 +15,18 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- base
-require('base')
-
 -- load lazy for plugins
 require('lazy').setup('plugins')
 -- my cmd for window size
 require('my_cmd')
 -- appearance
 require('appearance')
-
 -- filer
 require('filer')
-
 -- git
 require('git_config')
 
--- eskk
+-- skkeleton & eskk
 local skkeleton_off = os.getenv('SKL_OFF')
 if not skkeleton_off then
   require('skkeleton')
@@ -38,6 +36,7 @@ end
 
 -- setting of lsp
 require('lsp')
+-- setting of formatter
 require('formatter_config')
 require('languages')
 
