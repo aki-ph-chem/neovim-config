@@ -1,12 +1,3 @@
--- inject path to language servers --
-local home_dir = vim.env.HOME
--- teal-language-server
--- installed by below
---[[
-$ luarocks install --tree ./.lua_modules teal-language-server
---]]
-vim.env.PATH = home_dir .. '/neovim-config/.lua_modules/bin:' .. vim.env.PATH
-
 require('languages.latex')
 require('languages.markdown')
 require('languages.typst')
