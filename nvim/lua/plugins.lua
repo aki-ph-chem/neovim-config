@@ -163,7 +163,7 @@ local codecompanion = {
   },
 
   -- PIN version to v17.33.0(commit: e7762c68daf24c3e356401f5223eeb5217047754)
-  tag = 'v17.33.0',
+  commit = 'e7762c68daf24c3e356401f5223eeb5217047754',
   pin = true,
 }
 
