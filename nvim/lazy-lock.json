@@ -13,7 +13,7 @@
   "direnv.nvim": { "branch": "main", "commit": "0d2edd378dbdf2c653869772d761ad914219ba9d" },
   "eskk.vim": { "branch": "master", "commit": "e530575790cca5d6603b8ab984298459ecf3c0c0" },
   "formatter.nvim": { "branch": "master", "commit": "b9d7f853da1197b83b8edb4cc4952f7ad3a42e41" },
-  "fzf-lua": { "branch": "main", "commit": "43bda24f711e0c13428f16056002aebc20b38e04" },
+  "fzf-lua": { "branch": "main", "commit": "de0fd4a21ee29cf6532d0c3bcae08a0b25d99b6a" },
   "gitsigns.nvim": { "branch": "main", "commit": "5813e4878748805f1518cee7abb50fd7205a3a48" },
   "haskell-vim": { "branch": "master", "commit": "f35d02204b4813d1dbe8b0e98cc39701a4b8e15e" },
   "hlchunk.nvim": { "branch": "main", "commit": "937135185f99a30cb1413fff76a5c971f250b1a7" },
