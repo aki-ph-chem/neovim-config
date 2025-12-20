@@ -19,9 +19,7 @@ This repository contains my personal configuration files for **Neovim**.
 
 LSP and formatters are primarily managed through the configuration, supporting various languages:
 
-  * **Python:** `uv` (for `pyright`, `ruff`)
-  * **TypeScript/JavaScript:** `npm` (`ts-server`)
-  * **Others:** Configuration supports Nix home-manager or project-local setups.
+  * **Configuration supports**: Nix home-manager or project-local setups.
 
 ### 🌳 Directory Structure 🌳
 
