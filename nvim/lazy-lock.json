@@ -18,7 +18,7 @@
   "haskell-vim": { "branch": "master", "commit": "f35d02204b4813d1dbe8b0e98cc39701a4b8e15e" },
   "hlchunk.nvim": { "branch": "main", "commit": "3bc2bd7aef28fbed6643534a0fdd0f19966544bc" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
-  "lazygit.nvim": { "branch": "main", "commit": "2305deed25bc61b866d5d39189e9105a45cf1cfb" },
+  "lazygit.nvim": { "branch": "main", "commit": "a04ad0dbc725134edbee3a5eea29290976695357" },
   "lexima.vim": { "branch": "master", "commit": "ab621e4756465c9d354fce88cff2bd1aa7887065" },
   "llama.vim": { "branch": "master", "commit": "ade8966eff57dcbe4a359dd26fb1ea97378ea03c" },
   "lualine.nvim": { "branch": "master", "commit": "47f91c416daef12db467145e16bed5bbfe00add8" },
