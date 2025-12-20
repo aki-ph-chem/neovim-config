@@ -1,5 +1,7 @@
 # ⚙️ Neovim Configuration
 
+<img src="./nvim.png" />
+
 This repository contains my personal configuration files for **Neovim**.
 
 ## 🛠️ Configuration Management
