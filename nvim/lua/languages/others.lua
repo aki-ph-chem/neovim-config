@@ -27,3 +27,14 @@ vim.lsp.enable({ 'julials' })
 -- asm
 vim.lsp.asm_lsp = {}
 vim.lsp.enable({ 'asm_lsp' })
+
+-- Toml
+vim.lsp.tombi = {
+  cmd = {
+    'tombi',
+    'lsp',
+  },
+  filetypes = { 'toml' },
+  root_markers = { 'tombi.toml', 'pyproject.toml', '.git' },
+}
+vim.lsp.enable({ 'tombi' })
