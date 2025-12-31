@@ -38,3 +38,11 @@ vim.lsp.tombi = {
   root_markers = { 'tombi.toml', 'pyproject.toml', '.git' },
 }
 vim.lsp.enable({ 'tombi' })
+
+-- format via LSP
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = { '*.toml' },
+  callback = function()
+    vim.lsp.buf.format({})
+  end,
+})
