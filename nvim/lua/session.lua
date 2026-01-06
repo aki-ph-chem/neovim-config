@@ -1,6 +1,10 @@
 local resession = require('resession')
 
-resession.setup({})
+resession.setup({
+  extensions = {
+    myplugin = {},
+  },
+})
 
 -- Resession does NOTHING automagically, so we have to set up some keymaps
 vim.keymap.set('n', '<leader>ss', resession.save)
