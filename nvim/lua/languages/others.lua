@@ -1,6 +1,7 @@
 -- Nix Language
 vim.lsp.config.nil_ls = {
   settings = {},
+  root_markers = { 'flake.nix', '.git' },
 }
 vim.lsp.enable({ 'nil_ls' })
 
@@ -35,7 +36,7 @@ vim.lsp.tombi = {
     'lsp',
   },
   filetypes = { 'toml' },
-  root_markers = { 'tombi.toml', 'pyproject.toml', '.git' },
+  root_markers = { 'tombi.toml', 'pyproject.toml', 'Cargo.toml', '.git' },
 }
 vim.lsp.enable({ 'tombi' })
 

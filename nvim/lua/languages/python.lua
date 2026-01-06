@@ -7,6 +7,7 @@ local pyright_config = {
       pythonPath = './.venv/bin/python',
     },
   },
+  root_markers = { 'pyproject.toml', '.git' },
   on_attach = function(client, bufnr)
     print('use pyright')
     utl.navic.attach(client, bufnr)
@@ -15,6 +16,7 @@ local pyright_config = {
 
 local ty_config = {
   settings = {},
+  root_markers = { 'pyproject.toml', '.git' },
   on_attach = function(client, bufnr)
     print('use ty')
     utl.navic.attach(client, bufnr)
@@ -23,7 +25,7 @@ local ty_config = {
 
 -- pyright or ty
 if os.getenv('TY') then
-  vim.lsp.config.ty = pyright_config
+  vim.lsp.config.ty = ty_config
   vim.lsp.enable({ 'ty' })
 else
   vim.lsp.config.pyright = pyright_config
