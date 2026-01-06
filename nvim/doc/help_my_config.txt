@@ -95,9 +95,9 @@ Blm: toggle git blame window
 :C   start debug
 :Cr  restart current session
 :Cr  terminate current session
-Ctrl + o: step over
-Ctrl + i: step in
-Ctrl + k: step out
+Alt + n: step over
+Alt + s: step into
+Alt + f: step out
 
 *mycfg-llama* llama.vim
 
