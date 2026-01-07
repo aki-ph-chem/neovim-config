@@ -6,8 +6,7 @@ M.on_save = function()
 end
 
 M.on_post_load = function(data)
-  print('data.project_dir = ' .. data.project_dir)
-  print('from actionshrimp_direnv')
+  print(string.format('move to project dir: %s', data.project_dir))
   require('direnv-nvim').hook()
 end
 
