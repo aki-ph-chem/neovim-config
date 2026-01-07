@@ -7,6 +7,7 @@ end
 
 M.on_post_load = function(data)
   print('data.project_dir = ' .. data.project_dir)
+  print('from actionshrimp_direnv')
   require('direnv-nvim').hook()
 end
 

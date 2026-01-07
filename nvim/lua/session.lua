@@ -2,7 +2,7 @@ local resession = require('resession')
 
 resession.setup({
   extensions = {
-    myplugin = {},
+    actionshrimp_direnv = {},
   },
 })
 
