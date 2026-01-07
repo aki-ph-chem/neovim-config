@@ -14,7 +14,7 @@
   "eskk.vim": { "branch": "master", "commit": "e530575790cca5d6603b8ab984298459ecf3c0c0" },
   "formatter.nvim": { "branch": "master", "commit": "b9d7f853da1197b83b8edb4cc4952f7ad3a42e41" },
   "fzf-lua": { "branch": "main", "commit": "a03d68e40eea835a1cdbd9f93049708dab3621e6" },
-  "gitsigns.nvim": { "branch": "main", "commit": "6bd29494e3f79ff08be1d35bc1926ed23c22ed9a" },
+  "gitsigns.nvim": { "branch": "main", "commit": "dfac404ac94b0eb1461bd7da32279e16950dfd67" },
   "haskell-vim": { "branch": "master", "commit": "f35d02204b4813d1dbe8b0e98cc39701a4b8e15e" },
   "hlchunk.nvim": { "branch": "main", "commit": "3bc2bd7aef28fbed6643534a0fdd0f19966544bc" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
