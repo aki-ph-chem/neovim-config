@@ -175,7 +175,8 @@ local plugins_depended_on_denops = {
 local direnv = {
   'actionshrimp/direnv.nvim',
   opts = {
-    async = true,
+    -- Disabling `async` is necessary because environment initialization and subsequent events compete.
+    async = false,
     type = os.getenv('BUF') and 'buffer' or 'dir',
     on_direnv_finished = function()
       print('direnv: ok!')
