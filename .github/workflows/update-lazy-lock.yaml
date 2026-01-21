@@ -21,6 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
+      - name: Initialize log file
+        run: |
+          mkdir ./ci-logs/
+          TZ=Asia/Tokyo date > ./ci-logs/started_at.txt
+          echo '' > ./ci-logs/update.md
+
       - name: cache neovim plugins
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
@@ -40,11 +46,34 @@ jobs:
 
       - name: update plugins
         run: |
-          TS_OFF=1 USER=aki "$NVIM_EXEC_PATH"  --headless "+Lazy! sync" +qa
+          {
+            echo '### update nvim plugins'
+            echo ''
+            TZ=Asia/Tokyo date
+            echo ''
+            echo '```'
+          } >> ./ci-logs/update.md
+          TS_OFF=1 USER=aki "$NVIM_EXEC_PATH"  --headless "+Lazy! sync" +qa\
+            | ansifilter\
+            | tee -a ./ci-logs/update.md
+          echo '```' >> ./ci-logs/update.md
 
-      - name: show lazy-lock.json  
+      - name: Set PR body output
+        id: pr-body-output
         run: |
-          cat nvim/lazy-lock.json
+          {
+            echo 'body<<EOF'
+            echo '## Automated update'
+            echo ''
+            echo -n 'started at:  '
+            cat ./ci-logs/started_at.txt
+            echo -n 'finished at: '
+            TZ=Asia/Tokyo date
+            echo ''
+            cat ./ci-logs/update.md
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+          rm -rf ./ci-logs/
 
       - name:  Create PR 
         id: meta
@@ -56,6 +85,7 @@ jobs:
       - uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
           title: "update(plugins): update nvim plugins ${{ steps.meta.outputs.date }}"
+          body: ${{ steps.pr-body-output.outputs.body }}
           commit-message: "update(plugins): update nvim plugins at ${{ steps.meta.outputs.date }}"
           branch: "update-nvim-plugin-at-${{ steps.meta.outputs.date }}"
           add-paths: |
