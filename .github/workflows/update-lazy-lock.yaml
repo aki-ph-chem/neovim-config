@@ -53,7 +53,9 @@ jobs:
             echo ''
             echo '```'
           } >> ./ci-logs/update.md
-          TS_OFF=1 USER=aki "$NVIM_EXEC_PATH"  --headless "+Lazy! sync" +qa | tee -a ./ci-logs/update.md
+          TS_OFF=1 USER=aki "$NVIM_EXEC_PATH"  --headless "+Lazy! sync" +qa\
+            | ansifilter\
+            | tee -a ./ci-logs/update.md
           echo '```' >> ./ci-logs/update.md
 
       - name: Set PR body output
