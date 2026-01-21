@@ -46,6 +46,10 @@ jobs:
         run: |
           cat nvim/lazy-lock.json
 
+      - name: test nvim after plugins updates 
+        run: |
+          TS_OFF=1 USER=aki "$NVIM_EXEC_PATH"  --headless +qa
+
       - name:  Create PR 
         id: meta
         run: |
