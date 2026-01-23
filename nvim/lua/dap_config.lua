@@ -111,6 +111,14 @@ dap.configurations = {
       cwd = '${workspaceFolder}',
       stopAtBeginningOfMainSubprogram = false,
     },
+    -- see cpp example above
+    {
+      name = 'attach to gdbserver',
+      type = 'gdb',
+      request = 'attach',
+      target = string.format('localhost:%d', port_default),
+      cwd = '${workspaceFolder}',
+    },
   },
 
   python = {
