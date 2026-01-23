@@ -1,6 +1,8 @@
 local dap = require('dap')
 -- ref: https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(via--codelldb)
 
+local port_default = 5678
+
 -- debugger config
 dap.adapters = {
   codelldb = {
@@ -65,6 +67,21 @@ dap.configurations = {
       end,
       cwd = '${workspaceFolder}',
       stopAtBeginningOfMainSubprogram = false,
+    },
+    --[[
+    ref: https://codeberg.org/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#c-c-rust-via-gdb
+
+    run server side:
+    ```bash
+    gdbserver :5678 ./<program> args 
+    ```
+    --]]
+    {
+      name = 'attach to gdbserver',
+      type = 'gdb',
+      request = 'attach',
+      target = string.format('localhost:%d', port_default),
+      cwd = '${workspaceFolder}',
     },
   },
 
