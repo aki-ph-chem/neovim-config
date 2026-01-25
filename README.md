@@ -1,5 +1,14 @@
 # ⚙️ Neovim Configuration
 
+</div>
+
+<div align="center">
+
+[![ci](https://github.com/aki-ph-chem/neovim-config/actions/workflows/update-lazy-lock.yaml/badge.svg)](https://github.com/aki-ph-chem/neovim-config/actions/workflows/update-lazy-lock.yaml
+)
+
+</div>
+
 <img src="./nvim.png" />
 
 This repository contains my personal configuration files for **Neovim**.
