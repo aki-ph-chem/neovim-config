@@ -156,8 +156,17 @@ A personalized cheatsheet is available within Neovim.
 
 ## 🇯🇵 Japanese Input Setup
 
-To enable Japanese input, the following steps are required:
+To enable Japanese input by `skkeleton`, the following steps are required:
 
-1.  **Install the plugin (eskk or skkeleton)** (via `lazy.nvim` as configured in `lua/plugins.lua`).
-2.  **Download the dictionary** (e.g., using `sudo pacman -S skk-jisyo` on Arch-based systems).
-3.  **Register the dictionary path** in the configuration.
+- install deno 
+    - `skkeleton` needs [`deno`](https://deno.com/) as a JavaScript runtime
+
+- Download the SKK dictionary file and set its path as environment variables
+    - In this configuration, the path to the SKK dictionary files are referenced via the following environment variables.
+
+| dictionary file         | environment variable    | web site                                   |
+|-------------------------|-------------------------|--------------------------------------------|
+| SKK-JISYO.L             | SKK_JISYO_L_PATH        | https://github.com/skk-dev/dict            |
+| SKK-JISYO.emoji-ja.utf8 | SKK_JISYO_EMOJI_JA_PATH | https://github.com/ymrl/SKK-JISYO.emoji-ja |
+| SKK-JISYO.emoji.utf8    | SKK_JISYO_EMOJI_PATH    | https://github.com/uasi/skk-emoji-jisyo    |
+
