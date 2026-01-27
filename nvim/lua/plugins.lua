@@ -184,6 +184,10 @@ local direnv = {
   },
 }
 
+local docker = {
+  'crnvl96/lazydocker.nvim',
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -214,4 +218,5 @@ return {
   codecompanion,
   plugins_depended_on_denops,
   direnv,
+  docker
 }

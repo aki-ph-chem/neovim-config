@@ -50,3 +50,5 @@ require('session')
 require('neovide_config')
 -- codecompanions
 require('codecompanion_config')
+-- docker
+require('docker')

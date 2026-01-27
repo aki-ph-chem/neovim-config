@@ -61,6 +61,7 @@ The configuration files are organized as follows:
 | `lua/skk.lua`                  | config for `eskk`: not used now                                                    |
 | `lua/neovide_config.lua`       | config for `neovide`: not used now                                                 |
 | `lua/vimscript_ls.lua`         | config for Language Server for VimScript: not used now                             |
+| `lua/docker.lua`               | config for lazydocker                                                              |
 
 
 ### Cheatsheet
@@ -100,6 +101,7 @@ A personalized cheatsheet is available within Neovim.
 | **Direnv**                | [actionshrimp/direnv.nvim]     | direnv integration                               |
 | **Markdown preview**      | [OXY2DEV/markview.nvim]        | preview markview on Neovim                       |
 | **LLM integuration**      | [olimorris/codecompanion.nvim] | LLM integuration on Neovim                       |
+| **Docker**                | [crnvl96/lazydocker]           | lazydocker integuration                          |
 
 
 <!-- for LSP & cmp -->
@@ -148,6 +150,8 @@ A personalized cheatsheet is available within Neovim.
 [OXY2DEV/markview.nvim]: https://github.com/OXY2DEV/markview.nvim
 <!-- codecompanion -->
 [olimorris/codecompanion.nvim]: https://github.com/olimorris/codecompanion.nvim
+<!-- lazydocker -->
+[crnvl96/lazydocker]: https://github.com/crnvl96/lazydocker.nvim
 
 
 <!-- font -->
