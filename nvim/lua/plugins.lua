@@ -188,6 +188,13 @@ local docker = {
   'crnvl96/lazydocker.nvim',
 }
 
+local rustowl = {
+  'cordx56/rustowl',
+  version = '*', -- Latest stable version
+  lazy = false, -- This plugin is already lazy
+  opts = {},
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -218,5 +225,6 @@ return {
   codecompanion,
   plugins_depended_on_denops,
   direnv,
-  docker
+  docker,
+  rustowl,
 }
