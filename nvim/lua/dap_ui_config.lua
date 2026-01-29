@@ -42,6 +42,14 @@ vim.keymap.set('n', '<M-f>', function()
   require('dap').step_out()
 end, { desc = 'Debug: Step Out' })
 
+vim.keymap.set('n', '<M-u>', function()
+  require('dap').up()
+end, { desc = 'Debug: up' })
+
+vim.keymap.set('n', '<M-d>', function()
+  require('dap').down()
+end, { desc = 'Debug: down' })
+
 dap.listeners.before.event_terminated['dapui_config'] = function()
   dap_ui.close()
 end
