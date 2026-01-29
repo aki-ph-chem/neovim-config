@@ -28,28 +28,6 @@ dap.listeners.after.event_initialized['dapui_config'] = function()
   dap_ui.open()
 end
 
--- Stepping through code
--- ref: ':help dap-mapping', ':help dap-api'
-vim.keymap.set('n', '<M-s>', function()
-  require('dap').step_into()
-end, { desc = 'Debug: Step Into' })
-
-vim.keymap.set('n', '<M-n>', function()
-  require('dap').step_over()
-end, { desc = 'Debug: Step Over' })
-
-vim.keymap.set('n', '<M-f>', function()
-  require('dap').step_out()
-end, { desc = 'Debug: Step Out' })
-
-vim.keymap.set('n', '<M-u>', function()
-  require('dap').up()
-end, { desc = 'Debug: up' })
-
-vim.keymap.set('n', '<M-d>', function()
-  require('dap').down()
-end, { desc = 'Debug: down' })
-
 dap.listeners.before.event_terminated['dapui_config'] = function()
   dap_ui.close()
 end
