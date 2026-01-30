@@ -181,7 +181,46 @@ local read_dap_config = function(config, path_to_config)
   end
 end
 
-read_dap_config(dap.configurations.cpp, vim.fn.getcwd() .. '/dap_cpp.lua')
+local LOAD_DAP_LOCAL_CONFIG_DEBUG = true
+
+local dbg_name_index = {}
+
+--- @param path string
+local load_local_dap_config = function(path)
+  local ok, config_list = pcall(dofile, path)
+  if not ok then
+    print('cannot load config')
+    return
+  end
+  print('can load config')
+
+  local config = dap.configurations
+  for _, cfg in ipairs(config_list) do
+    if dbg_name_index[cfg.name] then
+      print('name_1 ' .. cfg.name)
+
+      config.cpp[dbg_name_index[cfg.name]] = cfg
+    elseif dbg_name_index[cfg.name] then
+      -- wip
+    else
+      print('name_2 ' .. cfg.name)
+      table.insert(config.cpp, cfg)
+      dbg_name_index[cfg.name] = #config.cpp
+    end
+  end
+end
+
+if LOAD_DAP_LOCAL_CONFIG_DEBUG then
+  vim.api.nvim_create_user_command('R1', function()
+    load_local_dap_config(vim.fn.getcwd() .. '/dap.lua')
+  end, { nargs = 0 })
+
+  vim.api.nvim_create_user_command('R2', function()
+    print(string.format('%s', vim.inspect(dap.configurations)))
+  end, { nargs = 0 })
+else
+  read_dap_config(dap.configurations.cpp, vim.fn.getcwd() .. '/dap_cpp.lua')
+end
 
 dap.configurations.c = dap.configurations.cpp
 
