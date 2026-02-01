@@ -37,8 +37,11 @@ require('codecompanion').setup({
 
   opts = {
     language = 'Japanese',
+    opts = {
+      log_level = 'DEBUG',
+    },
   },
-  strategies = {
+  interactions = {
     chat = {
       adapter = my_adapter,
       slash_commands = {
@@ -73,11 +76,6 @@ require('codecompanion').setup({
       adapter = my_adapter,
     },
     agent = {
-      adapter = my_adapter,
-    },
-  },
-  interactions = {
-    chat = {
       adapter = my_adapter,
     },
   },
