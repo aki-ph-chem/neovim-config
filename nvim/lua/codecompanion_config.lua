@@ -29,7 +29,7 @@ require('codecompanion').setup({
           defaults = {
             auth_method = 'gemini-api-key', -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
           },
-          env = { api_key = vim.env.GEMINI_API_KEY },
+          env = { GEMINI_API_KEY = vim.env.GEMINI_API_KEY },
         })
       end,
     },
@@ -73,6 +73,11 @@ require('codecompanion').setup({
       adapter = my_adapter,
     },
     agent = {
+      adapter = my_adapter,
+    },
+  },
+  interactions = {
+    chat = {
       adapter = my_adapter,
     },
   },
