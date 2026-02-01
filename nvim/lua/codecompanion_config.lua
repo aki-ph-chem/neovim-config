@@ -7,8 +7,8 @@
 -- ToDo: switch of adapters
 local my_adapter = 'gemini'
 require('codecompanion').setup({
-  http = {
-    adapters = {
+  adapters = {
+    http = {
       gemini = function()
         return require('codecompanion.adapters').extend('gemini', {
           env = { api_key = vim.env.GEMINI_API_KEY },
@@ -24,6 +24,7 @@ require('codecompanion').setup({
       end,
     },
   },
+
   opts = {
     language = 'Japanese',
   },
