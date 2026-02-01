@@ -23,6 +23,16 @@ require('codecompanion').setup({
         })
       end,
     },
+    acp = {
+      gemini_cli = function()
+        return require('codecompanion.adapters').extend('gemini_cli', {
+          defaults = {
+            auth_method = 'gemini-api-key', -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
+          },
+          env = { api_key = vim.env.GEMINI_API_KEY },
+        })
+      end,
+    },
   },
 
   opts = {
