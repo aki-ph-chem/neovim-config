@@ -162,8 +162,8 @@ local codecompanion = {
     '<leader>lc',
   },
 
-  -- PIN version to v17.33.0(commit: e7762c68daf24c3e356401f5223eeb5217047754)
-  commit = 'e7762c68daf24c3e356401f5223eeb5217047754',
+  -- PIN version to v18.5.0(879e0511161c59e45ff04aff2bce6bcb6b86642b)
+  commit = '879e0511161c59e45ff04aff2bce6bcb6b86642b',
   pin = true,
 }
 
@@ -218,5 +218,5 @@ return {
   codecompanion,
   plugins_depended_on_denops,
   direnv,
-  docker
+  docker,
 }
