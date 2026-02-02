@@ -36,6 +36,20 @@ require('codecompanion').setup({
       end,
     },
   },
+  -- Action Palette
+  display = {
+    action_palette = {
+      width = 95,
+      height = 10,
+      prompt = 'Prompt ', -- Prompt used for interactive LLM calls
+      provider = 'fzf_lua',
+      opts = {
+        show_preset_actions = true, -- Show the preset actions in the action palette?
+        show_preset_prompts = true, -- Show the preset prompts in the action palette?
+        title = 'CodeCompanion actions', -- The title of the action palette
+      },
+    },
+  },
 
   opts = {
     language = 'Japanese',
@@ -87,6 +101,11 @@ require('codecompanion').setup({
 vim.api.nvim_create_user_command('Cct', function()
   vim.cmd(':CodeCompanionChat Toggle')
 end, { nargs = 0 })
+
+-- open Action Palette
+vim.keymap.set('n', '<leader>ac', function()
+  vim.cmd(':CodeCompanionActions')
+end, { desc = 'open Action Palette' })
 
 -- expand 'CodeCompanion'  by ':cc<space>'
 vim.cmd([[cab cc CodeCompanion]])
