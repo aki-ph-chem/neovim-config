@@ -53,9 +53,7 @@ require('codecompanion').setup({
 
   opts = {
     language = 'Japanese',
-    opts = {
-      log_level = 'DEBUG',
-    },
+    log_level = 'DEBUG',
   },
   interactions = {
     chat = {
