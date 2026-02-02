@@ -2,6 +2,8 @@
 - ref
     - Configuring Adapters: https://codecompanion.olimorris.dev/configuration/adapters
     - eiji.page NeovimのAIプラグインcodecompanion.nvimの使い方: https://eiji.page/blog/neovim-codecompanion-intro/
+    - https://codecompanion.olimorris.dev/configuration/adapters-http
+    - https://codecompanion.olimorris.dev/configuration/adapters-acp#setup-gemini-cli
 --]]
 
 -- ToDo: switch of adapters
