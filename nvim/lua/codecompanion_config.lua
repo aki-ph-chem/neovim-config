@@ -7,7 +7,7 @@
 --]]
 
 -- ToDo: switch of adapters
-local my_adapter = 'gemini'
+local my_adapter = { name = 'gemini', model = 'gemini-2.5-flash' }
 require('codecompanion').setup({
   adapters = {
     http = {
