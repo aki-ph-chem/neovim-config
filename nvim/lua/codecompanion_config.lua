@@ -7,7 +7,7 @@
 --]]
 
 -- ToDo: switch of adapters
-local my_adapter = { name = 'gemini', model = 'gemini-2.5-flash' }
+local my_adapter = { name = 'gemini_cli', model = 'gemini-2.5-flash' }
 require('codecompanion').setup({
   adapters = {
     http = {
@@ -31,6 +31,15 @@ require('codecompanion').setup({
           defaults = {
             auth_method = 'gemini-api-key', -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
           },
+          commands = {
+            default = {
+              'gemini',
+              '--experimental-acp',
+              '--model',
+              'gemini-2.5-flash-lite',
+            },
+          },
+
           env = { GEMINI_API_KEY = vim.env.GEMINI_API_KEY },
         })
       end,
@@ -53,7 +62,7 @@ require('codecompanion').setup({
 
   opts = {
     language = 'Japanese',
-    log_level = 'DEBUG',
+    log_level = 'TRACE',
   },
   interactions = {
     chat = {
