@@ -6,6 +6,23 @@
     - https://codecompanion.olimorris.dev/configuration/adapters-acp#setup-gemini-cli
 --]]
 
+local model_selector = function(models, default_model)
+  local model = default_model
+
+  vim.ui.select(models, {
+    prompt = 'Select model:',
+    format_item = function(item)
+      return item
+    end,
+  }, function(choice)
+    if choice then
+      model = choice
+    end
+  end)
+
+  return model
+end
+
 -- ToDo: switch of adapters
 local my_adapter = { name = 'gemini_cli', model = 'gemini-2.5-flash' }
 require('codecompanion').setup({
@@ -36,7 +53,7 @@ require('codecompanion').setup({
               'gemini',
               '--experimental-acp',
               '--model',
-              'gemini-2.5-flash-lite',
+              model_selector({ 'gemini-2.5-flash', 'gemini-2.5-flash-lite' }, 'gemini-2.5-flash'),
             },
           },
 
