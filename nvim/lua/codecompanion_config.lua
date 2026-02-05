@@ -2,13 +2,32 @@
 - ref
     - Configuring Adapters: https://codecompanion.olimorris.dev/configuration/adapters
     - eiji.page NeovimのAIプラグインcodecompanion.nvimの使い方: https://eiji.page/blog/neovim-codecompanion-intro/
+    - https://codecompanion.olimorris.dev/configuration/adapters-http
+    - https://codecompanion.olimorris.dev/configuration/adapters-acp#setup-gemini-cli
 --]]
 
+local model_selector = function(models, default_model)
+  local model = default_model
+
+  vim.ui.select(models, {
+    prompt = 'Select model:',
+    format_item = function(item)
+      return item
+    end,
+  }, function(choice)
+    if choice then
+      model = choice
+    end
+  end)
+
+  return model
+end
+
 -- ToDo: switch of adapters
-local my_adapter = 'gemini'
+local my_adapter = { name = 'gemini_cli', model = 'gemini-2.5-flash' }
 require('codecompanion').setup({
-  http = {
-    adapters = {
+  adapters = {
+    http = {
       gemini = function()
         return require('codecompanion.adapters').extend('gemini', {
           env = { api_key = vim.env.GEMINI_API_KEY },
@@ -23,11 +42,46 @@ require('codecompanion').setup({
         })
       end,
     },
+    acp = {
+      gemini_cli = function()
+        return require('codecompanion.adapters').extend('gemini_cli', {
+          defaults = {
+            auth_method = 'gemini-api-key', -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
+          },
+          commands = {
+            default = {
+              'gemini',
+              '--experimental-acp',
+              '--model',
+              model_selector({ 'gemini-2.5-flash', 'gemini-2.5-flash-lite' }, 'gemini-2.5-flash'),
+            },
+          },
+
+          env = { GEMINI_API_KEY = vim.env.GEMINI_API_KEY },
+        })
+      end,
+    },
   },
+  -- Action Palette
+  display = {
+    action_palette = {
+      width = 95,
+      height = 10,
+      prompt = 'Prompt ', -- Prompt used for interactive LLM calls
+      provider = 'fzf_lua',
+      opts = {
+        show_preset_actions = true, -- Show the preset actions in the action palette?
+        show_preset_prompts = true, -- Show the preset prompts in the action palette?
+        title = 'CodeCompanion actions', -- The title of the action palette
+      },
+    },
+  },
+
   opts = {
     language = 'Japanese',
+    log_level = 'TRACE',
   },
-  strategies = {
+  interactions = {
     chat = {
       adapter = my_adapter,
       slash_commands = {
@@ -71,6 +125,11 @@ require('codecompanion').setup({
 vim.api.nvim_create_user_command('Cct', function()
   vim.cmd(':CodeCompanionChat Toggle')
 end, { nargs = 0 })
+
+-- open Action Palette
+vim.keymap.set('n', '<leader>ac', function()
+  vim.cmd(':CodeCompanionActions')
+end, { desc = 'open Action Palette' })
 
 -- expand 'CodeCompanion'  by ':cc<space>'
 vim.cmd([[cab cc CodeCompanion]])
