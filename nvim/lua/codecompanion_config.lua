@@ -60,6 +60,16 @@ require('codecompanion').setup({
           env = { GEMINI_API_KEY = vim.env.GEMINI_API_KEY },
         })
       end,
+      codex = function()
+        return require('codecompanion.adapters').extend('codex', {
+          defaults = {
+            auth_method = 'openai-api-key', -- "openai-api-key"|"codex-api-key"|"chatgpt"
+          },
+          env = {
+            OPENROUTER_API_KEY = vim.env.OPENROUTER_API_KEY,
+          },
+        })
+      end,
     },
   },
   -- Action Palette
