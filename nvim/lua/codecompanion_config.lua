@@ -61,9 +61,21 @@ require('codecompanion').setup({
         })
       end,
       codex = function()
+        local default_povider = 'openrouter'
+        local default_model = 'openai/gpt-oss-20b:free'
+
         return require('codecompanion.adapters').extend('codex', {
           defaults = {
             auth_method = 'openai-api-key', -- "openai-api-key"|"codex-api-key"|"chatgpt"
+          },
+          commands = {
+            default = {
+              'codex-acp',
+              '--config',
+              string.format('model_provider=%s', vim.env.CODEX_PROVIDER or default_povider),
+              '--config',
+              string.format('model=%s', vim.env.CODEX_MODEL or default_model),
+            },
           },
           env = {
             OPENAI_API_KEY = vim.env.OPENROUTER_API_KEY,
