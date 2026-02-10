@@ -6,25 +6,48 @@
     - https://codecompanion.olimorris.dev/configuration/adapters-acp#setup-gemini-cli
 --]]
 
-local model_selector = function(models, default_model)
-  local model = default_model
+local selector_generator = function(prompt_)
+  local selector = function(item_list, default_item)
+    local item = default_item
 
-  vim.ui.select(models, {
-    prompt = 'Select model:',
-    format_item = function(item)
-      return item
-    end,
-  }, function(choice)
-    if choice then
-      model = choice
-    end
-  end)
+    vim.ui.select(item_list, {
+      prompt = prompt_,
+      format_item = function(item_)
+        return item_
+      end,
+    }, function(choice)
+      if choice then
+        item = choice
+      end
+    end)
+    print('You selected: ' .. item)
 
-  return model
+    return item
+  end
+
+  return selector
 end
 
--- ToDo: switch of adapters
-local my_adapter = { name = 'gemini_cli', model = 'gemini-2.5-flash' }
+local adapter_selector = selector_generator('Select adapter:')
+local model_selector = selector_generator('Select model:')
+
+local default_adapter = 'codex'
+local adapter_list = { 'gemini', 'gemini_cli', 'codex' }
+
+local my_adapter = { name = adapter_selector(adapter_list, default_adapter) }
+
+if my_adapter.name == 'gemini' or my_adapter.name == 'gemini_cli' then
+  local gemini_model_list = { 'gemini-2.5-flash', 'gemini-2.5-flash-lite' }
+  local default_gemini_model = 'gemini-2.5-flash'
+  my_adapter.model = model_selector(gemini_model_list, default_gemini_model)
+end
+
+if my_adapter.name == 'codex' then
+  my_adapter.model = vim.fn.input('Input model name: ')
+end
+
+print('my_adapter: \n' .. vim.inspect(my_adapter))
+
 require('codecompanion').setup({
   adapters = {
     http = {
@@ -53,7 +76,7 @@ require('codecompanion').setup({
               'gemini',
               '--experimental-acp',
               '--model',
-              model_selector({ 'gemini-2.5-flash', 'gemini-2.5-flash-lite' }, 'gemini-2.5-flash'),
+              my_adapter.model,
             },
           },
 
@@ -62,7 +85,6 @@ require('codecompanion').setup({
       end,
       codex = function()
         local default_povider = 'openrouter'
-        local default_model = 'openai/gpt-oss-20b:free'
 
         return require('codecompanion.adapters').extend('codex', {
           defaults = {
@@ -74,7 +96,7 @@ require('codecompanion').setup({
               '--config',
               string.format('model_provider=%s', vim.env.CODEX_PROVIDER or default_povider),
               '--config',
-              string.format('model=%s', vim.env.CODEX_MODEL or default_model),
+              string.format('model=%s', my_adapter.model),
             },
           },
           env = {
