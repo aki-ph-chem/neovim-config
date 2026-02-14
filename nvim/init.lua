@@ -52,3 +52,5 @@ require('neovide_config')
 require('codecompanion_config')
 -- docker
 require('docker')
+-- org-mode
+require('org_mode')

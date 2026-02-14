@@ -188,6 +188,11 @@ local docker = {
   'crnvl96/lazydocker.nvim',
 }
 
+local org_mode = {
+  'nvim-orgmode/orgmode',
+  event = 'VeryLazy',
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -219,4 +224,5 @@ return {
   plugins_depended_on_denops,
   direnv,
   docker,
+  org_mode,
 }
