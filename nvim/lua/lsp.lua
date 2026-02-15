@@ -105,6 +105,7 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'path' },
     { name = 'skkeleton' },
+    { name = 'orgmode' },
     spell_check_cfg,
   }),
 })

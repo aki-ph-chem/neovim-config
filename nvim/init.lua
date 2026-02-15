@@ -50,8 +50,9 @@ require('session')
 require('neovide_config')
 -- docker
 require('docker')
-
--- codecompanions
+-- codeCompanion.nvim
 vim.keymap.set('n', '<leader>cc', function()
   require('codecompanion_config')
 end, { desc = 'load codecompanion config' })
+-- org-mode
+require('org_mode')
