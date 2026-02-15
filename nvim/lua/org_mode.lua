@@ -8,3 +8,5 @@ require('orgmode').setup({
 })
 
 vim.lsp.enable('org')
+
+require('org-bullets').setup()

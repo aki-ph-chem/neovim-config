@@ -189,8 +189,13 @@ local docker = {
 }
 
 local org_mode = {
-  'nvim-orgmode/orgmode',
-  event = 'VeryLazy',
+  {
+    'nvim-orgmode/orgmode',
+    event = 'VeryLazy',
+  },
+  {
+    'akinsho/org-bullets.nvim',
+  },
 }
 
 return {
