@@ -48,9 +48,11 @@ require('fzf_config')
 require('dashboard')
 require('session')
 require('neovide_config')
--- codecompanions
-require('codecompanion_config')
 -- docker
 require('docker')
+-- codeCompanion.nvim
+vim.keymap.set('n', '<leader>cc', function()
+  require('codecompanion_config')
+end, { desc = 'load codecompanion config' })
 -- org-mode
 require('org_mode')
