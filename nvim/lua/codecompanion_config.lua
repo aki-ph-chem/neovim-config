@@ -84,23 +84,29 @@ require('codecompanion').setup({
         })
       end,
       codex = function()
-        local default_povider = 'openrouter'
+        local provider_config = vim.env.OPENAI_API_KEY and {}
+          or {
+            '--config',
+            string.format('model_provider=%s', vim.env.CODEX_PROVIDER or 'openrouter'),
+          }
 
         return require('codecompanion.adapters').extend('codex', {
           defaults = {
             auth_method = 'openai-api-key', -- "openai-api-key"|"codex-api-key"|"chatgpt"
           },
           commands = {
-            default = {
-              'codex-acp',
-              '--config',
-              string.format('model_provider=%s', vim.env.CODEX_PROVIDER or default_povider),
-              '--config',
-              string.format('model=%s', my_adapter.model),
-            },
+            default = vim
+              .iter({
+                'codex-acp',
+                '--config',
+                string.format('model=%s', my_adapter.model),
+                provider_config,
+              })
+              :flatten()
+              :totable(),
           },
           env = {
-            OPENAI_API_KEY = vim.env.OPENROUTER_API_KEY,
+            OPENAI_API_KEY = vim.env.OPENAI_API_KEY or vim.env.OPENROUTER_API_KEY,
           },
         })
       end,
