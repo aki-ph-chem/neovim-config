@@ -23,6 +23,7 @@ require('gitsigns').setup({
   word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
   watch_gitdir = {
     follow_files = true,
+    interval = 1000,
   },
   auto_attach = true,
   attach_to_untracked = false,
