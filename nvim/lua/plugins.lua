@@ -15,6 +15,7 @@ local cmp_plugins = {
   'hrsh7th/cmp-buffer',
   'f3fora/cmp-spell',
   'rinx/cmp-skkeleton',
+  'hrsh7th/cmp-cmdline',
 }
 
 -- formatter
