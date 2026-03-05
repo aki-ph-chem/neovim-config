@@ -51,6 +51,11 @@ require('gitsigns').setup({
   },
 })
 
+-- refresh Gitsings
+vim.keymap.set('n', '<leader>sr', function()
+  require('gitsigns').refresh()
+end, { desc = 'run Gitsings refresh' })
+
 --- for BlameToggle
 vim.api.nvim_create_user_command('Blm', function()
   vim.cmd('BlameToggle window')
