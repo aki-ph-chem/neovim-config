@@ -137,7 +137,7 @@ local tree_sitter = {
   dependencies = {
     'OXY2DEV/markview.nvim',
   },
-  branch = 'master',
+  branch = 'main',
   lazy = false,
   build = ':TSUpdate',
 }

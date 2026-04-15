@@ -57,23 +57,7 @@ end, { desc = 'Toggle diagnostic virtual_lines' })
 -- install tree-sitter by home-manager
 local tree_sitter_hightlight_off = os.getenv('TS_OFF')
 if not tree_sitter_hightlight_off then
-  require('nvim-treesitter.configs').setup {
-    ensure_installed = {
-      'c',
-      'cpp',
-      'python',
-      'lua',
-      'rust',
-      'bash',
-      'markdown',
-      'markdown_inline',
-      'gitignore',
-      'yaml',
-      'xml',
-      'latex',
-      'bibtex',
-      'toml',
-    },
+  require('nvim-treesitter').setup {
     sync_install = false,
     auto_install = true,
     ignore_install = {},
@@ -82,5 +66,21 @@ if not tree_sitter_hightlight_off then
       enable = true,
       additional_vim_regex_highlighting = false,
     },
+  }
+  require('nvim-treesitter').install {
+    'c',
+    'cpp',
+    'python',
+    'lua',
+    'rust',
+    'bash',
+    'markdown',
+    'markdown_inline',
+    'gitignore',
+    'yaml',
+    'xml',
+    'latex',
+    'bibtex',
+    'toml',
   }
 end
