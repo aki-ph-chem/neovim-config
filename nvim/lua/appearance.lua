@@ -32,7 +32,16 @@ require('hlchunk').setup({
 
 -- nvim-lualine
 require('lualine').setup({
-  options = { theme = 'dracula' },
+  options = { theme = 'dracula', refresh = {
+    statusline = 1000,
+  } },
+  sections = {
+    lualine_x = {
+      function()
+        return os.date('%Y-%m-%d %H:%M:%S')
+      end,
+    },
+  },
 })
 
 -- markview
