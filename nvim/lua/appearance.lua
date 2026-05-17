@@ -91,5 +91,7 @@ if not tree_sitter_hightlight_off then
     'latex',
     'bibtex',
     'toml',
+    'nix',
+    'diff',
   }
 end
