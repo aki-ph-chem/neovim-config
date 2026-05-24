@@ -15,6 +15,7 @@ local cmp_plugins = {
   'hrsh7th/cmp-buffer',
   'f3fora/cmp-spell',
   'rinx/cmp-skkeleton',
+  'hrsh7th/cmp-cmdline',
 }
 
 -- formatter
@@ -136,7 +137,7 @@ local tree_sitter = {
   dependencies = {
     'OXY2DEV/markview.nvim',
   },
-  branch = 'master',
+  branch = 'main',
   lazy = false,
   build = ':TSUpdate',
 }
@@ -188,6 +189,16 @@ local docker = {
   'crnvl96/lazydocker.nvim',
 }
 
+local org_mode = {
+  {
+    'nvim-orgmode/orgmode',
+    event = 'VeryLazy',
+  },
+  {
+    'akinsho/org-bullets.nvim',
+  },
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -219,4 +230,5 @@ return {
   plugins_depended_on_denops,
   direnv,
   docker,
+  org_mode,
 }

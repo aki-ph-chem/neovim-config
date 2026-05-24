@@ -23,6 +23,7 @@ require('gitsigns').setup({
   word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
   watch_gitdir = {
     follow_files = true,
+    interval = 1000,
   },
   auto_attach = true,
   attach_to_untracked = false,
@@ -48,7 +49,44 @@ require('gitsigns').setup({
     row = 0,
     col = 1,
   },
+
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- jump to next Hunk
+    map('n', ']c', function()
+      if vim.wo.diff then
+        return ']c'
+      end
+      vim.schedule(function()
+        gs.next_hunk()
+      end)
+      return '<Ignore>'
+    end, { expr = true, desc = 'Next Hunk' })
+
+    -- jump to previous Hunk
+    map('n', '[c', function()
+      if vim.wo.diff then
+        return '[c'
+      end
+      vim.schedule(function()
+        gs.prev_hunk()
+      end)
+      return '<Ignore>'
+    end, { expr = true, desc = 'Prev Hunk' })
+  end,
 })
+
+-- refresh Gitsings
+vim.keymap.set('n', '<leader>sr', function()
+  require('gitsigns').refresh()
+end, { desc = 'run Gitsings refresh' })
 
 --- for BlameToggle
 vim.api.nvim_create_user_command('Blm', function()
