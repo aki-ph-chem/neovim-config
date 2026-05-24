@@ -63,6 +63,17 @@ vim.keymap.set('n', '<leader>p', function()
   end
 end, { noremap = true, silent = true, desc = 'Print current file path' })
 
+-- Toggle Markdown checkbox  : [ ] <-> [x]
+vim.keymap.set('n', '<leader>cl', function()
+  local line = vim.api.nvim_get_current_line()
+  if line:match('%[ %]') then
+    line = line:gsub('%[ %]', '[x]', 1)
+  elseif line:match('%[x%]') then
+    line = line:gsub('%[x%]', '[ ]', 1)
+  end
+  vim.api.nvim_set_current_line(line)
+end, { noremap = true, silent = true, desc = 'Toggle Markdown checkbox' })
+
 -- delete all buffers when buffer name match regex pattern
 vim.api.nvim_create_user_command('Bx', function(opts)
   local pattern = vim.regex(opts.args)
