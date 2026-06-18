@@ -3,6 +3,7 @@
 -- for LSP
 local lsp_plugins = {
   'SmiteshP/nvim-navic',
+  'neovim/nvim-lspconfig',
 }
 
 -- for cmp
