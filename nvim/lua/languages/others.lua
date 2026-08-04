@@ -47,3 +47,13 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     vim.lsp.buf.format({})
   end,
 })
+
+-- tofu-ls lsp setup
+-- ref: https://github.com/opentofu/tofu-ls/blob/main/docs/USAGE.md
+vim.lsp.config.tofu_ls = {
+  cmd = { 'tofu-ls', 'serve' },
+  -- Base filetypes
+  filetypes = { 'terraform', 'terraform-vars' },
+  root_markers = { '.terraform', '.git' },
+}
+vim.lsp.enable('tofu_ls')
