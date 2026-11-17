@@ -61,8 +61,12 @@ jobs:
       # PR body は巨大（Lazy sync の全ログ）なので、output/with ではなく
       # ファイルに書いて body-path で渡す。環境変数経由だと Docker アクションの
       # 起動時に "Argument list too long" で失敗する。
+      # また create-pull-request は 65536 文字を超える body を切り詰めて警告する
+      # ため、あらかじめ収まるサイズに切り詰めておく。
       - name: Set PR body file
         run: |
+          log_limit=60000 # bytes (65536 文字の上限に対して十分な余裕)
+          log_size=$(wc -c < ./ci-logs/update.md)
           {
             echo '## Automated update'
             echo ''
@@ -71,7 +75,21 @@ jobs:
             echo -n 'finished at: '
             TZ=Asia/Tokyo date
             echo ''
-            cat ./ci-logs/update.md
+            echo ''
+            echo "log: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo ''
+            if [ "$log_size" -gt "$log_limit" ]; then
+              echo 'Log is too long for a pull request body and is truncated below.'
+              echo 'The full log is available at the link above.'
+              echo ''
+            fi
+            awk -v limit="$log_limit" '
+              { n += length($0) + 1; if (n > limit) exit; print }
+            ' ./ci-logs/update.md
+            if [ "$log_size" -gt "$log_limit" ]; then
+              echo ''
+              echo '... (truncated)'
+            fi
           } > ./ci-logs/pr-body.md
 
       - name: test nvim after plugins updates 
