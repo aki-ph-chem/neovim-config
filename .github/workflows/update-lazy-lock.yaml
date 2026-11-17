@@ -58,11 +58,12 @@ jobs:
             | tee -a ./ci-logs/update.md
           echo '```' >> ./ci-logs/update.md
 
-      - name: Set PR body output
-        id: pr-body-output
+      # PR body は巨大（Lazy sync の全ログ）なので、output/with ではなく
+      # ファイルに書いて body-path で渡す。環境変数経由だと Docker アクションの
+      # 起動時に "Argument list too long" で失敗する。
+      - name: Set PR body file
         run: |
           {
-            echo 'body<<EOF'
             echo '## Automated update'
             echo ''
             echo -n 'started at:  '
@@ -71,9 +72,7 @@ jobs:
             TZ=Asia/Tokyo date
             echo ''
             cat ./ci-logs/update.md
-            echo 'EOF'
-          } >> "$GITHUB_OUTPUT"
-          rm -rf ./ci-logs/
+          } > ./ci-logs/pr-body.md
 
       - name: test nvim after plugins updates 
         run: |
@@ -89,7 +88,7 @@ jobs:
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           title: "update(plugins): update nvim plugins ${{ steps.meta.outputs.date }}"
-          body: ${{ steps.pr-body-output.outputs.body }}
+          body-path: ./ci-logs/pr-body.md
           commit-message: "update(plugins): update nvim plugins at ${{ steps.meta.outputs.date }}"
           branch: "update-nvim-plugin-at-${{ steps.meta.outputs.date }}"
           add-paths: |
