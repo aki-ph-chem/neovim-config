@@ -9,8 +9,8 @@ on:
         type: string    # Specify the type of input value (string, choice, boolean, environment)
         default: 'Manual Run' # Default value
   schedule:
-    # Runs daily at UTC 15:00 (JST 0:00)
-    - cron: '0 15 * * *'
+    # Runs twice a week at UTC 15:00 on Mon/Thu (JST 0:00 on Tue/Fri)
+    - cron: '0 15 * * 1,4'
 
 jobs:
   udpate-lockfile:
@@ -19,7 +19,7 @@ jobs:
       image: ghcr.io/${{ github.repository }}:latest
 
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Initialize log file
         run: |
@@ -28,7 +28,7 @@ jobs:
           echo '' > ./ci-logs/update.md
 
       - name: cache neovim plugins
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: "~/.local/share/nvim/lazy"
           key: ${{ runner.os }}-neovim-${{ hashFiles('**/lazy-lock.json') }}
@@ -58,11 +58,16 @@ jobs:
             | tee -a ./ci-logs/update.md
           echo '```' >> ./ci-logs/update.md
 
-      - name: Set PR body output
-        id: pr-body-output
+      # PR body は巨大（Lazy sync の全ログ）なので、output/with ではなく
+      # ファイルに書いて body-path で渡す。環境変数経由だと Docker アクションの
+      # 起動時に "Argument list too long" で失敗する。
+      # また create-pull-request は 65536 文字を超える body を切り詰めて警告する
+      # ため、あらかじめ収まるサイズに切り詰めておく。
+      - name: Set PR body file
         run: |
+          log_limit=60000 # bytes (65536 文字の上限に対して十分な余裕)
+          log_size=$(wc -c < ./ci-logs/update.md)
           {
-            echo 'body<<EOF'
             echo '## Automated update'
             echo ''
             echo -n 'started at:  '
@@ -70,10 +75,22 @@ jobs:
             echo -n 'finished at: '
             TZ=Asia/Tokyo date
             echo ''
-            cat ./ci-logs/update.md
-            echo 'EOF'
-          } >> "$GITHUB_OUTPUT"
-          rm -rf ./ci-logs/
+            echo ''
+            echo "log: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo ''
+            if [ "$log_size" -gt "$log_limit" ]; then
+              echo 'Log is too long for a pull request body and is truncated below.'
+              echo 'The full log is available at the link above.'
+              echo ''
+            fi
+            awk -v limit="$log_limit" '
+              { n += length($0) + 1; if (n > limit) exit; print }
+            ' ./ci-logs/update.md
+            if [ "$log_size" -gt "$log_limit" ]; then
+              echo ''
+              echo '... (truncated)'
+            fi
+          } > ./ci-logs/pr-body.md
 
       - name: test nvim after plugins updates 
         run: |
@@ -86,10 +103,10 @@ jobs:
             echo "date=$(TZ=Asia/Tokyo date +%Y-%m-%d-%H-%M)"
           } >> $GITHUB_OUTPUT
 
-      - uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           title: "update(plugins): update nvim plugins ${{ steps.meta.outputs.date }}"
-          body: ${{ steps.pr-body-output.outputs.body }}
+          body-path: ./ci-logs/pr-body.md
           commit-message: "update(plugins): update nvim plugins at ${{ steps.meta.outputs.date }}"
           branch: "update-nvim-plugin-at-${{ steps.meta.outputs.date }}"
           add-paths: |
