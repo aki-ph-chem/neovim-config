@@ -9,8 +9,8 @@ on:
         type: string    # Specify the type of input value (string, choice, boolean, environment)
         default: 'Manual Run' # Default value
   schedule:
-    # Runs daily at UTC 15:00 (JST 0:00)
-    - cron: '0 15 * * *'
+    # Runs twice a week at UTC 15:00 on Mon/Thu (JST 0:00 on Tue/Fri)
+    - cron: '0 15 * * 1,4'
 
 jobs:
   udpate-lockfile:
