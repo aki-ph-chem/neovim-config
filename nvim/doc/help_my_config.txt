@@ -13,6 +13,7 @@ This file is help of my Neovim config
 :help mycfg-dbg: helps of debugger
 :help mycfg-ss: helps of resession.nvim
 :help mycfg-companion helps of codecompanion.nvim
+:help mycfg-lean: helps of Lean 4
 :help mycfg-env: helps of environment variables to control neovim behaviour
 
 terminal(by ToggleTerm):
@@ -120,6 +121,37 @@ $ ./build_cmake/bin/llama-server\
 :Cct : open chat
 :Ccl :load saved chat by fzf-lua UI
 :Ccs <file_name> : save chat as $HOME/.local/share/nvim/cc_saves/<file_name>.md
+
+*mycfg-lean* Lean 4
+
+Lean toolchain is supplied per project by flake + direnv.
+Start nvim in the project directory, or run:
+  $ direnv exec . nvim <file>.lean
+
+<LocalLeader> is the default \ key.
+
+\i: toggle the infoview (auto-opened for *.lean)
+\p: pause the current infoview
+\r: restart the Lean server for the current file
+\s: accept the first "Try this" suggestion
+\x: add an infoview pin
+\c: clear all infoview pins
+\w: enable infoview widgets
+\W: disable infoview widgets
+\<Tab>: jump into the infoview
+press \ twice: show the abbreviation for the symbol under the cursor
+
+<leader>L: search Loogle (:LeanLoogle) and insert the selected name
+
+K: interactive hover (definition, type, documentation)
+gra: code actions
+:LeanGoal: show the goal at the cursor
+:LeanTermGoal: show term-mode type information
+:LeanLineDiagnostics: show diagnostics for the current line
+:LeanRestartFile: restart the Lean server for the current file
+
+Unicode abbreviations are expanded in insert mode:
+  \alpha, \beta, \to, \forall, \exists, ...
 
 *mycfg-env*
 
