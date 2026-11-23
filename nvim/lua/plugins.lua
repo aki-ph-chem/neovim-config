@@ -199,6 +199,13 @@ local org_mode = {
   },
 }
 
+-- for Lean 4
+-- config is in lua/languages/lean.lua (vim.g.lean_config)
+local lean = {
+  'Julian/lean.nvim',
+  event = { 'BufReadPre *.lean', 'BufNewFile *.lean' },
+}
+
 return {
   'cohama/lexima.vim',
   'tomasiser/vim-code-dark',
@@ -231,4 +238,5 @@ return {
   direnv,
   docker,
   org_mode,
+  lean,
 }

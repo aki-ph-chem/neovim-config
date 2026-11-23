@@ -140,6 +140,11 @@ cmp.setup.cmdline(':', {
 -- pop up the results from LSP
 vim.api.nvim_create_autocmd('CursorHold', {
   callback = function()
+    -- Lean updates diagnostics while typing and can produce long messages.
+    -- Use :LeanLineDiagnostics or K explicitly instead of an automatic float.
+    if vim.tbl_contains({ 'lean', 'leaninfo' }, vim.bo.filetype) then
+      return
+    end
     vim.diagnostic.open_float(nil, { focusable = false })
   end,
 })
