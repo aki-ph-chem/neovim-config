@@ -72,6 +72,33 @@ A personalized cheatsheet is available within Neovim.
   * The help files are written to the `nvim/doc` directory.
   * To make changes visible, run the command: `:helptags ~/.config/nvim/doc`
 
+## 🧮 Lean 4 Setup
+
+Lean files are supported by [Julian/lean.nvim]. The Lean toolchain is **not** installed by this repository; each project supplies it with `flake.nix` + direnv (`lean-toolchain` / `lakefile.toml`). Start Neovim inside the project directory, or run it through direnv:
+
+```sh
+cd ~/Learn/symtop-molecule-lean
+direnv allow          # once per project
+nvim SymtopMolecule.lean
+# or
+direnv exec . nvim SymtopMolecule.lean
+```
+
+First-time plugin installation (the Lean plugin is loaded lazily for `*.lean`):
+
+```sh
+nvim --headless "+Lazy! install" +qa
+```
+
+Verification:
+
+1. `:checkhealth lean` reports no errors (run it inside the project's direnv shell).
+2. Open a `.lean` file: the infoview opens automatically (`\i` toggles it).
+3. `:LeanGoal` shows the goal at the cursor, and `K` opens the interactive hover.
+4. `,L` (or `:LeanLoogle`) searches Loogle; `<Enter>` inserts the selected name and ensures its `import`.
+
+Key mappings in Lean buffers: `\i` infoview, `\r` restart file, `\s` accept "Try this", `\x` add pin, `\c` clear pins, and `\` triggers Unicode abbreviations in insert mode (e.g. `\alpha`, `\to`). Automatic `CursorHold` diagnostic floats are disabled for `lean`/`leaninfo` buffers; use `:LeanLineDiagnostics` or `K` instead. The verification log from the initial setup is kept at `/tmp/opencode/lean-verify.log`.
+
 ## ⭐ 🔌 Plugin Highlights ⭐
 
 | Category                  | Plugin                         | Description                                      |
@@ -102,6 +129,7 @@ A personalized cheatsheet is available within Neovim.
 | **Markdown preview**      | [OXY2DEV/markview.nvim]        | preview markview on Neovim                       |
 | **LLM integuration**      | [olimorris/codecompanion.nvim] | LLM integuration on Neovim                       |
 | **Docker**                | [crnvl96/lazydocker]           | lazydocker integuration                          |
+| **Lean 4**                | [Julian/lean.nvim]             | infoview, Unicode abbreviations, Loogle search   |
 
 
 <!-- for LSP & cmp -->
@@ -152,6 +180,8 @@ A personalized cheatsheet is available within Neovim.
 [olimorris/codecompanion.nvim]: https://github.com/olimorris/codecompanion.nvim
 <!-- lazydocker -->
 [crnvl96/lazydocker]: https://github.com/crnvl96/lazydocker.nvim
+<!-- Lean 4 -->
+[Julian/lean.nvim]: https://github.com/Julian/lean.nvim
 
 
 <!-- font -->
