@@ -17,6 +17,8 @@ vim.opt.rtp:prepend(lazypath)
 
 -- load lazy for plugins
 require('lazy').setup('plugins')
+-- icons for filetypes missing from nvim-web-devicons
+require('icons')
 -- my cmd for window size
 require('my_cmd')
 -- appearance
