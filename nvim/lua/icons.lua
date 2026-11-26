@@ -12,8 +12,8 @@ end
 devicons.set_icon({
   lean = {
     icon = '∀',
-    color = '#ffffff',
-    cterm_color = '231',
+    color = '#cccccc',
+    cterm_color = '252',
     name = 'Lean',
   },
 })
